@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Fausto/Downloads/nextjs_project_netlify_login_fix_v2/src/app/api/dev-login/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server';\n\nexport const runtime = 'nodejs';\n\nexport async function GET(req: NextRequest) {\n  const url = new URL(req.url);\n  const redirectTo = url.searchParams.get('redirect') || '/admin/trips';\n\n  const dest = new URL(redirectTo, url);\n  const res = NextResponse.redirect(dest);\n\n  // Cookie “stub” per far passare la middleware demo (che controlla la presenza di una cookie sb-*)\n  res.cookies.set('sb-dev', '1', {\n    path: '/',\n    httpOnly: true,\n    sameSite: 'lax',\n    secure: true,\n  });\n\n  return res;\n}\n"],"names":[],"mappings":";;;;;;AAAA;;AAEO,MAAM,UAAU;AAEhB,eAAe,IAAI,GAAgB;IACxC,MAAM,MAAM,IAAI,IAAI,IAAI,GAAG;IAC3B,MAAM,aAAa,IAAI,YAAY,CAAC,GAAG,CAAC,eAAe;IAEvD,MAAM,OAAO,IAAI,IAAI,YAAY;IACjC,MAAM,MAAM,gJAAY,CAAC,QAAQ,CAAC;IAElC,kGAAkG;IAClG,IAAI,OAAO,CAAC,GAAG,CAAC,UAAU,KAAK;QAC7B,MAAM;QACN,UAAU;QACV,UAAU;QACV,QAAQ;IACV;IAEA,OAAO;AACT"}}]
+}
