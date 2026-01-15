@@ -480,30 +480,32 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$admin$2f$TripLayout$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/admin/TripLayout.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-client] (ecmascript) <export default as TrendingUp>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wallet.js [app-client] (ecmascript) <export default as Wallet>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-alert.js [app-client] (ecmascript) <export default as AlertCircle>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-plus.js [app-client] (ecmascript) <export default as PlusCircle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bus.js [app-client] (ecmascript) <export default as Bus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-client] (ecmascript) <export default as Calendar>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-client] (ecmascript) <export default as CheckCircle2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.js [app-client] (ecmascript) <export default as ChevronRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/info.js [app-client] (ecmascript) <export default as Info>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-plus.js [app-client] (ecmascript) <export default as PlusCircle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-client] (ecmascript) <export default as TrendingUp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wallet.js [app-client] (ecmascript) <export default as Wallet>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$admin$2f$TripLayout$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/admin/TripLayout.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
-'use client';
+"use client";
 ;
 ;
 ;
-const MOCK_DATA = {
+/** Mock */ const MOCK_DATA = {
     summary: {
-        destinationName: 'Gressoney-La-Trinité',
-        departureLabel: '18 Gen 2026 • Milano Lampugnano',
-        status: 'SOFT_HOLD',
+        destinationName: "Gressoney-La-Trinité",
+        departureLabel: "18 Gen 2026 • Milano Lampugnano",
+        status: "SOFT_HOLD",
         sla: {
-            level: 'YELLOW',
-            label: 'Rischio SLA',
-            deadlineLabel: 'Scade tra 14h 20m'
+            level: "YELLOW",
+            label: "Rischio SLA",
+            deadlineLabel: "Scade tra 14h 20m"
         }
     },
     kpis: {
@@ -515,29 +517,29 @@ const MOCK_DATA = {
     },
     alerts: [
         {
-            id: '1',
-            code: 'SLA_RISK',
-            severity: 'critical',
-            message: 'Mancano 3 posti per il Break-even del Bus #1'
+            id: "1",
+            code: "SLA_RISK",
+            severity: "critical",
+            message: "Mancano 3 posti per il Break-even del Bus #1"
         },
         {
-            id: '2',
-            code: 'WL_DEMAND',
-            severity: 'warning',
-            message: 'Domanda in waitlist sufficiente per Midibus 20 posti'
+            id: "2",
+            code: "WL_DEMAND",
+            severity: "warning",
+            message: "Domanda in waitlist sufficiente per Midibus 20 posti"
         },
         {
-            id: '3',
-            code: 'PROMO_ACTIVE',
-            severity: 'info',
+            id: "3",
+            code: "PROMO_ACTIVE",
+            severity: "info",
             message: 'Campagna promozionale "Early Snow" attiva'
         }
     ],
     buses: [
         {
-            id: 'BUS-01',
-            type: 'COACH',
-            status: 'SOFT_HOLD',
+            id: "BUS-01",
+            type: "COACH",
+            status: "SOFT_HOLD",
             capacity: 52,
             sold: 42,
             bep: 45,
@@ -546,51 +548,196 @@ const MOCK_DATA = {
     ],
     recommendations: [
         {
-            id: 'rec-1',
-            type: 'OPEN_MIDIBUS',
-            title: 'Attiva secondo mezzo (Midibus)',
-            description: 'La waitlist ha raggiunto 14 persone. Aprendo un Midibus ora catturiamo la domanda del weekend.',
-            impact: '+€310 Margine stimato'
+            id: "rec-1",
+            type: "OPEN_MIDIBUS",
+            title: "Attiva secondo mezzo (Midibus)",
+            description: "La waitlist ha raggiunto 14 persone. Aprendo un Midibus ora catturiamo la domanda del weekend.",
+            impact: "+€310 margine stimato"
         },
         {
-            id: 'rec-2',
-            type: 'UPGRADE_COACH',
-            title: 'Upgrade a Coach 52 posti',
-            description: 'Trasforma il Midibus attuale in un Coach per ottimizzare il costo per passeggero.',
-            impact: '+12% Efficienza costi'
+            id: "rec-2",
+            type: "UPGRADE_COACH",
+            title: "Upgrade a Coach 52 posti",
+            description: "Trasforma il Midibus attuale in un Coach per ottimizzare il costo per passeggero.",
+            impact: "+12% efficienza costi"
         },
         {
-            id: 'rec-3',
-            type: 'CONFIRM_VEHICLE',
-            title: 'Conferma definitiva flotta',
-            description: 'Blocca i prezzi attuali del fornitore confermando i mezzi assegnati.',
-            impact: 'Zero Penali'
+            id: "rec-3",
+            type: "CONFIRM_VEHICLE",
+            title: "Conferma definitiva flotta",
+            description: "Blocca i prezzi attuali del fornitore confermando i mezzi assegnati.",
+            impact: "Zero penali"
         }
     ]
 };
 const statusPillStyles = {
-    DRAFT: 'bg-slate-100 text-slate-600',
-    SOFT_HOLD: 'bg-amber-100 text-amber-700',
-    CONFIRMED: 'bg-emerald-100 text-emerald-700',
-    LOCKED: 'bg-violet-100 text-violet-700',
-    FULL: 'bg-rose-100 text-rose-700',
-    CANCELLED: 'bg-slate-800 text-slate-200'
+    DRAFT: "bg-slate-100 text-slate-700 ring-slate-200",
+    SOFT_HOLD: "bg-amber-50 text-amber-700 ring-amber-200",
+    CONFIRMED: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+    LOCKED: "bg-violet-50 text-violet-700 ring-violet-200",
+    FULL: "bg-rose-50 text-rose-700 ring-rose-200",
+    CANCELLED: "bg-slate-900 text-slate-100 ring-slate-900"
 };
+function moneyEUR(n) {
+    try {
+        return new Intl.NumberFormat("it-IT", {
+            style: "currency",
+            currency: "EUR",
+            maximumFractionDigits: 0
+        }).format(n);
+    } catch  {
+        return `€${n}`;
+    }
+}
+function KpiCard({ label, value, icon, subValue, tone = "neutral" }) {
+    const toneMap = {
+        neutral: "text-slate-500",
+        success: "text-emerald-600",
+        warning: "text-amber-600",
+        danger: "text-rose-600"
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "rounded-2xl border border-slate-200 bg-white p-5 shadow-sm",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "mb-3 flex items-center justify-between",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center gap-2 text-xs font-semibold text-slate-500",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "inline-flex h-8 w-8 items-center justify-center rounded-xl bg-slate-50 text-slate-600 ring-1 ring-slate-200",
+                            children: icon
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                            lineNumber: 187,
+                            columnNumber: 11
+                        }, this),
+                        label
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                    lineNumber: 186,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                lineNumber: 185,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-2xl font-bold tracking-tight text-slate-900",
+                children: value
+            }, void 0, false, {
+                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                lineNumber: 194,
+                columnNumber: 7
+            }, this),
+            subValue ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: `mt-1 text-xs font-semibold ${toneMap[tone]}`,
+                children: subValue
+            }, void 0, false, {
+                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                lineNumber: 198,
+                columnNumber: 9
+            }, this) : null
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+        lineNumber: 184,
+        columnNumber: 5
+    }, this);
+}
+_c = KpiCard;
+function AlertCard({ code, severity, message }) {
+    const style = severity === "critical" ? "bg-rose-50 border-rose-200 text-rose-900" : severity === "warning" ? "bg-amber-50 border-amber-200 text-amber-900" : "bg-slate-50 border-slate-200 text-slate-800";
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: `rounded-2xl border p-4 ${style}`,
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex gap-3",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mt-0.5 shrink-0",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
+                        size: 18
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                        lineNumber: 226,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                    lineNumber: 225,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "min-w-0",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mb-1 text-[10px] font-bold uppercase tracking-widest opacity-60",
+                            children: code
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                            lineNumber: 229,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-sm font-semibold leading-snug",
+                            children: message
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                            lineNumber: 232,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                    lineNumber: 228,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+            lineNumber: 224,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+        lineNumber: 223,
+        columnNumber: 5
+    }, this);
+}
+_c1 = AlertCard;
 function TripOverviewPage({ params }) {
     _s();
+    // Next 16: params può essere una Promise -> unwrap con React.use()
+    const { id } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["use"])(params);
     const [data] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(MOCK_DATA);
     const [selectedAction, setSelectedAction] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [note, setNote] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [note, setNote] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const occupancy = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "TripOverviewPage.useMemo[occupancy]": ()=>{
+            const totalCap = data.buses.reduce({
+                "TripOverviewPage.useMemo[occupancy].totalCap": (acc, b)=>acc + b.capacity
+            }["TripOverviewPage.useMemo[occupancy].totalCap"], 0);
+            const totalSold = data.buses.reduce({
+                "TripOverviewPage.useMemo[occupancy].totalSold": (acc, b)=>acc + b.sold
+            }["TripOverviewPage.useMemo[occupancy].totalSold"], 0);
+            if (!totalCap) return 0;
+            return Math.round(totalSold / totalCap * 100);
+        }
+    }["TripOverviewPage.useMemo[occupancy]"], [
+        data.buses
+    ]);
+    const displayedRecommendations = data.recommendations.slice(0, 2);
+    const hiddenCount = Math.max(0, data.recommendations.length - 2);
     const handleConfirmAction = ()=>{
         console.log(`Esecuzione azione ${selectedAction?.id} con nota: ${note}`);
-        // fetch(`/api/admin/actions/execute`, { method: 'POST', body: JSON.stringify({ id: selectedAction?.id, note }) })
         setSelectedAction(null);
-        setNote('');
+        setNote("");
     };
-    const displayedRecommendations = data.recommendations.slice(0, 2);
-    const hiddenCount = data.recommendations.length - 2;
+    const noteTooShort = note.trim().length > 0 && note.trim().length < 10;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$admin$2f$TripLayout$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TripLayout"], {
-        id: params.id,
+        id: id,
         activeTab: "overview",
         tripSummary: data.summary,
         children: [
@@ -598,803 +745,924 @@ function TripOverviewPage({ params }) {
                 className: "space-y-8",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-2 lg:grid-cols-4 gap-4",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
-                                label: "Posti Venduti",
-                                value: data.kpis.totalSold,
-                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-                                    size: 16
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 130,
-                                    columnNumber: 76
-                                }, void 0),
-                                subValue: `${data.kpis.waitlistToPaidRate}% waitlist conversion`
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 130,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
-                                label: "Waitlist Attiva",
-                                value: data.kpis.waitlistCount,
-                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
-                                    size: 16
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 131,
-                                    columnNumber: 82
-                                }, void 0),
-                                trend: "warning"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 131,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
-                                label: "Ricavo Netto",
-                                value: `€${data.kpis.paidRevenue}`,
-                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
-                                    size: 16
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 132,
-                                    columnNumber: 83
-                                }, void 0),
-                                subValue: "Pagamenti confermati"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 132,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
-                                label: "Margine Est.",
-                                value: `€${data.kpis.estMargin}`,
-                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__["PlusCircle"], {
-                                    size: 16
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 133,
-                                    columnNumber: 81
-                                }, void 0),
-                                trend: data.kpis.estMargin > 0 ? 'success' : 'danger'
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 133,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 129,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 lg:grid-cols-3 gap-8",
+                        className: "rounded-2xl border border-slate-200 bg-white p-5 shadow-sm",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "lg:col-span-2 space-y-8",
+                                className: "flex flex-wrap items-center justify-between gap-4",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "space-y-1",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                className: "text-sm font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
-                                                        size: 16,
-                                                        className: "text-indigo-600"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 144,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    " Azioni Consigliate"
-                                                ]
-                                            }, void 0, true, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "text-sm font-semibold text-slate-500",
+                                                children: "Viaggio"
+                                            }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 143,
+                                                lineNumber: 278,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "grid gap-4",
+                                                className: "text-xl font-bold tracking-tight text-slate-900",
+                                                children: data.summary.destinationName
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                lineNumber: 279,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex flex-wrap items-center gap-3 text-sm text-slate-500",
                                                 children: [
-                                                    displayedRecommendations.map((rec)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            onClick: ()=>{
-                                                                setSelectedAction(rec);
-                                                                setNote('');
-                                                            },
-                                                            className: "flex items-center justify-between p-6 bg-indigo-900 text-white rounded-3xl hover:bg-indigo-800 transition-all text-left shadow-xl shadow-indigo-100 group",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "max-w-md",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "flex items-center gap-2 mb-2",
-                                                                            children: [
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                    className: "px-2 py-0.5 bg-indigo-500 text-[10px] font-black rounded uppercase tracking-tighter",
-                                                                                    children: "Strategico"
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 155,
-                                                                                    columnNumber: 26
-                                                                                }, this),
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                    className: "text-xs font-bold text-indigo-300",
-                                                                                    children: rec.impact
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 156,
-                                                                                    columnNumber: 26
-                                                                                }, this)
-                                                                            ]
-                                                                        }, void 0, true, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 154,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                            className: "text-lg font-bold mb-1",
-                                                                            children: rec.title
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 158,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                            className: "text-sm text-indigo-200 leading-relaxed",
-                                                                            children: rec.description
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 159,
-                                                                            columnNumber: 23
-                                                                        }, this)
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 153,
-                                                                    columnNumber: 21
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "p-3 bg-white/10 rounded-2xl group-hover:translate-x-1 transition-transform",
-                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {}, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 162,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 161,
-                                                                    columnNumber: 21
-                                                                }, this)
-                                                            ]
-                                                        }, rec.id, true, {
-                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 148,
-                                                            columnNumber: 19
-                                                        }, this)),
-                                                    hiddenCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "px-6 py-3 border border-dashed border-slate-200 rounded-2xl text-center",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-xs font-bold text-slate-400",
-                                                            children: [
-                                                                "+ altre ",
-                                                                hiddenCount,
-                                                                " opzioni disponibili in gestione flotta"
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 168,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    }, void 0, false, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "inline-flex items-center gap-1",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
+                                                                size: 14
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                lineNumber: 284,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            " ",
+                                                            data.summary.departureLabel
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 167,
-                                                        columnNumber: 19
+                                                        lineNumber: 283,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "inline-flex items-center gap-1",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bus$3e$__["Bus"], {
+                                                                size: 14
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                lineNumber: 287,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            " Occupazione ",
+                                                            occupancy,
+                                                            "%"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                        lineNumber: 286,
+                                                        columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 282,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 142,
+                                        lineNumber: 277,
                                         columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-3",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                className: "text-sm font-black text-slate-400 uppercase tracking-widest mb-4",
-                                                children: "Stato Mezzi Assegnati"
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: `rounded-full px-3 py-1 text-xs font-bold ring-1 ${statusPillStyles[data.summary.status]}`,
+                                                children: data.summary.status.replace("_", " ")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 176,
+                                                lineNumber: 293,
                                                 columnNumber: 15
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                                                    className: "w-full text-left",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
-                                                            className: "bg-slate-50 border-b border-slate-100",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                                        className: "px-6 py-4 text-[10px] font-black text-slate-400 uppercase",
-                                                                        children: "Bus ID"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 181,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                                        className: "px-6 py-4 text-[10px] font-black text-slate-400 uppercase",
-                                                                        children: "Stato"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 182,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                                        className: "px-6 py-4 text-[10px] font-black text-slate-400 uppercase",
-                                                                        children: "Occupancy"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 183,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                                        className: "px-6 py-4 text-[10px] font-black text-slate-400 uppercase text-center",
-                                                                        children: "B.E.P."
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 184,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                                        className: "px-6 py-4 text-[10px] font-black text-slate-400 uppercase text-right",
-                                                                        children: "Margine"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 185,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                lineNumber: 180,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 179,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
-                                                            className: "divide-y divide-slate-50",
-                                                            children: data.buses.map((bus)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                                    className: "hover:bg-slate-50 transition-colors",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                            className: "px-6 py-4",
-                                                                            children: [
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                    className: "font-bold text-slate-900",
-                                                                                    children: bus.id
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 192,
-                                                                                    columnNumber: 27
-                                                                                }, this),
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                    className: "text-[10px] text-slate-400 font-bold uppercase",
-                                                                                    children: bus.type
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 193,
-                                                                                    columnNumber: 27
-                                                                                }, this)
-                                                                            ]
-                                                                        }, void 0, true, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 191,
-                                                                            columnNumber: 25
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                            className: "px-6 py-4",
-                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: `px-2 py-0.5 text-[9px] font-black rounded uppercase tracking-tighter ${statusPillStyles[bus.status]}`,
-                                                                                children: bus.status.replace('_', ' ')
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 196,
-                                                                                columnNumber: 27
-                                                                            }, this)
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 195,
-                                                                            columnNumber: 25
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                            className: "px-6 py-4",
-                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "flex items-center gap-2",
-                                                                                children: [
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                        className: "text-xs font-black",
-                                                                                        children: [
-                                                                                            bus.sold,
-                                                                                            "/",
-                                                                                            bus.capacity
-                                                                                        ]
-                                                                                    }, void 0, true, {
-                                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                        lineNumber: 202,
-                                                                                        columnNumber: 29
-                                                                                    }, this),
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                        className: "w-12 h-1 bg-slate-100 rounded-full overflow-hidden hidden sm:block",
-                                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                            className: "h-full bg-indigo-500",
-                                                                                            style: {
-                                                                                                width: `${bus.sold / bus.capacity * 100}%`
-                                                                                            }
-                                                                                        }, void 0, false, {
-                                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                            lineNumber: 204,
-                                                                                            columnNumber: 31
-                                                                                        }, this)
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                        lineNumber: 203,
-                                                                                        columnNumber: 29
-                                                                                    }, this)
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 201,
-                                                                                columnNumber: 27
-                                                                            }, this)
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 200,
-                                                                            columnNumber: 25
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                            className: "px-6 py-4 text-center",
-                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "text-[10px] font-bold text-slate-600",
-                                                                                children: [
-                                                                                    bus.bep,
-                                                                                    " pax"
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 209,
-                                                                                columnNumber: 27
-                                                                            }, this)
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 208,
-                                                                            columnNumber: 25
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                            className: "px-6 py-4 text-right font-black text-xs",
-                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: bus.margin >= 0 ? 'text-emerald-600' : 'text-rose-500',
-                                                                                children: [
-                                                                                    bus.margin >= 0 ? '+' : '',
-                                                                                    "€",
-                                                                                    bus.margin
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 212,
-                                                                                columnNumber: 27
-                                                                            }, this)
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 211,
-                                                                            columnNumber: 25
-                                                                        }, this)
-                                                                    ]
-                                                                }, bus.id, true, {
-                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 190,
-                                                                    columnNumber: 23
-                                                                }, this))
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 188,
-                                                            columnNumber: 19
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 178,
-                                                    columnNumber: 17
-                                                }, this)
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "rounded-full bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200",
+                                                children: [
+                                                    data.summary.sla.label,
+                                                    data.summary.sla.deadlineLabel ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "ml-2 text-slate-500",
+                                                        children: data.summary.sla.deadlineLabel
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                        lineNumber: 304,
+                                                        columnNumber: 19
+                                                    }, this) : null
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 301,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 175,
+                                        lineNumber: 292,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 139,
+                                lineNumber: 276,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-4 flex flex-wrap gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: `/admin/trips/${id}/numbers`,
+                                        className: "rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800",
+                                        children: "Numeri"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                        lineNumber: 314,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: `/admin/trips/${id}/buses`,
+                                        className: "rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50",
+                                        children: "Mezzi"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                        lineNumber: 320,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: `/admin/trips/${id}/waitlist`,
+                                        className: "rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50",
+                                        children: "Waitlist"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                        lineNumber: 326,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "/checkout",
+                                        className: "rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700",
+                                        children: "Apri checkout"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                        lineNumber: 332,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                lineNumber: 313,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                        lineNumber: 275,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "grid grid-cols-2 gap-4 lg:grid-cols-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
+                                label: "Posti venduti",
+                                value: data.kpis.totalSold,
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
+                                    size: 16
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 346,
+                                    columnNumber: 19
+                                }, void 0),
+                                subValue: `${data.kpis.waitlistToPaidRate}% conversione waitlist`,
+                                tone: "neutral"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                lineNumber: 343,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
+                                label: "Waitlist",
+                                value: data.kpis.waitlistCount,
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
+                                    size: 16
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 353,
+                                    columnNumber: 19
+                                }, void 0),
+                                subValue: "Richieste attive",
+                                tone: "warning"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                lineNumber: 350,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
+                                label: "Ricavo netto",
+                                value: moneyEUR(data.kpis.paidRevenue),
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
+                                    size: 16
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 360,
+                                    columnNumber: 19
+                                }, void 0),
+                                subValue: "Pagamenti confermati",
+                                tone: "success"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                lineNumber: 357,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
+                                label: "Margine stimato",
+                                value: moneyEUR(data.kpis.estMargin),
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__["PlusCircle"], {
+                                    size: 16
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 367,
+                                    columnNumber: 19
+                                }, void 0),
+                                subValue: data.kpis.estMargin >= 0 ? "In positivo" : "In negativo",
+                                tone: data.kpis.estMargin >= 0 ? "success" : "danger"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                lineNumber: 364,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                        lineNumber: 342,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "grid grid-cols-1 gap-8 lg:grid-cols-3",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "space-y-8 lg:col-span-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                                        className: "space-y-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-between",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                        className: "text-sm font-bold tracking-tight text-slate-900",
+                                                        children: "Azioni consigliate"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                        lineNumber: 379,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "text-xs font-semibold text-slate-500",
+                                                        children: hiddenCount > 0 ? `+${hiddenCount} altre` : "—"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                        lineNumber: 382,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                lineNumber: 378,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "grid gap-3",
+                                                children: [
+                                                    displayedRecommendations.map((rec)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: ()=>{
+                                                                setSelectedAction(rec);
+                                                                setNote("");
+                                                            },
+                                                            className: "group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm hover:bg-slate-50",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "min-w-0",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "mb-1 flex items-center gap-2",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                    className: "rounded-full bg-indigo-50 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-indigo-700 ring-1 ring-indigo-200",
+                                                                                    children: "Suggerita"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                    lineNumber: 399,
+                                                                                    columnNumber: 25
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                    className: "text-xs font-semibold text-slate-500",
+                                                                                    children: rec.impact
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                    lineNumber: 402,
+                                                                                    columnNumber: 25
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 398,
+                                                                            columnNumber: 23
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "text-base font-semibold text-slate-900",
+                                                                            children: rec.title
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 406,
+                                                                            columnNumber: 23
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "mt-1 text-sm text-slate-600",
+                                                                            children: rec.description
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 409,
+                                                                            columnNumber: 23
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                    lineNumber: 397,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "ml-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-slate-200 transition group-hover:translate-x-0.5",
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
+                                                                        className: "text-slate-400 group-hover:text-indigo-600"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                        lineNumber: 415,
+                                                                        columnNumber: 23
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                    lineNumber: 414,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, rec.id, true, {
+                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                            lineNumber: 389,
+                                                            columnNumber: 19
+                                                        }, this)),
+                                                    hiddenCount > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "rounded-2xl border border-dashed border-slate-200 bg-white px-5 py-3 text-center text-xs font-semibold text-slate-500",
+                                                        children: [
+                                                            "Altre ",
+                                                            hiddenCount,
+                                                            " opzioni disponibili nelle tab dedicate (Mezzi / Numeri / Waitlist)"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                        lineNumber: 421,
+                                                        columnNumber: 19
+                                                    }, this) : null
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                lineNumber: 387,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                        lineNumber: 377,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                                        className: "space-y-3",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                className: "text-sm font-bold tracking-tight text-slate-900",
+                                                children: "Stato mezzi assegnati"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                lineNumber: 431,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                                    className: "w-full text-left",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                                            className: "bg-slate-50",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                                className: "border-b border-slate-200",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                                        className: "px-6 py-3 text-[11px] font-bold text-slate-500",
+                                                                        children: "Bus"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                        lineNumber: 439,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                                        className: "px-6 py-3 text-[11px] font-bold text-slate-500",
+                                                                        children: "Stato"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                        lineNumber: 442,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                                        className: "px-6 py-3 text-[11px] font-bold text-slate-500",
+                                                                        children: "Occupazione"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                        lineNumber: 445,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                                        className: "px-6 py-3 text-center text-[11px] font-bold text-slate-500",
+                                                                        children: "B.E.P."
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                        lineNumber: 448,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                                        className: "px-6 py-3 text-right text-[11px] font-bold text-slate-500",
+                                                                        children: "Margine"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                        lineNumber: 451,
+                                                                        columnNumber: 23
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                lineNumber: 438,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                            lineNumber: 437,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                                            className: "divide-y divide-slate-100",
+                                                            children: data.buses.map((bus)=>{
+                                                                const occ = Math.round(bus.sold / bus.capacity * 100);
+                                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                                    className: "hover:bg-slate-50",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                                            className: "px-6 py-4",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    className: "font-semibold text-slate-900",
+                                                                                    children: bus.id
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                    lineNumber: 463,
+                                                                                    columnNumber: 29
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    className: "text-xs font-semibold text-slate-500",
+                                                                                    children: bus.type
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                    lineNumber: 466,
+                                                                                    columnNumber: 29
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 462,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                                            className: "px-6 py-4",
+                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                className: `rounded-full px-3 py-1 text-[11px] font-bold ring-1 ${statusPillStyles[bus.status]}`,
+                                                                                children: bus.status.replace("_", " ")
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                lineNumber: 472,
+                                                                                columnNumber: 29
+                                                                            }, this)
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 471,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                                            className: "px-6 py-4",
+                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: "flex items-center gap-3",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                        className: "w-24 rounded-full bg-slate-100",
+                                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                            className: "h-2 rounded-full bg-indigo-500",
+                                                                                            style: {
+                                                                                                width: `${occ}%`
+                                                                                            }
+                                                                                        }, void 0, false, {
+                                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                            lineNumber: 484,
+                                                                                            columnNumber: 33
+                                                                                        }, this)
+                                                                                    }, void 0, false, {
+                                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                        lineNumber: 483,
+                                                                                        columnNumber: 31
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                        className: "text-sm font-semibold text-slate-700",
+                                                                                        children: [
+                                                                                            bus.sold,
+                                                                                            "/",
+                                                                                            bus.capacity,
+                                                                                            " (",
+                                                                                            occ,
+                                                                                            "%)"
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                        lineNumber: 489,
+                                                                                        columnNumber: 31
+                                                                                    }, this)
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                lineNumber: 482,
+                                                                                columnNumber: 29
+                                                                            }, this)
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 481,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                                            className: "px-6 py-4 text-center text-sm font-semibold text-slate-700",
+                                                                            children: [
+                                                                                bus.bep,
+                                                                                " pax"
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 495,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                                            className: "px-6 py-4 text-right text-sm font-bold",
+                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                className: bus.margin >= 0 ? "text-emerald-700" : "text-rose-700",
+                                                                                children: [
+                                                                                    bus.margin >= 0 ? "+" : "",
+                                                                                    moneyEUR(bus.margin)
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                                lineNumber: 500,
+                                                                                columnNumber: 29
+                                                                            }, this)
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                            lineNumber: 499,
+                                                                            columnNumber: 27
+                                                                        }, this)
+                                                                    ]
+                                                                }, bus.id, true, {
+                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                                    lineNumber: 461,
+                                                                    columnNumber: 25
+                                                                }, this);
+                                                            })
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                            lineNumber: 457,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                    lineNumber: 436,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                lineNumber: 435,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                        lineNumber: 430,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                lineNumber: 375,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-6",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                                        className: "space-y-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                className: "text-sm font-black text-slate-400 uppercase tracking-widest mb-4",
-                                                children: "Alert Attivi"
+                                                className: "text-sm font-bold tracking-tight text-slate-900",
+                                                children: "Alert attivi"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 227,
+                                                lineNumber: 523,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "space-y-3",
-                                                children: data.alerts.map((alert)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: `p-4 rounded-2xl border flex gap-3 ${alert.severity === 'critical' ? 'bg-rose-50 border-rose-100 text-rose-800' : alert.severity === 'warning' ? 'bg-amber-50 border-amber-100 text-amber-800' : 'bg-slate-50 border-slate-100 text-slate-700'}`,
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "mt-0.5 shrink-0",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
-                                                                    size: 18
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 239,
-                                                                    columnNumber: 24
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                lineNumber: 238,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "text-[10px] font-black uppercase tracking-widest mb-1 opacity-60",
-                                                                        children: alert.code
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 242,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-xs font-bold leading-relaxed",
-                                                                        children: alert.message
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 243,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                lineNumber: 241,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        ]
-                                                    }, alert.id, true, {
+                                                children: data.alerts.map((a)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AlertCard, {
+                                                        code: a.code,
+                                                        severity: a.severity,
+                                                        message: a.message
+                                                    }, a.id, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 230,
+                                                        lineNumber: 529,
                                                         columnNumber: 19
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 228,
+                                                lineNumber: 527,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 226,
+                                        lineNumber: 522,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "bg-slate-900 rounded-3xl p-6 text-white",
+                                        className: "rounded-2xl border border-slate-200 bg-slate-900 p-5 text-white shadow-sm",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-2 text-indigo-400 text-[10px] font-black uppercase mb-4",
+                                                className: "mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-300",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 252,
-                                                        columnNumber: 18
+                                                        lineNumber: 541,
+                                                        columnNumber: 17
                                                     }, this),
-                                                    " Note Operative"
+                                                    " Note operative"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 251,
-                                                columnNumber: 16
+                                                lineNumber: 540,
+                                                columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-slate-400 leading-relaxed italic",
-                                                children: '"Monte Rosa Bus: Assicurarsi che l\'upgrade coach venga confermato entro giovedì per evitare penali di cancellazione fornitore."'
+                                                className: "text-sm leading-relaxed text-slate-200",
+                                                children: "“Confermare eventuale upgrade coach entro giovedì per evitare penali del fornitore.”"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 254,
-                                                columnNumber: 16
+                                                lineNumber: 543,
+                                                columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 250,
+                                        lineNumber: 539,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 225,
+                                lineNumber: 521,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 136,
+                        lineNumber: 373,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 126,
+                lineNumber: 273,
                 columnNumber: 7
             }, this),
-            selectedAction && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm",
+            selectedAction ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 animate-in fade-in zoom-in duration-200",
+                    className: "w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-indigo-600 mb-4",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
-                                size: 32
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 267,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 266,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                            className: "text-xl font-bold mb-2",
-                            children: selectedAction.title
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 269,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-slate-500 text-sm mb-6",
-                            children: selectedAction.description
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 270,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-slate-50 p-4 rounded-2xl mb-6 space-y-2",
+                            className: "mb-4 flex items-start justify-between gap-4",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex justify-between text-xs font-bold",
+                                    className: "flex items-center gap-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-slate-400 uppercase tracking-tighter",
-                                            children: "Impatto Finanziario"
+                                            className: "inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
+                                                size: 18
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                lineNumber: 559,
+                                                columnNumber: 19
+                                            }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 274,
-                                            columnNumber: 18
+                                            lineNumber: 558,
+                                            columnNumber: 17
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-emerald-600 font-black",
-                                            children: selectedAction.impact
-                                        }, void 0, false, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-lg font-bold text-slate-900",
+                                                    children: selectedAction.title
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                    lineNumber: 562,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-sm text-slate-600",
+                                                    children: selectedAction.description
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                                    lineNumber: 565,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 275,
-                                            columnNumber: 18
+                                            lineNumber: 561,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 273,
-                                    columnNumber: 16
+                                    lineNumber: 557,
+                                    columnNumber: 15
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex justify-between text-xs font-bold",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-slate-400 uppercase tracking-tighter",
-                                            children: "Target Operativo"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 278,
-                                            columnNumber: 18
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-slate-900",
-                                            children: "~65% Waitlist"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 279,
-                                            columnNumber: 18
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setSelectedAction(null),
+                                    className: "rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50",
+                                    children: "Chiudi"
+                                }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 277,
-                                    columnNumber: 16
+                                    lineNumber: 571,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 272,
+                            lineNumber: 556,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "space-y-4 mb-8",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: "block",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[10px] font-black text-slate-400 uppercase block mb-2",
-                                        children: "Nota di Validazione (Min. 10 caratteri)"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 285,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                                        value: note,
-                                        onChange: (e)=>setNote(e.target.value),
-                                        className: `w-full bg-slate-50 border rounded-xl p-4 text-sm outline-none transition-all focus:ring-2 ${note.trim().length > 0 && note.trim().length < 10 ? 'border-amber-300 ring-amber-100' : 'border-slate-200 focus:ring-indigo-500'}`,
-                                        placeholder: "Giustifica l'azione operativa..."
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 286,
-                                        columnNumber: 17
-                                    }, this),
-                                    note.trim().length > 0 && note.trim().length < 10 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[10px] text-amber-600 font-bold mt-1 block",
-                                        children: "La nota deve essere più dettagliata per l'audit."
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 295,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 284,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
+                            className: "mb-4 rounded-2xl border border-slate-200 bg-slate-50 p-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center justify-between text-sm",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "font-semibold text-slate-600",
+                                            children: "Impatto"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                            lineNumber: 581,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "font-bold text-emerald-700",
+                                            children: selectedAction.impact
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                            lineNumber: 582,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 580,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mt-2 flex items-center justify-between text-sm",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "font-semibold text-slate-600",
+                                            children: "Target operativo"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                            lineNumber: 587,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "font-bold text-slate-900",
+                                            children: "~65% waitlist"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                            lineNumber: 590,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 586,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 283,
+                            lineNumber: 579,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                            className: "block",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "mb-2 block text-xs font-bold text-slate-600",
+                                    children: "Nota (min. 10 caratteri)"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 595,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                    value: note,
+                                    onChange: (e)=>setNote(e.target.value),
+                                    className: `w-full rounded-xl border p-3 text-sm outline-none focus:ring-2 ${noteTooShort ? "border-amber-300 focus:ring-amber-200" : "border-slate-200 focus:ring-indigo-200"}`,
+                                    placeholder: "Giustifica l'azione per audit..."
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 598,
+                                    columnNumber: 15
+                                }, this),
+                                noteTooShort ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mt-2 text-xs font-semibold text-amber-700",
+                                    children: "La nota deve essere più dettagliata per l’audit."
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                                    lineNumber: 609,
+                                    columnNumber: 17
+                                }, this) : null
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
+                            lineNumber: 594,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex gap-3",
+                            className: "mt-5 flex gap-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setSelectedAction(null),
-                                    className: "flex-1 py-3 text-slate-400 font-bold hover:bg-slate-50 rounded-xl transition-colors",
+                                    className: "flex-1 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50",
                                     children: "Annulla"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 301,
-                                    columnNumber: 16
+                                    lineNumber: 616,
+                                    columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     disabled: note.trim().length < 10,
                                     onClick: handleConfirmAction,
-                                    className: "flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-100 disabled:bg-slate-200 disabled:shadow-none transition-all",
-                                    children: "Conferma Azione"
+                                    className: "flex-1 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 disabled:bg-slate-200",
+                                    children: "Conferma"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 302,
-                                    columnNumber: 16
+                                    lineNumber: 622,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 300,
+                            lineNumber: 615,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                    lineNumber: 265,
+                    lineNumber: 555,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 264,
+                lineNumber: 554,
                 columnNumber: 9
-            }, this)
+            }, this) : null
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-        lineNumber: 125,
+        lineNumber: 272,
         columnNumber: 5
     }, this);
 }
-_s(TripOverviewPage, "IjJ4Oe5FbdDCqvFlzAJlHLBbx7c=");
-_c = TripOverviewPage;
-function KpiCard({ label, value, icon, subValue, trend }) {
-    const trendColor = trend === 'success' ? 'text-emerald-500' : trend === 'warning' ? 'text-amber-500' : trend === 'danger' ? 'text-rose-500' : 'text-slate-400';
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "bg-white p-6 rounded-3xl border border-slate-200 shadow-sm transition-all hover:shadow-md",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-slate-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "p-1.5 bg-slate-50 rounded-lg text-slate-500",
-                        children: icon
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 323,
-                        columnNumber: 9
-                    }, this),
-                    label
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 322,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-2xl font-black text-slate-900 tracking-tight",
-                children: value
-            }, void 0, false, {
-                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 326,
-                columnNumber: 7
-            }, this),
-            subValue && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `text-[10px] font-bold mt-1 ${trendColor}`,
-                children: subValue
-            }, void 0, false, {
-                fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 328,
-                columnNumber: 9
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-        lineNumber: 321,
-        columnNumber: 5
-    }, this);
-}
-_c1 = KpiCard;
-var _c, _c1;
-__turbopack_context__.k.register(_c, "TripOverviewPage");
-__turbopack_context__.k.register(_c1, "KpiCard");
+_s(TripOverviewPage, "YeBcea1SGMMdL25B8YTIh7Jt/74=");
+_c2 = TripOverviewPage;
+var _c, _c1, _c2;
+__turbopack_context__.k.register(_c, "KpiCard");
+__turbopack_context__.k.register(_c1, "AlertCard");
+__turbopack_context__.k.register(_c2, "TripOverviewPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
