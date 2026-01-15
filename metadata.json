@@ -1,0 +1,5 @@
+{
+  "name": "Next.js Netlify Architecture Guide",
+  "description": "A comprehensive boilerplate structure for Next.js apps deployed on Netlify, featuring Supabase and Stripe integration.",
+  "requestFramePermissions": []
+}
