@@ -246,8 +246,14 @@ export default function TripOverviewPage({
 }: {
   params: Promise<{ id: string }> | { id: string };
 }) {
-  // Next 16: params può essere Promise -> unwrap con React.use()
-  const { id } = use(params as any);
+  // ✅ FIX TypeScript + Next 16:
+  // - se params è Promise lo unwrappiamo con React.use()
+  // - se è già un oggetto lo usiamo direttamente
+  const resolvedParams = (
+    params instanceof Promise ? use(params) : params
+  ) as { id: string };
+
+  const { id } = resolvedParams;
 
   const [data] = useState<TripOverviewDTO>(MOCK_DATA);
   const [selectedAction, setSelectedAction] = useState<
