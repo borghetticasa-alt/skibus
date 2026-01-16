@@ -899,8 +899,11 @@ function AlertItem({ code, severity, message }) {
 _c1 = AlertItem;
 function TripOverviewPage({ params }) {
     _s();
-    // Next 16: params può essere Promise -> unwrap con React.use()
-    const { id } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["use"])(params);
+    // ✅ FIX TypeScript + Next 16:
+    // - se params è Promise lo unwrappiamo con React.use()
+    // - se è già un oggetto lo usiamo direttamente
+    const resolvedParams = params instanceof Promise ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["use"])(params) : params;
+    const { id } = resolvedParams;
     const [data] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(MOCK_DATA);
     const [selectedAction, setSelectedAction] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [note, setNote] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
@@ -949,7 +952,7 @@ function TripOverviewPage({ params }) {
                                                     children: "Viaggio"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 284,
+                                                    lineNumber: 290,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -957,7 +960,7 @@ function TripOverviewPage({ params }) {
                                                     children: data.summary.destinationName
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 287,
+                                                    lineNumber: 293,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -970,7 +973,7 @@ function TripOverviewPage({ params }) {
                                                                     size: 14
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 293,
+                                                                    lineNumber: 299,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 " ",
@@ -978,7 +981,7 @@ function TripOverviewPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 292,
+                                                            lineNumber: 298,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -988,7 +991,7 @@ function TripOverviewPage({ params }) {
                                                                     size: 14
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 296,
+                                                                    lineNumber: 302,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 " Occupazione ",
@@ -997,19 +1000,19 @@ function TripOverviewPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 295,
+                                                            lineNumber: 301,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 291,
+                                                    lineNumber: 297,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 283,
+                                            lineNumber: 289,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1020,7 +1023,7 @@ function TripOverviewPage({ params }) {
                                                     children: data.summary.status.replace("_", " ")
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 302,
+                                                    lineNumber: 308,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -1032,25 +1035,25 @@ function TripOverviewPage({ params }) {
                                                             children: data.summary.sla.deadlineLabel
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 317,
+                                                            lineNumber: 323,
                                                             columnNumber: 21
                                                         }, this) : null
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 306,
+                                                    lineNumber: 312,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 301,
+                                            lineNumber: 307,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 282,
+                                    lineNumber: 288,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1063,12 +1066,12 @@ function TripOverviewPage({ params }) {
                                                 children: "Numeri"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 328,
+                                                lineNumber: 334,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 327,
+                                            lineNumber: 333,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1078,12 +1081,12 @@ function TripOverviewPage({ params }) {
                                                 children: "Mezzi"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 332,
+                                                lineNumber: 338,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 331,
+                                            lineNumber: 337,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1093,12 +1096,12 @@ function TripOverviewPage({ params }) {
                                                 children: "Waitlist"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 336,
+                                                lineNumber: 342,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 335,
+                                            lineNumber: 341,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1108,29 +1111,29 @@ function TripOverviewPage({ params }) {
                                                 children: "Apri checkout"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 340,
+                                                lineNumber: 346,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 339,
+                                            lineNumber: 345,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 326,
+                                    lineNumber: 332,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                            lineNumber: 281,
+                            lineNumber: 287,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 280,
+                        lineNumber: 286,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1143,13 +1146,13 @@ function TripOverviewPage({ params }) {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 351,
+                                    lineNumber: 357,
                                     columnNumber: 19
                                 }, void 0),
                                 subValue: `${data.kpis.waitlistToPaidRate}% conversione waitlist`
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 348,
+                                lineNumber: 354,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
@@ -1159,13 +1162,13 @@ function TripOverviewPage({ params }) {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 357,
+                                    lineNumber: 363,
                                     columnNumber: 19
                                 }, void 0),
                                 subValue: "Richieste attive"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 354,
+                                lineNumber: 360,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
@@ -1175,13 +1178,13 @@ function TripOverviewPage({ params }) {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 363,
+                                    lineNumber: 369,
                                     columnNumber: 19
                                 }, void 0),
                                 subValue: "Pagamenti confermati"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 360,
+                                lineNumber: 366,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
@@ -1191,19 +1194,19 @@ function TripOverviewPage({ params }) {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 369,
+                                    lineNumber: 375,
                                     columnNumber: 19
                                 }, void 0),
                                 subValue: data.kpis.estMargin >= 0 ? "In positivo" : "In negativo"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 366,
+                                lineNumber: 372,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 347,
+                        lineNumber: 353,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1223,7 +1226,7 @@ function TripOverviewPage({ params }) {
                                                         children: "Azioni consigliate"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 380,
+                                                        lineNumber: 386,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1231,13 +1234,13 @@ function TripOverviewPage({ params }) {
                                                         children: hiddenCount > 0 ? `+${hiddenCount} altre` : "—"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 383,
+                                                        lineNumber: 389,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 379,
+                                                lineNumber: 385,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1262,7 +1265,7 @@ function TripOverviewPage({ params }) {
                                                                                     children: "Suggerita"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 400,
+                                                                                    lineNumber: 406,
                                                                                     columnNumber: 25
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1270,13 +1273,13 @@ function TripOverviewPage({ params }) {
                                                                                     children: rec.impact
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 406,
+                                                                                    lineNumber: 412,
                                                                                     columnNumber: 25
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 399,
+                                                                            lineNumber: 405,
                                                                             columnNumber: 23
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1284,7 +1287,7 @@ function TripOverviewPage({ params }) {
                                                                             children: rec.title
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 410,
+                                                                            lineNumber: 416,
                                                                             columnNumber: 23
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1292,13 +1295,13 @@ function TripOverviewPage({ params }) {
                                                                             children: rec.description
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 413,
+                                                                            lineNumber: 419,
                                                                             columnNumber: 23
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 398,
+                                                                    lineNumber: 404,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1307,18 +1310,18 @@ function TripOverviewPage({ params }) {
                                                                         className: "text-slate-400 group-hover:text-indigo-600"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 419,
+                                                                        lineNumber: 425,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 418,
+                                                                    lineNumber: 424,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, rec.id, true, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 390,
+                                                            lineNumber: 396,
                                                             columnNumber: 19
                                                         }, this)),
                                                     hiddenCount > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1330,19 +1333,19 @@ function TripOverviewPage({ params }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 425,
+                                                        lineNumber: 431,
                                                         columnNumber: 19
                                                     }, this) : null
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 388,
+                                                lineNumber: 394,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 378,
+                                        lineNumber: 384,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -1352,12 +1355,12 @@ function TripOverviewPage({ params }) {
                                                     children: "Stato mezzi assegnati"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 436,
+                                                    lineNumber: 442,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 435,
+                                                lineNumber: 441,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1375,7 +1378,7 @@ function TripOverviewPage({ params }) {
                                                                         children: "Bus"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 443,
+                                                                        lineNumber: 449,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1383,7 +1386,7 @@ function TripOverviewPage({ params }) {
                                                                         children: "Stato"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 446,
+                                                                        lineNumber: 452,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1391,7 +1394,7 @@ function TripOverviewPage({ params }) {
                                                                         children: "Occupazione"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 449,
+                                                                        lineNumber: 455,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1399,7 +1402,7 @@ function TripOverviewPage({ params }) {
                                                                         children: "B.E.P."
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 452,
+                                                                        lineNumber: 458,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1407,18 +1410,18 @@ function TripOverviewPage({ params }) {
                                                                         children: "Margine"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                        lineNumber: 455,
+                                                                        lineNumber: 461,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                lineNumber: 442,
+                                                                lineNumber: 448,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 441,
+                                                            lineNumber: 447,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1436,7 +1439,7 @@ function TripOverviewPage({ params }) {
                                                                                     children: bus.id
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 467,
+                                                                                    lineNumber: 473,
                                                                                     columnNumber: 29
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1444,13 +1447,13 @@ function TripOverviewPage({ params }) {
                                                                                     children: bus.type
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                    lineNumber: 470,
+                                                                                    lineNumber: 476,
                                                                                     columnNumber: 29
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 466,
+                                                                            lineNumber: 472,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1460,12 +1463,12 @@ function TripOverviewPage({ params }) {
                                                                                 children: bus.status.replace("_", " ")
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 476,
+                                                                                lineNumber: 482,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 475,
+                                                                            lineNumber: 481,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1482,12 +1485,12 @@ function TripOverviewPage({ params }) {
                                                                                             }
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                            lineNumber: 484,
+                                                                                            lineNumber: 490,
                                                                                             columnNumber: 33
                                                                                         }, this)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                        lineNumber: 483,
+                                                                                        lineNumber: 489,
                                                                                         columnNumber: 31
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1502,18 +1505,18 @@ function TripOverviewPage({ params }) {
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                        lineNumber: 489,
+                                                                                        lineNumber: 495,
                                                                                         columnNumber: 31
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 482,
+                                                                                lineNumber: 488,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 481,
+                                                                            lineNumber: 487,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1524,7 +1527,7 @@ function TripOverviewPage({ params }) {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 495,
+                                                                            lineNumber: 501,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1537,47 +1540,47 @@ function TripOverviewPage({ params }) {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                                lineNumber: 500,
+                                                                                lineNumber: 506,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                            lineNumber: 499,
+                                                                            lineNumber: 505,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, bus.id, true, {
                                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                                    lineNumber: 465,
+                                                                    lineNumber: 471,
                                                                     columnNumber: 25
                                                                 }, this);
                                                             })
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 461,
+                                                            lineNumber: 467,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 440,
+                                                    lineNumber: 446,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 439,
+                                                lineNumber: 445,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 434,
+                                        lineNumber: 440,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 376,
+                                lineNumber: 382,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1591,7 +1594,7 @@ function TripOverviewPage({ params }) {
                                                 children: "Alert attivi"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 523,
+                                                lineNumber: 529,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1602,18 +1605,18 @@ function TripOverviewPage({ params }) {
                                                         message: a.message
                                                     }, a.id, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 529,
+                                                        lineNumber: 535,
                                                         columnNumber: 19
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 527,
+                                                lineNumber: 533,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 522,
+                                        lineNumber: 528,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -1628,14 +1631,14 @@ function TripOverviewPage({ params }) {
                                                             size: 14
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                            lineNumber: 542,
+                                                            lineNumber: 548,
                                                             columnNumber: 19
                                                         }, this),
                                                         " Note operative"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 541,
+                                                    lineNumber: 547,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1643,36 +1646,36 @@ function TripOverviewPage({ params }) {
                                                     children: "“Confermare eventuale upgrade coach entro giovedì per evitare penali del fornitore.”"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 544,
+                                                    lineNumber: 550,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 540,
+                                            lineNumber: 546,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 539,
+                                        lineNumber: 545,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 521,
+                                lineNumber: 527,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 374,
+                        lineNumber: 380,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 278,
+                lineNumber: 284,
                 columnNumber: 7
             }, this),
             selectedAction ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1694,12 +1697,12 @@ function TripOverviewPage({ params }) {
                                                     size: 18
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 562,
+                                                    lineNumber: 568,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 561,
+                                                lineNumber: 567,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1709,7 +1712,7 @@ function TripOverviewPage({ params }) {
                                                         children: selectedAction.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 565,
+                                                        lineNumber: 571,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1717,19 +1720,19 @@ function TripOverviewPage({ params }) {
                                                         children: selectedAction.description
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                        lineNumber: 568,
+                                                        lineNumber: 574,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                lineNumber: 564,
+                                                lineNumber: 570,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 560,
+                                        lineNumber: 566,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1738,13 +1741,13 @@ function TripOverviewPage({ params }) {
                                         children: "Chiudi"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 574,
+                                        lineNumber: 580,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 559,
+                                lineNumber: 565,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -1760,7 +1763,7 @@ function TripOverviewPage({ params }) {
                                                     children: "Impatto"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 582,
+                                                    lineNumber: 588,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1768,13 +1771,13 @@ function TripOverviewPage({ params }) {
                                                     children: selectedAction.impact
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 583,
+                                                    lineNumber: 589,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 581,
+                                            lineNumber: 587,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1785,7 +1788,7 @@ function TripOverviewPage({ params }) {
                                                     children: "Target operativo"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 588,
+                                                    lineNumber: 594,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1793,24 +1796,24 @@ function TripOverviewPage({ params }) {
                                                     children: "~65% waitlist"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                                    lineNumber: 591,
+                                                    lineNumber: 597,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                            lineNumber: 587,
+                                            lineNumber: 593,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                    lineNumber: 580,
+                                    lineNumber: 586,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 579,
+                                lineNumber: 585,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1821,7 +1824,7 @@ function TripOverviewPage({ params }) {
                                         children: "Nota (min. 10 caratteri)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 597,
+                                        lineNumber: 603,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1831,7 +1834,7 @@ function TripOverviewPage({ params }) {
                                         placeholder: "Giustifica l'azione per audit..."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 600,
+                                        lineNumber: 606,
                                         columnNumber: 17
                                     }, this),
                                     noteTooShort ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1839,13 +1842,13 @@ function TripOverviewPage({ params }) {
                                         children: "La nota deve essere più dettagliata per l’audit."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 611,
+                                        lineNumber: 617,
                                         columnNumber: 19
                                     }, this) : null
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 596,
+                                lineNumber: 602,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1858,7 +1861,7 @@ function TripOverviewPage({ params }) {
                                         children: "Annulla"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 618,
+                                        lineNumber: 624,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1869,35 +1872,35 @@ function TripOverviewPage({ params }) {
                                         children: "Conferma"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                        lineNumber: 625,
+                                        lineNumber: 631,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                                lineNumber: 617,
+                                lineNumber: 623,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                        lineNumber: 558,
+                        lineNumber: 564,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                    lineNumber: 557,
+                    lineNumber: 563,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-                lineNumber: 556,
+                lineNumber: 562,
                 columnNumber: 9
             }, this) : null
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/admin/trips/[id]/overview/page.tsx",
-        lineNumber: 277,
+        lineNumber: 283,
         columnNumber: 5
     }, this);
 }

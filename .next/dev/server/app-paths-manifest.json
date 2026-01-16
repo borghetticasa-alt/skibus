@@ -1,10 +1,3 @@
 {
-  "/admin/trips/[id]/audit/page": "app/admin/trips/[id]/audit/page.js",
-  "/admin/trips/[id]/buses/page": "app/admin/trips/[id]/buses/page.js",
-  "/admin/trips/[id]/numbers/page": "app/admin/trips/[id]/numbers/page.js",
-  "/admin/trips/[id]/overview/page": "app/admin/trips/[id]/overview/page.js",
-  "/admin/trips/[id]/waitlist/page": "app/admin/trips/[id]/waitlist/page.js",
-  "/admin/trips/page": "app/admin/trips/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/page": "app/page.js"
+  "/admin/trips/[id]/buses/page": "app/admin/trips/[id]/buses/page.js"
 }
