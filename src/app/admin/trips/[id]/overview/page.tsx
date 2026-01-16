@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { use, useMemo, useState } from "react";
@@ -14,11 +13,11 @@ import {
   Users,
   Wallet,
 } from "lucide-react";
-import {
-  TripLayout,
-  TripStatus,
-  SlaLevel,
-} from "../../../../../components/admin/TripLayout";
+
+import { TripLayout, TripStatus, SlaLevel } from "@/components/admin/TripLayout";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 /** DTO Interfaces */
 interface BusStatusDTO {
@@ -139,15 +138,6 @@ const MOCK_DATA: TripOverviewDTO = {
   ],
 };
 
-const statusPillStyles: Record<TripStatus, string> = {
-  DRAFT: "bg-slate-100 text-slate-700 ring-slate-200",
-  SOFT_HOLD: "bg-amber-50 text-amber-700 ring-amber-200",
-  CONFIRMED: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  LOCKED: "bg-violet-50 text-violet-700 ring-violet-200",
-  FULL: "bg-rose-50 text-rose-700 ring-rose-200",
-  CANCELLED: "bg-slate-900 text-slate-100 ring-slate-900",
-};
-
 function moneyEUR(n: number) {
   try {
     return new Intl.NumberFormat("it-IT", {
@@ -160,50 +150,50 @@ function moneyEUR(n: number) {
   }
 }
 
+function toneForStatus(status: TripStatus) {
+  if (status === "CONFIRMED") return "success" as const;
+  if (status === "SOFT_HOLD") return "warning" as const;
+  if (status === "CANCELLED") return "danger" as const;
+  if (status === "FULL") return "danger" as const;
+  return "neutral" as const;
+}
+
 function KpiCard({
   label,
   value,
   icon,
   subValue,
-  tone = "neutral",
 }: {
   label: string;
   value: string | number;
   icon: React.ReactNode;
   subValue?: string;
-  tone?: "neutral" | "success" | "warning" | "danger";
 }) {
-  const toneMap: Record<typeof tone, string> = {
-    neutral: "text-slate-500",
-    success: "text-emerald-600",
-    warning: "text-amber-600",
-    danger: "text-rose-600",
-  };
-
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+    <Card>
+      <CardContent className="p-5">
+        <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-slate-500">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-slate-50 text-slate-600 ring-1 ring-slate-200">
             {icon}
           </span>
           {label}
         </div>
-      </div>
 
-      <div className="text-2xl font-bold tracking-tight text-slate-900">
-        {value}
-      </div>
-      {subValue ? (
-        <div className={`mt-1 text-xs font-semibold ${toneMap[tone]}`}>
-          {subValue}
+        <div className="text-2xl font-bold tracking-tight text-slate-900">
+          {value}
         </div>
-      ) : null}
-    </div>
+
+        {subValue ? (
+          <div className="mt-1 text-xs font-semibold text-slate-500">
+            {subValue}
+          </div>
+        ) : null}
+      </CardContent>
+    </Card>
   );
 }
 
-function AlertCard({
+function AlertItem({
   code,
   severity,
   message,
@@ -212,27 +202,42 @@ function AlertCard({
   severity: "info" | "warning" | "critical";
   message: string;
 }) {
-  const style =
+  const tone =
     severity === "critical"
-      ? "bg-rose-50 border-rose-200 text-rose-900"
+      ? "danger"
       : severity === "warning"
-      ? "bg-amber-50 border-amber-200 text-amber-900"
-      : "bg-slate-50 border-slate-200 text-slate-800";
+      ? "warning"
+      : "neutral";
 
   return (
-    <div className={`rounded-2xl border p-4 ${style}`}>
-      <div className="flex gap-3">
-        <div className="mt-0.5 shrink-0">
-          <AlertCircle size={18} />
-        </div>
-        <div className="min-w-0">
-          <div className="mb-1 text-[10px] font-bold uppercase tracking-widest opacity-60">
-            {code}
+    <Card
+      className={
+        severity === "critical"
+          ? "border-rose-200 bg-rose-50"
+          : severity === "warning"
+          ? "border-amber-200 bg-amber-50"
+          : "bg-white"
+      }
+    >
+      <CardContent className="p-4">
+        <div className="flex gap-3">
+          <div className="mt-0.5 shrink-0">
+            <AlertCircle size={18} className="text-slate-600" />
           </div>
-          <div className="text-sm font-semibold leading-snug">{message}</div>
+          <div className="min-w-0">
+            <div className="mb-1 flex items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                {code}
+              </span>
+              <Badge tone={tone}>{severity.toUpperCase()}</Badge>
+            </div>
+            <div className="text-sm font-semibold leading-snug text-slate-900">
+              {message}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -241,7 +246,7 @@ export default function TripOverviewPage({
 }: {
   params: Promise<{ id: string }> | { id: string };
 }) {
-  // Next 16: params può essere una Promise -> unwrap con React.use()
+  // Next 16: params può essere Promise -> unwrap con React.use()
   const { id } = use(params as any);
 
   const [data] = useState<TripOverviewDTO>(MOCK_DATA);
@@ -260,83 +265,83 @@ export default function TripOverviewPage({
   const displayedRecommendations = data.recommendations.slice(0, 2);
   const hiddenCount = Math.max(0, data.recommendations.length - 2);
 
+  const noteTooShort = note.trim().length > 0 && note.trim().length < 10;
+
   const handleConfirmAction = () => {
     console.log(`Esecuzione azione ${selectedAction?.id} con nota: ${note}`);
     setSelectedAction(null);
     setNote("");
   };
 
-  const noteTooShort = note.trim().length > 0 && note.trim().length < 10;
-
   return (
     <TripLayout id={id} activeTab="overview" tripSummary={data.summary}>
       <div className="space-y-8">
-        {/* Top summary strip */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="text-sm font-semibold text-slate-500">Viaggio</div>
-              <div className="text-xl font-bold tracking-tight text-slate-900">
-                {data.summary.destinationName}
-              </div>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-                <span className="inline-flex items-center gap-1">
-                  <Calendar size={14} /> {data.summary.departureLabel}
-                </span>
-                <span className="inline-flex items-center gap-1">
-                  <Bus size={14} /> Occupazione {occupancy}%
-                </span>
-              </div>
-            </div>
+        {/* Top summary */}
+        <Card>
+          <CardContent className="p-5">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="text-sm font-semibold text-slate-500">
+                  Viaggio
+                </div>
+                <div className="text-xl font-bold tracking-tight text-slate-900">
+                  {data.summary.destinationName}
+                </div>
 
-            <div className="flex items-center gap-3">
-              <span
-                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${
-                  statusPillStyles[data.summary.status]
-                }`}
-              >
-                {data.summary.status.replace("_", " ")}
-              </span>
-
-              <span className="rounded-full bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
-                {data.summary.sla.label}
-                {data.summary.sla.deadlineLabel ? (
-                  <span className="ml-2 text-slate-500">
-                    {data.summary.sla.deadlineLabel}
+                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+                  <span className="inline-flex items-center gap-1">
+                    <Calendar size={14} /> {data.summary.departureLabel}
                   </span>
-                ) : null}
-              </span>
-            </div>
-          </div>
+                  <span className="inline-flex items-center gap-1">
+                    <Bus size={14} /> Occupazione {occupancy}%
+                  </span>
+                </div>
+              </div>
 
-          {/* Quick actions */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            <a
-              href={`/admin/trips/${id}/numbers`}
-              className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-            >
-              Numeri
-            </a>
-            <a
-              href={`/admin/trips/${id}/buses`}
-              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50"
-            >
-              Mezzi
-            </a>
-            <a
-              href={`/admin/trips/${id}/waitlist`}
-              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50"
-            >
-              Waitlist
-            </a>
-            <a
-              href="/checkout"
-              className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
-            >
-              Apri checkout
-            </a>
-          </div>
-        </div>
+              <div className="flex items-center gap-3">
+                <Badge tone={toneForStatus(data.summary.status)}>
+                  {data.summary.status.replace("_", " ")}
+                </Badge>
+
+                <Badge
+                  tone={
+                    data.summary.sla.level === "GREEN"
+                      ? "success"
+                      : data.summary.sla.level === "YELLOW"
+                      ? "warning"
+                      : "danger"
+                  }
+                >
+                  {data.summary.sla.label}
+                  {data.summary.sla.deadlineLabel ? (
+                    <span className="ml-2 font-normal text-slate-500">
+                      {data.summary.sla.deadlineLabel}
+                    </span>
+                  ) : null}
+                </Badge>
+              </div>
+            </div>
+
+            {/* Quick actions */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a href={`/admin/trips/${id}/numbers`}>
+                <Button variant="secondary">Numeri</Button>
+              </a>
+
+              <a href={`/admin/trips/${id}/buses`}>
+                <Button variant="secondary">Mezzi</Button>
+              </a>
+
+              <a href={`/admin/trips/${id}/waitlist`}>
+                <Button variant="secondary">Waitlist</Button>
+              </a>
+
+              <a href="/checkout">
+                <Button variant="primary">Apri checkout</Button>
+              </a>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* KPI */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -345,28 +350,24 @@ export default function TripOverviewPage({
             value={data.kpis.totalSold}
             icon={<Users size={16} />}
             subValue={`${data.kpis.waitlistToPaidRate}% conversione waitlist`}
-            tone="neutral"
           />
           <KpiCard
             label="Waitlist"
             value={data.kpis.waitlistCount}
             icon={<TrendingUp size={16} />}
             subValue="Richieste attive"
-            tone="warning"
           />
           <KpiCard
             label="Ricavo netto"
             value={moneyEUR(data.kpis.paidRevenue)}
             icon={<Wallet size={16} />}
             subValue="Pagamenti confermati"
-            tone="success"
           />
           <KpiCard
             label="Margine stimato"
             value={moneyEUR(data.kpis.estMargin)}
             icon={<PlusCircle size={16} />}
             subValue={data.kpis.estMargin >= 0 ? "In positivo" : "In negativo"}
-            tone={data.kpis.estMargin >= 0 ? "success" : "danger"}
           />
         </div>
 
@@ -374,7 +375,7 @@ export default function TripOverviewPage({
           {/* Left */}
           <div className="space-y-8 lg:col-span-2">
             {/* Recommendations */}
-            <section className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h2 className="text-sm font-bold tracking-tight text-slate-900">
                   Azioni consigliate
@@ -396,9 +397,12 @@ export default function TripOverviewPage({
                   >
                     <div className="min-w-0">
                       <div className="mb-1 flex items-center gap-2">
-                        <span className="rounded-full bg-indigo-50 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-indigo-700 ring-1 ring-indigo-200">
+                        <Badge
+                          tone="info"
+                          className="text-[10px] font-bold uppercase tracking-widest"
+                        >
                           Suggerita
-                        </span>
+                        </Badge>
                         <span className="text-xs font-semibold text-slate-500">
                           {rec.impact}
                         </span>
@@ -424,15 +428,15 @@ export default function TripOverviewPage({
                   </div>
                 ) : null}
               </div>
-            </section>
+            </div>
 
             {/* Fleet table */}
-            <section className="space-y-3">
-              <h2 className="text-sm font-bold tracking-tight text-slate-900">
-                Stato mezzi assegnati
-              </h2>
+            <Card>
+              <CardHeader>
+                <CardTitle>Stato mezzi assegnati</CardTitle>
+              </CardHeader>
 
-              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <div className="overflow-hidden rounded-2xl">
                 <table className="w-full text-left">
                   <thead className="bg-slate-50">
                     <tr className="border-b border-slate-200">
@@ -469,13 +473,9 @@ export default function TripOverviewPage({
                           </td>
 
                           <td className="px-6 py-4">
-                            <span
-                              className={`rounded-full px-3 py-1 text-[11px] font-bold ring-1 ${
-                                statusPillStyles[bus.status]
-                              }`}
-                            >
+                            <Badge tone={toneForStatus(bus.status)}>
                               {bus.status.replace("_", " ")}
-                            </span>
+                            </Badge>
                           </td>
 
                           <td className="px-6 py-4">
@@ -514,19 +514,19 @@ export default function TripOverviewPage({
                   </tbody>
                 </table>
               </div>
-            </section>
+            </Card>
           </div>
 
           {/* Right */}
           <div className="space-y-6">
-            <section className="space-y-3">
+            <div className="space-y-3">
               <h2 className="text-sm font-bold tracking-tight text-slate-900">
                 Alert attivi
               </h2>
 
               <div className="space-y-3">
                 {data.alerts.map((a) => (
-                  <AlertCard
+                  <AlertItem
                     key={a.id}
                     code={a.code}
                     severity={a.severity}
@@ -534,17 +534,19 @@ export default function TripOverviewPage({
                   />
                 ))}
               </div>
-            </section>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-900 p-5 text-white shadow-sm">
-              <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-300">
-                <Info size={14} /> Note operative
-              </div>
-              <p className="text-sm leading-relaxed text-slate-200">
-                “Confermare eventuale upgrade coach entro giovedì per evitare
-                penali del fornitore.”
-              </p>
             </div>
+
+            <Card className="bg-slate-900 text-white border-slate-900">
+              <CardContent className="p-5">
+                <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-300">
+                  <Info size={14} /> Note operative
+                </div>
+                <p className="text-sm leading-relaxed text-slate-200">
+                  “Confermare eventuale upgrade coach entro giovedì per evitare
+                  penali del fornitore.”
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
@@ -552,82 +554,85 @@ export default function TripOverviewPage({
       {/* Modal */}
       {selectedAction ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
-            <div className="mb-4 flex items-start justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
-                  <CheckCircle2 size={18} />
-                </span>
-                <div>
-                  <div className="text-lg font-bold text-slate-900">
-                    {selectedAction.title}
-                  </div>
-                  <div className="text-sm text-slate-600">
-                    {selectedAction.description}
+          <Card className="w-full max-w-md">
+            <CardContent className="p-6">
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
+                    <CheckCircle2 size={18} />
+                  </span>
+                  <div>
+                    <div className="text-lg font-bold text-slate-900">
+                      {selectedAction.title}
+                    </div>
+                    <div className="text-sm text-slate-600">
+                      {selectedAction.description}
+                    </div>
                   </div>
                 </div>
+
+                <Button variant="ghost" onClick={() => setSelectedAction(null)}>
+                  Chiudi
+                </Button>
               </div>
 
-              <button
-                onClick={() => setSelectedAction(null)}
-                className="rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50"
-              >
-                Chiudi
-              </button>
-            </div>
+              <Card className="bg-slate-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-semibold text-slate-600">Impatto</span>
+                    <span className="font-bold text-emerald-700">
+                      {selectedAction.impact}
+                    </span>
+                  </div>
+                  <div className="mt-2 flex items-center justify-between text-sm">
+                    <span className="font-semibold text-slate-600">
+                      Target operativo
+                    </span>
+                    <span className="font-bold text-slate-900">~65% waitlist</span>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <div className="mb-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-semibold text-slate-600">Impatto</span>
-                <span className="font-bold text-emerald-700">
-                  {selectedAction.impact}
+              <label className="mt-4 block">
+                <span className="mb-2 block text-xs font-bold text-slate-600">
+                  Nota (min. 10 caratteri)
                 </span>
-              </div>
-              <div className="mt-2 flex items-center justify-between text-sm">
-                <span className="font-semibold text-slate-600">
-                  Target operativo
-                </span>
-                <span className="font-bold text-slate-900">~65% waitlist</span>
-              </div>
-            </div>
+                <textarea
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                  className={`w-full rounded-xl border p-3 text-sm outline-none focus:ring-2 ${
+                    noteTooShort
+                      ? "border-amber-300 focus:ring-amber-200"
+                      : "border-slate-200 focus:ring-indigo-200"
+                  }`}
+                  placeholder="Giustifica l'azione per audit..."
+                />
+                {noteTooShort ? (
+                  <div className="mt-2 text-xs font-semibold text-amber-700">
+                    La nota deve essere più dettagliata per l’audit.
+                  </div>
+                ) : null}
+              </label>
 
-            <label className="block">
-              <span className="mb-2 block text-xs font-bold text-slate-600">
-                Nota (min. 10 caratteri)
-              </span>
-              <textarea
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                className={`w-full rounded-xl border p-3 text-sm outline-none focus:ring-2 ${
-                  noteTooShort
-                    ? "border-amber-300 focus:ring-amber-200"
-                    : "border-slate-200 focus:ring-indigo-200"
-                }`}
-                placeholder="Giustifica l'azione per audit..."
-              />
-              {noteTooShort ? (
-                <div className="mt-2 text-xs font-semibold text-amber-700">
-                  La nota deve essere più dettagliata per l’audit.
-                </div>
-              ) : null}
-            </label>
-
-            <div className="mt-5 flex gap-2">
-              <button
-                onClick={() => setSelectedAction(null)}
-                className="flex-1 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50"
-              >
-                Annulla
-              </button>
-              <button
-                disabled={note.trim().length < 10}
-                onClick={handleConfirmAction}
-                className="flex-1 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 disabled:bg-slate-200"
-              >
-                Conferma
-              </button>
-            </div>
-          </div>
+              <div className="mt-5 flex gap-2">
+                <Button
+                  variant="secondary"
+                  className="flex-1"
+                  onClick={() => setSelectedAction(null)}
+                >
+                  Annulla
+                </Button>
+                <Button
+                  variant="primary"
+                  className="flex-1"
+                  disabled={note.trim().length < 10}
+                  onClick={handleConfirmAction}
+                >
+                  Conferma
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       ) : null}
     </TripLayout>

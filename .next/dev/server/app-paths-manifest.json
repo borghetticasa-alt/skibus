@@ -5,8 +5,6 @@
   "/admin/trips/[id]/overview/page": "app/admin/trips/[id]/overview/page.js",
   "/admin/trips/[id]/waitlist/page": "app/admin/trips/[id]/waitlist/page.js",
   "/admin/trips/page": "app/admin/trips/page.js",
-  "/api/dev-login/route": "app/api/dev-login/route.js",
   "/checkout/page": "app/checkout/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }
