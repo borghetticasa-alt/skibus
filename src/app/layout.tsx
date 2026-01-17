@@ -1,51 +1,11 @@
-import React from "react";
 import "./globals.css";
+import type { Metadata } from "next";
+import React from "react";
 
-export const metadata = {
-  title: "Monte Rosa Bus | Admin Console",
-  description: "Gestione flotta e prenotazioni bus sciistici",
+export const metadata: Metadata = {
+  title: "SkiBus – Admin",
+  description: "Gestione skibus – demo mode",
 };
-
-function TopBar() {
-  return (
-    <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-xl bg-slate-900" aria-hidden />
-          <div className="leading-tight">
-            <div className="text-sm font-semibold">Monte Rosa Bus</div>
-            <div className="text-xs text-slate-500">Console</div>
-          </div>
-        </div>
-
-        <nav className="flex items-center gap-4 text-sm">
-          <a className="text-slate-600 hover:text-slate-900" href="/">
-            Home
-          </a>
-          <a className="text-slate-600 hover:text-slate-900" href="/admin/trips">
-            Admin
-          </a>
-          <a className="text-slate-600 hover:text-slate-900" href="/checkout">
-            Checkout
-          </a>
-          <a className="text-slate-600 hover:text-slate-900" href="/login">
-            Login
-          </a>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="pb-10 text-center text-xs text-slate-500">
-      <div className="mx-auto max-w-6xl px-6">
-        © {new Date().getFullYear()} Monte Rosa Bus
-      </div>
-    </footer>
-  );
-}
 
 export default function RootLayout({
   children,
@@ -55,15 +15,28 @@ export default function RootLayout({
   return (
     <html lang="it">
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
-        <TopBar />
+        {/* Top bar */}
+        <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+          <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+            <span className="text-sm font-semibold tracking-wide">
+              🚌 SkiBus <span className="text-slate-400">/ Admin</span>
+            </span>
 
-        <main className="mx-auto max-w-6xl px-6 py-8">
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            {children}
+            <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600">
+              Demo mode
+            </span>
           </div>
-        </main>
+        </header>
 
-        <Footer />
+        {/* Page content */}
+        <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
+
+        {/* Footer */}
+        <footer className="border-t border-slate-200 bg-white py-4">
+          <div className="mx-auto max-w-7xl px-6 text-xs text-slate-400">
+            © {new Date().getFullYear()} SkiBus – demo
+          </div>
+        </footer>
       </body>
     </html>
   );

@@ -14,3 +14,15 @@
     /* qui puoi mettere altre apply "normali" se vuoi */
   }
 }
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #f8fafc; /* slate-50 */
+  color: #0f172a;      /* slate-900 */
+}
+
+a {
+  color: inherit;
+}
