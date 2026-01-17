@@ -60,7 +60,7 @@ interface TripOverviewDTO {
   }>;
 }
 
-/** Mock */
+/** Mock (demo mode) */
 const MOCK_DATA: TripOverviewDTO = {
   summary: {
     destinationName: "Gressoney-La-Trinité",
@@ -158,36 +158,68 @@ function toneForStatus(status: TripStatus) {
   return "neutral" as const;
 }
 
+function toneForSla(level: SlaLevel) {
+  if (level === "GREEN") return "success" as const;
+  if (level === "YELLOW") return "warning" as const;
+  return "danger" as const;
+}
+
+function SmallHelp({ text }: { text: string }) {
+  return (
+    <span
+      className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500"
+      title={text}
+    >
+      <Info size={13} className="text-slate-400" />
+      <span className="underline decoration-dotted underline-offset-2">
+        info
+      </span>
+    </span>
+  );
+}
+
 function KpiCard({
   label,
   value,
   icon,
   subValue,
+  help,
 }: {
   label: string;
   value: string | number;
   icon: React.ReactNode;
   subValue?: string;
+  help?: string;
 }) {
   return (
-    <Card>
+    <Card className="shadow-sm">
       <CardContent className="p-5">
-        <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-slate-500">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-slate-50 text-slate-600 ring-1 ring-slate-200">
-            {icon}
-          </span>
-          {label}
-        </div>
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-slate-50 text-slate-600 ring-1 ring-slate-200">
+                {icon}
+              </span>
+              <span className="truncate">{label}</span>
+            </div>
 
-        <div className="text-2xl font-bold tracking-tight text-slate-900">
-          {value}
-        </div>
+            <div className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
+              {value}
+            </div>
 
-        {subValue ? (
-          <div className="mt-1 text-xs font-semibold text-slate-500">
-            {subValue}
+            {subValue ? (
+              <div className="mt-1 text-xs font-semibold text-slate-500">
+                {subValue}
+              </div>
+            ) : null}
           </div>
-        ) : null}
+
+          {help ? (
+            <div className="pt-1">
+              <SmallHelp text={help} />
+            </div>
+          ) : null}
+        </div>
       </CardContent>
     </Card>
   );
@@ -209,16 +241,18 @@ function AlertItem({
       ? "warning"
       : "neutral";
 
+  const frame =
+    severity === "critical"
+      ? "border-rose-200 bg-rose-50"
+      : severity === "warning"
+      ? "border-amber-200 bg-amber-50"
+      : "border-slate-200 bg-white";
+
+  const label =
+    severity === "critical" ? "Critico" : severity === "warning" ? "Attenzione" : "Info";
+
   return (
-    <Card
-      className={
-        severity === "critical"
-          ? "border-rose-200 bg-rose-50"
-          : severity === "warning"
-          ? "border-amber-200 bg-amber-50"
-          : "bg-white"
-      }
-    >
+    <Card className={`${frame} shadow-sm`}>
       <CardContent className="p-4">
         <div className="flex gap-3">
           <div className="mt-0.5 shrink-0">
@@ -229,7 +263,7 @@ function AlertItem({
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
                 {code}
               </span>
-              <Badge tone={tone}>{severity.toUpperCase()}</Badge>
+              <Badge tone={tone}>{label}</Badge>
             </div>
             <div className="text-sm font-semibold leading-snug text-slate-900">
               {message}
@@ -241,14 +275,33 @@ function AlertItem({
   );
 }
 
+function RatioPill({
+  value,
+  label,
+}: {
+  value: number;
+  label: string;
+}) {
+  const isGood = value >= 0;
+  return (
+    <div
+      className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${
+        isGood ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" : "bg-rose-50 text-rose-700 ring-1 ring-rose-200"
+      }`}
+      title={label}
+    >
+      {isGood ? <CheckCircle2 size={14} /> : <AlertCircle size={14} />}
+      <span>{label}</span>
+    </div>
+  );
+}
+
 export default function TripOverviewPage({
   params,
 }: {
   params: Promise<{ id: string }> | { id: string };
 }) {
-  // ✅ FIX TypeScript + Next 16:
-  // - se params è Promise lo unwrappiamo con React.use()
-  // - se è già un oggetto lo usiamo direttamente
+  // ✅ Next 16: params può essere Promise -> unwrap con React.use()
   const resolvedParams = (
     params instanceof Promise ? use(params) : params
   ) as { id: string };
@@ -274,22 +327,33 @@ export default function TripOverviewPage({
   const noteTooShort = note.trim().length > 0 && note.trim().length < 10;
 
   const handleConfirmAction = () => {
+    // demo-mode: niente backend, quindi log.
     console.log(`Esecuzione azione ${selectedAction?.id} con nota: ${note}`);
     setSelectedAction(null);
     setNote("");
   };
 
+  const totalCap = data.buses.reduce((acc, b) => acc + b.capacity, 0);
+  const totalSold = data.buses.reduce((acc, b) => acc + b.sold, 0);
+  const remaining = Math.max(0, totalCap - totalSold);
+
+  const marginLabel =
+    data.kpis.estMargin >= 0
+      ? `Margine in positivo (${moneyEUR(data.kpis.estMargin)})`
+      : `Margine in negativo (${moneyEUR(data.kpis.estMargin)})`;
+
   return (
     <TripLayout id={id} activeTab="overview" tripSummary={data.summary}>
       <div className="space-y-8">
-        {/* Top summary */}
-        <Card>
+        {/* HERO / SUMMARY */}
+        <Card className="shadow-sm">
           <CardContent className="p-5">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="space-y-1">
-                <div className="text-sm font-semibold text-slate-500">
-                  Viaggio
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="min-w-0 space-y-1">
+                <div className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  Panoramica viaggio
                 </div>
+
                 <div className="text-xl font-bold tracking-tight text-slate-900">
                   {data.summary.destinationName}
                 </div>
@@ -299,37 +363,46 @@ export default function TripOverviewPage({
                     <Calendar size={14} /> {data.summary.departureLabel}
                   </span>
                   <span className="inline-flex items-center gap-1">
-                    <Bus size={14} /> Occupazione {occupancy}%
+                    <Bus size={14} /> {totalSold}/{totalCap} posti (occupazione {occupancy}%)
                   </span>
+                </div>
+
+                <div className="pt-2">
+                  <RatioPill
+                    value={remaining}
+                    label={
+                      remaining === 0
+                        ? "Posti esauriti"
+                        : `${remaining} posti disponibili`
+                    }
+                  />
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <Badge tone={toneForStatus(data.summary.status)}>
-                  {data.summary.status.replace("_", " ")}
-                </Badge>
+              <div className="flex flex-col items-end gap-2">
+                <div className="flex flex-wrap items-center justify-end gap-2">
+                  <Badge tone={toneForStatus(data.summary.status)}>
+                    {data.summary.status.replaceAll("_", " ")}
+                  </Badge>
 
-                <Badge
-                  tone={
-                    data.summary.sla.level === "GREEN"
-                      ? "success"
-                      : data.summary.sla.level === "YELLOW"
-                      ? "warning"
-                      : "danger"
-                  }
-                >
-                  {data.summary.sla.label}
-                  {data.summary.sla.deadlineLabel ? (
-                    <span className="ml-2 font-normal text-slate-500">
-                      {data.summary.sla.deadlineLabel}
-                    </span>
-                  ) : null}
-                </Badge>
+                  <Badge tone={toneForSla(data.summary.sla.level)}>
+                    {data.summary.sla.label}
+                    {data.summary.sla.deadlineLabel ? (
+                      <span className="ml-2 font-normal text-slate-500">
+                        {data.summary.sla.deadlineLabel}
+                      </span>
+                    ) : null}
+                  </Badge>
+                </div>
+
+                <div className="text-xs font-semibold text-slate-500">
+                  Trip ID: <span className="font-bold text-slate-700">{id}</span>
+                </div>
               </div>
             </div>
 
             {/* Quick actions */}
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2">
               <a href={`/admin/trips/${id}/numbers`}>
                 <Button variant="secondary">Numeri</Button>
               </a>
@@ -346,46 +419,60 @@ export default function TripOverviewPage({
                 <Button variant="primary">Apri checkout</Button>
               </a>
             </div>
+
+            <div className="mt-3 text-xs text-slate-500">
+              Suggerimento: usa “Numeri” per decidere, “Mezzi” per eseguire, “Waitlist” per catturare domanda.
+            </div>
           </CardContent>
         </Card>
 
-        {/* KPI */}
+        {/* KPI GRID */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <KpiCard
             label="Posti venduti"
             value={data.kpis.totalSold}
             icon={<Users size={16} />}
             subValue={`${data.kpis.waitlistToPaidRate}% conversione waitlist`}
+            help="Quanti biglietti risultano venduti (demo: mock)."
           />
           <KpiCard
             label="Waitlist"
             value={data.kpis.waitlistCount}
             icon={<TrendingUp size={16} />}
             subValue="Richieste attive"
+            help="Persone in lista d’attesa: domanda “potenziale” da convertire."
           />
           <KpiCard
             label="Ricavo netto"
             value={moneyEUR(data.kpis.paidRevenue)}
             icon={<Wallet size={16} />}
             subValue="Pagamenti confermati"
+            help="Incasso effettivo stimato (non include pagamenti non completati)."
           />
           <KpiCard
             label="Margine stimato"
             value={moneyEUR(data.kpis.estMargin)}
             icon={<PlusCircle size={16} />}
             subValue={data.kpis.estMargin >= 0 ? "In positivo" : "In negativo"}
+            help="Stima rapida: ricavi meno costi (demo)."
           />
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Left */}
+          {/* LEFT */}
           <div className="space-y-8 lg:col-span-2">
             {/* Recommendations */}
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h2 className="text-sm font-bold tracking-tight text-slate-900">
-                  Azioni consigliate
-                </h2>
+              <div className="flex items-end justify-between gap-3">
+                <div>
+                  <h2 className="text-sm font-bold tracking-tight text-slate-900">
+                    Azioni consigliate
+                  </h2>
+                  <div className="text-xs text-slate-500">
+                    Due mosse “a massimo impatto” per sbloccare il viaggio.
+                  </div>
+                </div>
+
                 <div className="text-xs font-semibold text-slate-500">
                   {hiddenCount > 0 ? `+${hiddenCount} altre` : "—"}
                 </div>
@@ -399,24 +486,23 @@ export default function TripOverviewPage({
                       setSelectedAction(rec);
                       setNote("");
                     }}
-                    className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm hover:bg-slate-50"
+                    className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition hover:bg-slate-50"
                   >
                     <div className="min-w-0">
-                      <div className="mb-1 flex items-center gap-2">
-                        <Badge
-                          tone="info"
-                          className="text-[10px] font-bold uppercase tracking-widest"
-                        >
+                      <div className="mb-1 flex flex-wrap items-center gap-2">
+                        <Badge tone="info" className="text-[10px] font-bold uppercase tracking-widest">
                           Suggerita
                         </Badge>
-                        <span className="text-xs font-semibold text-slate-500">
-                          {rec.impact}
+                        <span className="text-xs font-semibold text-slate-600">
+                          Impatto: <span className="font-bold text-slate-900">{rec.impact}</span>
                         </span>
                       </div>
+
                       <div className="text-base font-semibold text-slate-900">
                         {rec.title}
                       </div>
-                      <div className="mt-1 text-sm text-slate-600">
+
+                      <div className="mt-1 text-sm leading-relaxed text-slate-600">
                         {rec.description}
                       </div>
                     </div>
@@ -429,17 +515,21 @@ export default function TripOverviewPage({
 
                 {hiddenCount > 0 ? (
                   <div className="rounded-2xl border border-dashed border-slate-200 bg-white px-5 py-3 text-center text-xs font-semibold text-slate-500">
-                    Altre {hiddenCount} opzioni disponibili nelle tab dedicate
-                    (Mezzi / Numeri / Waitlist)
+                    Le altre opzioni stanno nelle tab: <span className="font-bold">Mezzi / Numeri / Waitlist</span>
                   </div>
                 ) : null}
               </div>
             </div>
 
             {/* Fleet table */}
-            <Card>
+            <Card className="shadow-sm">
               <CardHeader>
-                <CardTitle>Stato mezzi assegnati</CardTitle>
+                <div className="flex items-center justify-between gap-3">
+                  <CardTitle>Stato mezzi assegnati</CardTitle>
+                  <div className="text-xs font-semibold text-slate-500" title={marginLabel}>
+                    {data.kpis.estMargin >= 0 ? "🟢" : "🟠"} {marginLabel}
+                  </div>
+                </div>
               </CardHeader>
 
               <div className="overflow-hidden rounded-2xl">
@@ -467,6 +557,8 @@ export default function TripOverviewPage({
                   <tbody className="divide-y divide-slate-100">
                     {data.buses.map((bus) => {
                       const occ = Math.round((bus.sold / bus.capacity) * 100);
+                      const missingToBep = Math.max(0, bus.bep - bus.sold);
+
                       return (
                         <tr key={bus.id} className="hover:bg-slate-50">
                           <td className="px-6 py-4">
@@ -479,9 +571,20 @@ export default function TripOverviewPage({
                           </td>
 
                           <td className="px-6 py-4">
-                            <Badge tone={toneForStatus(bus.status)}>
-                              {bus.status.replace("_", " ")}
-                            </Badge>
+                            <div className="flex items-center gap-2">
+                              <Badge tone={toneForStatus(bus.status)}>
+                                {bus.status.replaceAll("_", " ")}
+                              </Badge>
+                              {missingToBep > 0 ? (
+                                <span className="text-xs font-semibold text-amber-700" title="Posti che mancano al break-even">
+                                  −{missingToBep} al B.E.P.
+                                </span>
+                              ) : (
+                                <span className="text-xs font-semibold text-emerald-700" title="Break-even raggiunto">
+                                  B.E.P. ok
+                                </span>
+                              )}
+                            </div>
                           </td>
 
                           <td className="px-6 py-4">
@@ -520,15 +623,24 @@ export default function TripOverviewPage({
                   </tbody>
                 </table>
               </div>
+
+              <div className="px-6 py-4 text-xs text-slate-500">
+                Nota: “B.E.P.” = break-even point (posti minimi per non andare sotto).
+              </div>
             </Card>
           </div>
 
-          {/* Right */}
+          {/* RIGHT */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h2 className="text-sm font-bold tracking-tight text-slate-900">
-                Alert attivi
-              </h2>
+              <div className="flex items-end justify-between gap-3">
+                <h2 className="text-sm font-bold tracking-tight text-slate-900">
+                  Alert attivi
+                </h2>
+                <span className="text-xs font-semibold text-slate-500">
+                  {data.alerts.length} elementi
+                </span>
+              </div>
 
               <div className="space-y-3">
                 {data.alerts.map((a) => (
@@ -542,36 +654,38 @@ export default function TripOverviewPage({
               </div>
             </div>
 
-            <Card className="bg-slate-900 text-white border-slate-900">
+            <Card className="border-slate-900 bg-slate-900 text-white shadow-sm">
               <CardContent className="p-5">
                 <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-300">
                   <Info size={14} /> Note operative
                 </div>
                 <p className="text-sm leading-relaxed text-slate-200">
-                  “Confermare eventuale upgrade coach entro giovedì per evitare
-                  penali del fornitore.”
+                  “Confermare eventuale upgrade coach entro giovedì per evitare penali del fornitore.”
                 </p>
+                <div className="mt-3 text-xs text-slate-300">
+                  (Demo mode: nota statica, poi la renderemo modificabile.)
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* ACTION MODAL */}
       {selectedAction ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
-          <Card className="w-full max-w-md">
+          <Card className="w-full max-w-md shadow-lg">
             <CardContent className="p-6">
               <div className="mb-4 flex items-start justify-between gap-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
                     <CheckCircle2 size={18} />
                   </span>
-                  <div>
-                    <div className="text-lg font-bold text-slate-900">
+                  <div className="min-w-0">
+                    <div className="text-lg font-bold leading-snug text-slate-900">
                       {selectedAction.title}
                     </div>
-                    <div className="text-sm text-slate-600">
+                    <div className="mt-1 text-sm leading-relaxed text-slate-600">
                       {selectedAction.description}
                     </div>
                   </div>
@@ -582,7 +696,7 @@ export default function TripOverviewPage({
                 </Button>
               </div>
 
-              <Card className="bg-slate-50">
+              <Card className="bg-slate-50 shadow-sm">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-semibold text-slate-600">Impatto</span>
@@ -590,19 +704,23 @@ export default function TripOverviewPage({
                       {selectedAction.impact}
                     </span>
                   </div>
+
                   <div className="mt-2 flex items-center justify-between text-sm">
                     <span className="font-semibold text-slate-600">
-                      Target operativo
+                      Regola rapida
                     </span>
-                    <span className="font-bold text-slate-900">~65% waitlist</span>
+                    <span className="font-bold text-slate-900" title="Indicazione operativa (demo)">
+                      Convertire waitlist → paganti
+                    </span>
                   </div>
                 </CardContent>
               </Card>
 
               <label className="mt-4 block">
                 <span className="mb-2 block text-xs font-bold text-slate-600">
-                  Nota (min. 10 caratteri)
+                  Nota per audit (min. 10 caratteri)
                 </span>
+
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -611,11 +729,12 @@ export default function TripOverviewPage({
                       ? "border-amber-300 focus:ring-amber-200"
                       : "border-slate-200 focus:ring-indigo-200"
                   }`}
-                  placeholder="Giustifica l'azione per audit..."
+                  placeholder="Esempio: attivo midibus perché la waitlist copre i costi e riduce rischio SLA."
                 />
+
                 {noteTooShort ? (
                   <div className="mt-2 text-xs font-semibold text-amber-700">
-                    La nota deve essere più dettagliata per l’audit.
+                    Nota troppo corta: serve un minimo di contesto (audit = antipatico ma utile).
                   </div>
                 ) : null}
               </label>
@@ -628,6 +747,7 @@ export default function TripOverviewPage({
                 >
                   Annulla
                 </Button>
+
                 <Button
                   variant="primary"
                   className="flex-1"
@@ -636,6 +756,10 @@ export default function TripOverviewPage({
                 >
                   Conferma
                 </Button>
+              </div>
+
+              <div className="mt-3 text-xs text-slate-500">
+                Demo mode: “Conferma” salva solo in console. Poi lo colleghiamo al backend.
               </div>
             </CardContent>
           </Card>
