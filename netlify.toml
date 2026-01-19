@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# (Opzionale) blocca una versione di Node coerente con Next 16
+[build.environment]
+  NODE_VERSION = "20"

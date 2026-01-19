@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind v4: meglio evitare selection:* dentro @apply.
+   Facciamolo con CSS standard, stesso risultato. */
+::selection {
+  background: rgb(224 231 255); /* indigo-100 */
+  color: rgb(67 56 202);        /* indigo-700 */
+}
+
+@layer base {
+  body {
+    /* qui puoi mettere altre apply "normali" se vuoi */
+  }
+}
