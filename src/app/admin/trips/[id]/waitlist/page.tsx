@@ -46,7 +46,11 @@ function ceilPos(n: number) {
 function pill(stato: StatoWaitlist) {
   if (stato === 'INVITATO') return 'bg-indigo-100 text-indigo-700 border-indigo-200';
   if (stato === 'SCADUTO') return 'bg-rose-100 text-rose-700 border-rose-200';
+<<<<<<< HEAD
   return 'bg-white/5/5 text-slate-200/80 border-white/10';
+=======
+  return 'bg-white/5 text-slate-200/80 border-white/10';
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
 }
 
 /**
@@ -205,7 +209,11 @@ export default function WaitlistPage() {
             <button
               type="button"
               onClick={toggleBus1Pieno}
+<<<<<<< HEAD
               className="px-5 py-3 rounded-2xl bg-white/5/50 text-white text-[10px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all"
+=======
+              className="px-5 py-3 rounded-2xl bg-white/50 text-white text-[10px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             >
               Test: toggle bus #1 pieno
             </button>
@@ -273,7 +281,11 @@ export default function WaitlistPage() {
               </p>
             </div>
 
+<<<<<<< HEAD
             <div className="bg-white/5/50 text-white rounded-[28px] p-6 min-w-[280px]">
+=======
+            <div className="bg-white/50 text-white rounded-[28px] p-6 min-w-[280px]">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
               <div className="text-[10px] font-black uppercase tracking-widest text-white/60">
                 Domanda in coda
               </div>
@@ -383,7 +395,11 @@ export default function WaitlistPage() {
           </div>
 
           {/* Nota UX cliente */}
+<<<<<<< HEAD
           <div className="mt-8 bg-white/5/50 text-white rounded-[28px] p-6">
+=======
+          <div className="mt-8 bg-white/50 text-white rounded-[28px] p-6">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             <div className="text-[10px] font-black uppercase tracking-widest text-white/60">Messaggio chiaro per il cliente</div>
             <div className="mt-3 text-sm font-semibold leading-relaxed text-white/85">
               Le prenotazioni si fanno <b>solo pagando</b>. Se il bus è pieno, puoi entrare in <b>lista d’attesa</b>:

@@ -53,7 +53,11 @@ export default function AppHeader() {
   }, [isAuthed]);
 
   return (
+<<<<<<< HEAD
     <header className="sticky top-0 z-40 border-b border-white/10/20 bg-slate-950/70 backdrop-blur">
+=======
+    <header className="sticky top-0 z-40 border-b border-slate-200/20 bg-slate-950/70 backdrop-blur">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-9 w-9 rounded-xl bg-slate-900 overflow-hidden">
@@ -72,7 +76,11 @@ export default function AppHeader() {
             <Link
               key={it.href}
               href={it.href}
+<<<<<<< HEAD
               className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold text-slate-200 hover:bg-white/5/5 hover:text-white"
+=======
+              className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold text-slate-200 hover:bg-white/5 hover:text-white"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             >
               <span className="opacity-90">{it.icon}</span>
               {it.label}
@@ -83,7 +91,11 @@ export default function AppHeader() {
         {/* Mobile */}
         <button
           type="button"
+<<<<<<< HEAD
           className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 text-slate-100 hover:bg-white/5/5"
+=======
+          className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 text-slate-100 hover:bg-white/5"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
           aria-label={open ? 'Chiudi menu' : 'Apri menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -104,7 +116,11 @@ export default function AppHeader() {
                   key={it.href}
                   href={it.href}
                   onClick={() => setOpen(false)}
+<<<<<<< HEAD
                   className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-slate-100 hover:bg-white/5/5"
+=======
+                  className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-slate-100 hover:bg-white/5"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                 >
                   <span className="text-slate-200">{it.icon}</span>
                   {it.label}

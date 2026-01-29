@@ -3,6 +3,10 @@
 import React, { use, useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import {
+<<<<<<< HEAD
+=======
+import { fetchJson } from '@/lib/netlifyFunctions';
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
   Activity,
   AlertTriangle,
   ArrowRight,
@@ -18,8 +22,11 @@ import {
   Users,
 } from "lucide-react";
 
+<<<<<<< HEAD
 
 import { fetchJson } from "@/lib/netlifyFunctions";
+=======
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
 import { TripLayout, TripStatus, SlaLevel } from '@/components/admin/TripLayout';
 
 import { supabase } from '@/lib/supabaseClient';
@@ -367,7 +374,11 @@ const [data, setData] = useState<TripOverviewDTO>(MOCK);
             <div className="text-xs text-slate-300/70">Carica 1 skirama per gita + imposta il luogo per le previsioni (5 giorni).</div>
           </div>
           <button
+<<<<<<< HEAD
             className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5/5 px-4 py-2 text-xs font-black text-white hover:bg-white/5/10"
+=======
+            className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-black text-white hover:bg-white/10"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             onClick={() => mediaApi.load()}
           >
             Aggiorna
@@ -375,7 +386,11 @@ const [data, setData] = useState<TripOverviewDTO>(MOCK);
         </div>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
+<<<<<<< HEAD
           <div className="rounded-2xl border border-white/10 bg-white/5/5 p-4">
+=======
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             <div className="text-xs font-black text-slate-200/80 mb-2">Skirama (immagine)</div>
             {mediaApi.media?.skirama_url ? (
               <img src={mediaApi.media.skirama_url} alt="Skirama" className="w-full rounded-2xl border border-white/10" />
@@ -415,7 +430,11 @@ const [data, setData] = useState<TripOverviewDTO>(MOCK);
             </div>
           </div>
 
+<<<<<<< HEAD
           <div className="rounded-2xl border border-white/10 bg-white/5/5 p-4">
+=======
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             <div className="text-xs font-black text-slate-200/80 mb-2">Meteo (luogo)</div>
             <div className="text-sm text-slate-200/70">Esempi: <b>Champoluc</b>, <b>Gressoney</b>, <b>Alagna</b>.</div>
 
@@ -523,7 +542,11 @@ const [data, setData] = useState<TripOverviewDTO>(MOCK);
                     </div>
                   </div>
 
+<<<<<<< HEAD
                   <div className="h-2 w-full rounded-full bg-white/5/5">
+=======
+                  <div className="h-2 w-full rounded-full bg-white/5">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                     <div
                       className="h-2 rounded-full bg-indigo-600"
                       style={{ width: `${Math.round(computed.fillPct * 100)}%` }}

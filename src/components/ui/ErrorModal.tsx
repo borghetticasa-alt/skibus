@@ -68,7 +68,11 @@ export const ErrorModal: React.FC<ErrorModalProps> = ({ code, onClose, onAction 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+<<<<<<< HEAD
       <div className="bg-white/5 rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden animate-in fade-in zoom-in duration-200">
+=======
+      <div className="bg-white rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden animate-in fade-in zoom-in duration-200">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
         <div className="p-6 text-center">
           <div className="mx-auto w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4">
             {config.icon}

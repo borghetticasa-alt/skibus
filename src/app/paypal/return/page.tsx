@@ -58,7 +58,11 @@ if (!res.ok || !json?.success) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
+<<<<<<< HEAD
       <div className="max-w-md w-full bg-white/5 border border-slate-100 rounded-3xl shadow-sm p-8 space-y-3">
+=======
+      <div className="max-w-md w-full bg-white border border-slate-100 rounded-3xl shadow-sm p-8 space-y-3">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
         <h1 className="text-2xl font-extrabold text-slate-900">PayPal</h1>
         <p className="text-slate-600">{message}</p>
         {status === 'error' && (

@@ -63,7 +63,11 @@ export default function AccountPage() {
       <div className="rounded-3xl glass glow border border-white/10 p-6 md:p-8">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
+<<<<<<< HEAD
             <div className="h-12 w-12 rounded-2xl bg-white/5/5 border border-white/10 flex items-center justify-center">
+=======
+            <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
               <UserCircle className="text-slate-100" />
             </div>
             <div>
@@ -80,7 +84,11 @@ export default function AccountPage() {
           {userEmail ? (
             <button
               onClick={logout}
+<<<<<<< HEAD
               className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5/5 px-4 py-3 text-sm font-black text-white hover:bg-white/5/10"
+=======
+              className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-black text-white hover:bg-white/10"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             >
               <LogOut size={16} />
               Esci
@@ -117,7 +125,11 @@ export default function AccountPage() {
           </div>
           <Link
             href="/trips"
+<<<<<<< HEAD
             className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5/5 px-4 py-3 text-sm font-black text-white hover:bg-white/5/10"
+=======
+            className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-black text-white hover:bg-white/10"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
           >
             <Ticket size={16} />
             Prenota una gita
@@ -141,12 +153,20 @@ export default function AccountPage() {
         {!loading && userEmail && !err && (
           <div className="mt-4 space-y-3">
             {!hasBookings ? (
+<<<<<<< HEAD
               <div className="rounded-2xl border border-white/10 bg-white/5/5 p-4 text-sm text-slate-200/80">
+=======
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200/80">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                 Nessuna prenotazione trovata (ancora).
               </div>
             ) : (
               bookings.map((b) => (
+<<<<<<< HEAD
                 <div key={b.id} className="rounded-2xl border border-white/10 bg-white/5/5 p-4">
+=======
+                <div key={b.id} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div className="font-black text-white">Booking #{b.id.slice(0, 8).toUpperCase()}</div>
                     <div className="text-xs text-slate-300/80">
@@ -154,10 +174,17 @@ export default function AccountPage() {
                     </div>
                   </div>
                   <div className="mt-2 flex flex-wrap gap-2 text-sm">
+<<<<<<< HEAD
                     <span className="rounded-full bg-white/5/5 border border-white/10 px-3 py-1 text-slate-100">
                       Stato: <b className="ml-1">{b.status}</b>
                     </span>
                     <span className="rounded-full bg-white/5/5 border border-white/10 px-3 py-1 text-slate-100">
+=======
+                    <span className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-slate-100">
+                      Stato: <b className="ml-1">{b.status}</b>
+                    </span>
+                    <span className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-slate-100">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                       Posti: <b className="ml-1">{b.seats}</b>
                     </span>
                   </div>

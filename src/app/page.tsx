@@ -36,7 +36,11 @@ export default function HomePage() {
 
             <Link
               href="/admin/trips"
+<<<<<<< HEAD
               className="inline-flex items-center justify-center gap-3 rounded-2xl px-5 py-4 text-sm font-black text-white/90 border border-white/10 hover:bg-white/5/5"
+=======
+              className="inline-flex items-center justify-center gap-3 rounded-2xl px-5 py-4 text-sm font-black text-white/90 border border-white/10 hover:bg-white/5"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             >
               <Shield size={18} />
               Console Admin
@@ -49,7 +53,11 @@ export default function HomePage() {
         </div>
 
         <div className="relative">
+<<<<<<< HEAD
           <div className="rounded-3xl border border-white/10 bg-white/5/5 p-5 md:p-6 backdrop-blur">
+=======
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 md:p-6 backdrop-blur">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             <div className="flex items-center justify-between">
               <div className="text-sm font-black text-white">Anteprima flusso</div>
               <div className="text-xs text-slate-300">cliente → pagamento → QR</div>

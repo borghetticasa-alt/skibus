@@ -35,6 +35,10 @@ export default function LoginPage() {
   const sendLink = async () => {
     setError(null);
     const emailClean = normalizeEmail(email);
+<<<<<<< HEAD
+=======
+const emailClean = normalizeEmail(email);
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
     if (!isEmailLike(emailClean)) {
       setError('Inserisci una email valida.');
       return;
@@ -43,7 +47,11 @@ setLoading(true);
     try {
       const { error } = await supabase.auth.signInWithOtp({ email: emailClean,
         options: {
+<<<<<<< HEAD
           emailRedirectTo: `${location.origin}/auth/callback?redirect=${encodeURIComponent(redirect)}`,
+=======
+          emailRedirectTo: `${location.origin}/login`}${redirect}`,
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
         },
       });
       if (error) throw error;
@@ -64,8 +72,13 @@ setLoading(true);
             onClick={() => setTab('customer')}
             className={
               tab === 'customer'
+<<<<<<< HEAD
                 ? 'flex-1 rounded-xl bg-white/5/10 px-4 py-2 text-sm font-black text-white'
                 : 'flex-1 rounded-xl px-4 py-2 text-sm font-bold text-slate-300 hover:bg-white/5/5'
+=======
+                ? 'flex-1 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white'
+                : 'flex-1 rounded-xl px-4 py-2 text-sm font-bold text-slate-300 hover:bg-white/5'
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             }
           >
             Cliente
@@ -75,8 +88,13 @@ setLoading(true);
             onClick={() => setTab('admin')}
             className={
               tab === 'admin'
+<<<<<<< HEAD
                 ? 'flex-1 rounded-xl bg-white/5/10 px-4 py-2 text-sm font-black text-white'
                 : 'flex-1 rounded-xl px-4 py-2 text-sm font-bold text-slate-300 hover:bg-white/5/5'
+=======
+                ? 'flex-1 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white'
+                : 'flex-1 rounded-xl px-4 py-2 text-sm font-bold text-slate-300 hover:bg-white/5'
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             }
           >
             Admin
@@ -152,7 +170,11 @@ setLoading(true);
 
             <a
               href={adminLoginHref}
+<<<<<<< HEAD
               className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-white/5/10 px-5 py-4 text-sm font-black text-white hover:bg-white/5/15 border border-white/10"
+=======
+              className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-white/10 px-5 py-4 text-sm font-black text-white hover:bg-white/15 border border-white/10"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
             >
               <Shield size={18} />
               Entra in Admin

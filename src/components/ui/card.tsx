@@ -11,7 +11,11 @@ export function Card({
   return (
     <div
       className={cx(
+<<<<<<< HEAD
         "rounded-2xl border border-white/10 bg-white/5 shadow-sm",
+=======
+        "rounded-2xl border border-slate-200 bg-white shadow-sm",
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
         className
       )}
       {...props}

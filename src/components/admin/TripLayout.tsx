@@ -37,7 +37,11 @@ const statusLabel: Record<TripStatus, string> = {
 };
 
 const statusTone: Record<TripStatus, string> = {
+<<<<<<< HEAD
   DRAFT: 'bg-white/5/5 border-white/10 text-slate-200',
+=======
+  DRAFT: 'bg-white/5 border-white/10 text-slate-200',
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
   SOFT_HOLD: 'bg-amber-500/10 border-amber-500/20 text-amber-100',
   CONFIRMED: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-100',
   LOCKED: 'bg-slate-500/10 border-white/10 text-slate-200',
@@ -53,7 +57,11 @@ export const TripLayout: React.FC<Props> = ({ id, activeTab, children, tripSumma
           <div className="flex items-start gap-3">
             <Link
               href="/admin/trips"
+<<<<<<< HEAD
               className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5/5 hover:bg-white/5/10"
+=======
+              className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
               aria-label="Torna alle gite"
               title="Torna alle gite"
             >
@@ -65,11 +73,19 @@ export const TripLayout: React.FC<Props> = ({ id, activeTab, children, tripSumma
                 <div className="text-xl md:text-2xl font-black text-white">Gita</div>
                 {tripSummary?.status && (
                   <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-black ${statusTone[tripSummary.status]}`}>
+<<<<<<< HEAD
                     <span className="h-2 w-2 rounded-full bg-white/5/30" />
                     {statusLabel[tripSummary.status]}
                   </span>
                 )}
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5/5 px-3 py-1 text-xs font-black text-slate-100">
+=======
+                    <span className="h-2 w-2 rounded-full bg-white/30" />
+                    {statusLabel[tripSummary.status]}
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-black text-slate-100">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                   <ShieldCheck size={14} />
                   Admin
                 </span>

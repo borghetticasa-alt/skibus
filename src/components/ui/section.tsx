@@ -21,7 +21,11 @@ export function Section({
 }) {
   const headerSlot = action ?? right;
   return (
+<<<<<<< HEAD
     <div className={`${brand.bg.card} ${brand.radius.card} border border-white/10 p-6 md:p-8 ${brand.shadow.soft}`}>
+=======
+    <div className={`${brand.bg.card} ${brand.radius.card} border border-slate-200 p-6 md:p-8 ${brand.shadow.soft}`}>
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
       <div className="flex items-start md:items-end justify-between gap-4 mb-6">
         <div>
           <h2 className={`text-lg font-semibold ${brand.color.ink}`}>{title}</h2>

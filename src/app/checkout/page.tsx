@@ -285,7 +285,11 @@ if (!res.ok || !data?.approveLink) {
         <h1 className="text-3xl font-extrabold text-white tracking-tight text-center">Checkout</h1>
         <p className="text-slate-200/80 text-center">Inserisci i dati di ogni partecipante e conferma i tuoi posti.</p>
 
+<<<<<<< HEAD
         <div className="grid grid-cols-2 gap-3 p-4 bg-slate-950/30 rounded-2xl border border-dashed border-white/10">
+=======
+        <div className="grid grid-cols-2 gap-3 p-4 bg-slate-950/30 rounded-2xl border border-dashed border-slate-200">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
           <div className="text-sm">
             <div className="text-slate-200/80">Posti disponibili</div>
             <div className="font-extrabold text-white">{availability ? availability.available : '...'}</div>
@@ -318,7 +322,11 @@ if (!res.ok || !data?.approveLink) {
           {forecast?.days?.length ? (
             <div className="space-y-2">
               {forecast.days.map((d, i) => (
+<<<<<<< HEAD
                 <div key={i} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5/5 px-3 py-2 text-sm">
+=======
+                <div key={i} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                   <div className="text-slate-100">
                     {new Date(d.date).toLocaleDateString('it-IT', { weekday: 'short', day: '2-digit', month: '2-digit' })}
                     <span className="ml-2 text-xs text-slate-300/70">{wcLabel(d.weatherCode)}</span>
@@ -425,7 +433,11 @@ if (!res.ok || !data?.approveLink) {
           <button
             onClick={handlePayPal}
             disabled={loading || !isValid}
+<<<<<<< HEAD
             className="w-full bg-white/5/10 hover:bg-white/5/15 border border-white/10 text-white py-4 rounded-2xl font-bold transition-all disabled:opacity-50"
+=======
+            className="w-full bg-white/10 hover:bg-white/15 border border-white/10 text-white py-4 rounded-2xl font-bold transition-all disabled:opacity-50"
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
           >
             {loading ? 'Avvio PayPal...' : 'Paga con PayPal'}
           </button>

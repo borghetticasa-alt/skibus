@@ -42,7 +42,11 @@ function Badge({ badge }: { badge: TabBadge }) {
       ? 'bg-emerald-500/15 text-emerald-100 border-emerald-500/20'
       : tone === 'danger'
       ? 'bg-rose-500/15 text-rose-100 border-rose-500/20'
+<<<<<<< HEAD
       : 'bg-white/5/5 text-slate-100 border-white/10';
+=======
+      : 'bg-white/5 text-slate-100 border-white/10';
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
 
   return (
     <span className={`ml-2 px-2 py-0.5 rounded-full text-[10px] font-black border ${cls}`} title="Badge">
@@ -87,7 +91,11 @@ const TripNavigation: React.FC<NavProps> = ({ tripId, activeTab, badges }) => {
                 >
                   {tab.label}
                   {badge && <Badge badge={badge} />}
+<<<<<<< HEAD
                   <span className="ml-2 px-1.5 py-0.5 bg-white/5/5 text-[8px] font-black uppercase tracking-tighter rounded">
+=======
+                  <span className="ml-2 px-1.5 py-0.5 bg-white/5 text-[8px] font-black uppercase tracking-tighter rounded">
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                     Bloccato
                   </span>
                 </div>
@@ -101,8 +109,13 @@ const TripNavigation: React.FC<NavProps> = ({ tripId, activeTab, badges }) => {
                 className={
                   'flex items-center whitespace-nowrap px-5 py-2.5 text-sm font-black rounded-xl transition-all ' +
                   (isActive
+<<<<<<< HEAD
                     ? 'bg-white/5/10 text-white border border-white/10'
                     : 'text-slate-200/80 hover:text-white hover:bg-white/5/5 border border-transparent')
+=======
+                    ? 'bg-white/10 text-white border border-white/10'
+                    : 'text-slate-200/80 hover:text-white hover:bg-white/5 border border-transparent')
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                 }
                 aria-current={isActive ? 'page' : undefined}
               >
