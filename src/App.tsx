@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 
 const App: React.FC = () => {
@@ -18,3 +19,8 @@ const App: React.FC = () => {
 };
 
 export default App;
+=======
+// File deprecato in favore della struttura /src/app
+// Il redirect è ora gestito in /src/app/page.tsx
+export default function LegacyApp() { return null; }
+>>>>>>> e9d8347c01c39990118074ae6a7afe6f0c7454bc

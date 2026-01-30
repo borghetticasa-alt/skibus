@@ -1,35 +1,36 @@
+import { getSupabase } from "@lib/auth";
 
-import { getSupabase } from '../../netlify/functions/lib/auth';
-
-/**
- * Renderizza un template string rimpiazzando i placeholder {{key}} con i valori nel payload
- */
-export function renderTemplate(template: string, payload: Record<string, any>): string {
-  return template.replace(/\{\{(.*?)\}\}/g, (match, key) => {
-    const value = payload[key.trim()];
-    return value !== undefined ? String(value) : match;
-  });
-}
+type NotificationPayload = {
+  title: string;
+  message: string;
+  tripId?: string;
+  userId?: string;
+};
 
 /**
- * Inserisce una notifica in coda e (opzionalmente) la renderizza subito per log
+ * Renderizza e salva una notifica nel database.
+ * Usato lato server (API / cron / trigger).
  */
-export async function enqueueNotification(
-  templateCode: string, 
-  tripId: string, 
-  payload: Record<string, any>, 
-  userId?: string
-) {
+export async function renderNotification(payload: NotificationPayload) {
   const supabase = getSupabase();
 
-  // Inserimento nella coda
-  const { error } = await supabase.from('notification_queue').insert({
-    trip_id: tripId,
-    user_id: userId || null,
-    template_code: templateCode,
-    payload: payload,
-    status: 'queued'
+  const { title, message, tripId, userId } = payload;
+
+  if (!title || !message) {
+    throw new Error("Notification requires title and message");
+  }
+
+  const { error } = await supabase.from("notifications").insert({
+    title,
+    message,
+    trip_id: tripId ?? null,
+    user_id: userId ?? null,
+    created_at: new Date().toISOString(),
   });
 
-  if (error) throw new Error(`Failed to enqueue notification: ${error.message}`);
+  if (error) {
+    throw new Error(`Failed to create notification: ${error.message}`);
+  }
+
+  return { ok: true };
 }

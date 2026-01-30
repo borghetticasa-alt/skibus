@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind v4: meglio evitare selection:* dentro @apply.
+   Facciamolo con CSS standard, stesso risultato. */
+::selection {
+  background: rgb(224 231 255); /* indigo-100 */
+  color: rgb(67 56 202);        /* indigo-700 */
+}
+
+@layer base {
+  body {
+    /* qui puoi mettere altre apply "normali" se vuoi */
+  }
+}
+
+
+/* Mobile/Tablet usability helpers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Reduce tap highlight on mobile */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Make form controls comfortable on touch */
+input, button, select, textarea { font-size: 16px; }
+
+
+/* === High-tech aesthetic === */
+:root {
+  --accent-from: #4f46e5; /* indigo */
+  --accent-to: #22d3ee;   /* cyan */
+}
+
+.bg-hero {
+  background:
+    radial-gradient(1200px 400px at 10% -10%, rgba(79,70,229,.25), transparent 40%),
+    radial-gradient(800px 300px at 90% -10%, rgba(34,211,238,.25), transparent 40%),
+    linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+}
+
+.card-glass {
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148,163,184,.35);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+  color: white;
+}
+
+.pattern-dots {
+  background-image: radial-gradient(rgba(148,163,184,.25) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* ===== High-tech theme helpers ===== */
+.tech-bg {
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(56,189,248,0.18), transparent 60%),
+    radial-gradient(1000px 600px at 85% 20%, rgba(167,139,250,0.14), transparent 60%),
+    radial-gradient(900px 700px at 60% 90%, rgba(34,197,94,0.10), transparent 55%),
+    #0b1220;
+}
+
+.glass {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(148,163,184,0.25);
+  backdrop-filter: blur(14px);
+}
+
+.glow {
+  box-shadow: 0 18px 60px rgba(56,189,248,0.10), 0 10px 40px rgba(167,139,250,0.08);
+}
+
+.btn-tech {
+  background: linear-gradient(135deg, rgba(99,102,241,0.95), rgba(56,189,248,0.85));
+}
+
+.btn-tech:hover {
+  filter: brightness(1.06);
+}
+
+.badge-tech {
+  background: rgba(56,189,248,0.12);
+  border: 1px solid rgba(56,189,248,0.28);
+}
+<<<<<<< HEAD
+
+/* Dark form controls */
+@layer base {
+  input, select, textarea {
+    @apply bg-white/5 text-white border border-white/10 rounded-xl px-3 py-2 outline-none;
+  }
+  input::placeholder, textarea::placeholder {
+    @apply text-slate-200/50;
+  }
+  select option {
+    color: #0b1220; /* native dropdown */
+  }
+  input:focus, select:focus, textarea:focus {
+    @apply ring-2 ring-white/20;
+  }
+  input:disabled, select:disabled, textarea:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+}
+
+=======
+>>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a

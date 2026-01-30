@@ -64,11 +64,7 @@ export function TripLayout(props: {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-<<<<<<< HEAD
       <div className="border-b border-white/10 bg-white/5">
-=======
-      <div className="border-b border-slate-200 bg-white">
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div>

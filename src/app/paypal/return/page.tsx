@@ -1,78 +1,134 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
-import { fetchJson } from '@/lib/netlifyFunctions';
+import { useEffect, useMemo, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+
+type UiStatus = 'loading' | 'success' | 'error';
 
 export default function PayPalReturnPage() {
-  const params = useSearchParams();
-  const bookingId = params.get('booking');
-  // PayPal rimanda l'order id nel parametro `token`
-  const orderId = params.get('token');
+  const router = useRouter();
+  const search = useSearchParams();
 
-  const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
-  const [message, setMessage] = useState<string>('Sto confermando il pagamento PayPal...');
+  const orderId = useMemo(() => {
+    // PayPal di solito ritorna token=ORDER_ID (per Orders v2)
+    return search.get('token') || search.get('orderId') || '';
+  }, [search]);
+
+  const bookingId = useMemo(() => {
+    return search.get('bookingId') || '';
+  }, [search]);
+
+  const [status, setStatus] = useState<UiStatus>('loading');
+  const [message, setMessage] = useState<string>('Confermo il pagamento…');
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await supabase.auth.getSession();
-        const token = data.session?.access_token;
-        if (!token) {
-          setStatus('error');
-          setMessage('Sessione non valida. Effettua il login e riprova.');
-          return;
-        }
-        if (!bookingId || !orderId) {
-          setStatus('error');
-          setMessage('Parametri mancanti da PayPal.');
-          return;
-        }
+    let cancelled = false;
 
-        const json = await fetchJson('/.netlify/functions/paypal-capture-order', {
+    async function run() {
+      // Validazione parametri
+      if (!orderId) {
+        setStatus('error');
+        setMessage('Parametro PayPal mancante (orderId/token).');
+        return;
+      }
+
+      if (!bookingId) {
+        setStatus('error');
+        setMessage('Parametro mancante: bookingId.');
+        return;
+      }
+
+      try {
+        // Chiamata capture lato server (API Next.js)
+        const res = await fetch('/api/paypal/capture-order', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ orderId, bookingId }),
         });
-if (!res.ok || !json?.success) {
+
+        // Proviamo a leggere JSON anche su error (molte API mandano dettagli)
+        const json = await res
+          .json()
+          .catch(() => ({} as any));
+
+        if (cancelled) return;
+
+        if (!res.ok || !json?.success) {
           setStatus('error');
-          setMessage('Pagamento non confermato. Se hai già pagato, contatta l’assistenza.');
+          setMessage(
+            json?.error ||
+              'Pagamento non confermato. Se hai già pagato, contatta l’assistenza.'
+          );
           return;
         }
 
-        setStatus('ok');
-        setMessage('Pagamento confermato! Ti reindirizzo...');
+        setStatus('success');
+        setMessage('Pagamento confermato ✅');
+
+        // Redirect soft verso account/dettaglio prenotazione
         setTimeout(() => {
-          window.location.href = `/dashboard?payment=success&provider=paypal&booking=${bookingId}`;
-        }, 800);
-      } catch (e) {
+          if (!cancelled) router.push(`/account?highlight=${encodeURIComponent(bookingId)}`);
+        }, 1200);
+      } catch (e: any) {
+        if (cancelled) return;
         setStatus('error');
-        setMessage('Errore durante la conferma PayPal.');
+        setMessage(e?.message || 'Errore di rete durante la conferma pagamento.');
       }
-    })();
-  }, [bookingId, orderId]);
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [orderId, bookingId, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-<<<<<<< HEAD
-      <div className="max-w-md w-full bg-white/5 border border-slate-100 rounded-3xl shadow-sm p-8 space-y-3">
-=======
-      <div className="max-w-md w-full bg-white border border-slate-100 rounded-3xl shadow-sm p-8 space-y-3">
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
-        <h1 className="text-2xl font-extrabold text-slate-900">PayPal</h1>
-        <p className="text-slate-600">{message}</p>
-        {status === 'error' && (
+      <div className="max-w-md w-full rounded-3xl border border-white/10 bg-slate-950/40 p-8 space-y-4">
+        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+          PayPal Return
+        </div>
+
+        <h1 className="text-2xl font-black text-white tracking-tight">
+          {status === 'loading' && 'Sto verificando…'}
+          {status === 'success' && 'Tutto ok'}
+          {status === 'error' && 'Problema'}
+        </h1>
+
+        <p
+          className={`text-sm font-semibold leading-relaxed ${
+            status === 'error' ? 'text-rose-200' : 'text-slate-200/80'
+          }`}
+        >
+          {message}
+        </p>
+
+        <div className="rounded-2xl border border-white/10 bg-slate-950/30 p-4 text-xs font-mono text-slate-300/80 space-y-1">
+          <div>
+            <span className="text-slate-400">orderId:</span> {orderId || '—'}
+          </div>
+          <div>
+            <span className="text-slate-400">bookingId:</span> {bookingId || '—'}
+          </div>
+        </div>
+
+        <div className="flex gap-3 pt-2">
           <button
-            onClick={() => (window.location.href = '/dashboard')}
-            className="w-full mt-4 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-2xl font-bold"
+            type="button"
+            onClick={() => router.push('/account')}
+            className="flex-1 rounded-2xl bg-white/10 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-white/20"
           >
-            Vai alla Dashboard
+            Vai ad Account
           </button>
-        )}
+
+          <button
+            type="button"
+            onClick={() => router.push('/')}
+            className="flex-1 rounded-2xl bg-indigo-600 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-indigo-700"
+          >
+            Home
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { authenticate, checkAdmin, getSupabase } from "@lib/auth";
 
 function getAuthHeader(req: Request) {
@@ -13,11 +13,14 @@ async function requireAdmin(req: Request) {
   return { ok: true as const, user };
 }
 
-export async function GET(req: Request, ctx: { params: { id: string } }) {
-  const gate = await requireAdmin(req);
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const gate = await requireAdmin(request);
   if (!gate.ok) return NextResponse.json({ error: gate.error }, { status: gate.status });
 
-  const tripId = ctx.params.id;
+  const { id: tripId } = await params;
   const supabase = getSupabase();
 
   const [{ data: numbers }, { data: services }, { data: internalCosts }] = await Promise.all([
@@ -68,16 +71,19 @@ type SaveBody = {
   }>;
 };
 
-export async function POST(req: Request, ctx: { params: { id: string } }) {
-  const gate = await requireAdmin(req);
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const gate = await requireAdmin(request);
   if (!gate.ok) return NextResponse.json({ error: gate.error }, { status: gate.status });
 
-  const tripId = ctx.params.id;
+  const { id: tripId } = await params;
   const supabase = getSupabase();
 
   let body: SaveBody;
   try {
-    body = await req.json();
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
@@ -100,10 +106,13 @@ export async function POST(req: Request, ctx: { params: { id: string } }) {
     updated_at: new Date().toISOString(),
   };
 
-  const { error: upsertErr } = await supabase.from("trip_numbers").upsert(numbersRow, { onConflict: "trip_id" });
+  const { error: upsertErr } = await supabase
+    .from("trip_numbers")
+    .upsert(numbersRow, { onConflict: "trip_id" });
+
   if (upsertErr) return NextResponse.json({ error: upsertErr.message }, { status: 500 });
 
-  // Services: simple replace strategy (delete + insert) for now (safe and predictable in admin tool)
+  // Services: replace strategy (delete + insert)
   if (Array.isArray(body.services)) {
     const { error: delErr } = await supabase.from("trip_services").delete().eq("trip_id", tripId);
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 });
@@ -125,12 +134,16 @@ export async function POST(req: Request, ctx: { params: { id: string } }) {
     }
   }
 
-  // Internal costs: replace strategy
+  // Internal costs: replace strategy (delete + insert)
   if (Array.isArray(body.internalCosts)) {
-    const { error: delErr2 } = await supabase.from("trip_internal_costs").delete().eq("trip_id", tripId);
-    if (delErr2) return NextResponse.json({ error: delErr2.message }, { status: 500 });
+    const { error: delErr } = await supabase
+      .from("trip_internal_costs")
+      .delete()
+      .eq("trip_id", tripId);
 
-    const toInsert2 = body.internalCosts.map((c, i) => ({
+    if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 });
+
+    const toInsert = body.internalCosts.map((c, i) => ({
       trip_id: tripId,
       name: c.name,
       cost_mode: c.cost_mode || "fixed",
@@ -139,11 +152,11 @@ export async function POST(req: Request, ctx: { params: { id: string } }) {
       sort: Number(c.sort ?? (i + 1) * 10),
     }));
 
-    if (toInsert2.length) {
-      const { error: insErr2 } = await supabase.from("trip_internal_costs").insert(toInsert2);
-      if (insErr2) return NextResponse.json({ error: insErr2.message }, { status: 500 });
+    if (toInsert.length) {
+      const { error: insErr } = await supabase.from("trip_internal_costs").insert(toInsert);
+      if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 });
     }
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, tripId });
 }

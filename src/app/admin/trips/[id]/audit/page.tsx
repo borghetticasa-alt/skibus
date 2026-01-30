@@ -83,11 +83,7 @@ const MOCK_AUDIT_EVENTS: AuditEvent[] = [
 ];
 
 const severityColors: Record<AuditSeverity, string> = {
-<<<<<<< HEAD
-  INFO: 'bg-white/5/5 text-slate-200/80',
-=======
   INFO: 'bg-white/5 text-slate-200/80',
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
   WARNING: 'bg-amber-100 text-amber-700',
   CRITICAL: 'bg-rose-100 text-rose-700',
 };
@@ -191,11 +187,7 @@ export default function AuditPage({ params }: PageProps) {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <h1 className="text-3xl font-black text-white tracking-tighter">Audit Log Immutabile</h1>
-<<<<<<< HEAD
-              <span className="bg-white/5/50 text-white text-[9px] font-black uppercase px-3 py-1 rounded-full tracking-widest flex items-center gap-2 shadow-lg">
-=======
               <span className="bg-white/50 text-white text-[9px] font-black uppercase px-3 py-1 rounded-full tracking-widest flex items-center gap-2 shadow-lg">
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                 <ShieldCheck size={12} className="text-indigo-400" /> Append-Only
               </span>
             </div>
@@ -362,11 +354,7 @@ export default function AuditPage({ params }: PageProps) {
 
                   <td className="px-8 py-6">
                     <div className="mb-1">
-<<<<<<< HEAD
-                      <span className="px-2 py-0.5 bg-white/5/5 rounded text-[10px] font-bold text-slate-300/70">
-=======
                       <span className="px-2 py-0.5 bg-white/5 rounded text-[10px] font-bold text-slate-300/70">
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
                         {event.targetRef}
                       </span>
                     </div>
@@ -393,11 +381,7 @@ export default function AuditPage({ params }: PageProps) {
 
       {selectedEvent && (
         <div className="fixed inset-0 z-50 flex justify-end">
-<<<<<<< HEAD
-          <div className="absolute inset-0 bg-white/5/50/60 backdrop-blur-sm" onClick={() => setSelectedEvent(null)} />
-=======
           <div className="absolute inset-0 bg-white/50/60 backdrop-blur-sm" onClick={() => setSelectedEvent(null)} />
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
           <div className="relative w-full max-w-xl bg-slate-950/30 h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-500">
             <div className="p-10 border-b border-white/10 flex justify-between items-start">
               <div>
@@ -456,11 +440,7 @@ export default function AuditPage({ params }: PageProps) {
 
               <div>
                 <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Metadati Operativi</h4>
-<<<<<<< HEAD
-                <pre className="bg-white/5/50 text-indigo-300 p-8 rounded-[32px] text-xs font-mono overflow-x-auto">
-=======
                 <pre className="bg-white/50 text-indigo-300 p-8 rounded-[32px] text-xs font-mono overflow-x-auto">
->>>>>>> ddd8ffa10a3e1b234e788c3913d2de8ba4de131a
 {JSON.stringify(selectedEvent.meta, null, 2)}
                 </pre>
               </div>

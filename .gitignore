@@ -33,3 +33,6 @@ Thumbs.db
 .turbo/
 coverage/
 .netlify
+
+.vercel
+.env*.local
