@@ -1,0 +1,29 @@
+
+my-app/
+├── public/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/                # Route Handlers
+│   │   │   ├── webhooks/
+│   │   │   │   └── stripe/     # Stripe Webhook endpoint
+│   │   │   └── auth/           # Supabase Auth endpoints
+│   │   ├── (auth)/             # Auth grouped routes (login/register)
+│   │   ├── (dashboard)/        # Protected routes
+│   │   └── layout.tsx
+│   ├── components/             # UI Components
+│   │   ├── ui/                 # Reusable primitives (buttons, inputs)
+│   │   ├── shared/             # Layout pieces (navbar, footer)
+│   │   └── features/           # Feature-specific components
+│   ├── lib/                    # SDK initializations
+│   │   ├── supabase/           # client.ts, server.ts, admin.ts
+│   │   └── stripe/             # stripe-client.ts, api.ts
+│   ├── hooks/                  # Custom React hooks
+│   ├── services/               # Business logic / Database queries
+│   ├── types/                  # TypeScript interfaces/enums
+│   └── utils/                  # Helper functions
+├── netlify/
+│   └── functions/              # Pure Netlify Functions (if needed outside Next.js)
+├── .env.example
+├── netlify.toml
+├── next.config.js
+└── tailwind.config.ts
