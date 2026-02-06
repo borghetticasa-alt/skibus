@@ -1,3 +1,4 @@
+// src/lib/netlifyFunctions.ts
 import { supabase } from "@/lib/supabaseClient";
 
 type FetchJsonOptions = Omit<RequestInit, "headers"> & {
@@ -16,18 +17,17 @@ function getOriginForServer() {
 function buildUrl(path: string) {
   const p = (path || "").trim();
 
-  // 1) assoluto
   if (isAbsoluteUrl(p)) return p;
 
-  // 2) se ti arriva "/api/...." lascialo così
+  // /api/... ok
   if (p.startsWith("/api/")) {
     if (typeof window !== "undefined") return p;
     return `${getOriginForServer()}${p}`;
   }
 
-  // 3) se ti arriva "admin-trips" o "public-api/get-trips" => lo trasformo in /api/...
+  // se ti passano "admin/..." o "public-api/..." lo porto a /api/...
   const cleaned = p.replace(/^\/+/, "");
-  const finalPath = `/api/${cleaned}`;
+  const finalPath = cleaned.startsWith("api/") ? `/${cleaned}` : `/api/${cleaned}`;
 
   if (typeof window !== "undefined") return finalPath;
   return `${getOriginForServer()}${finalPath}`;

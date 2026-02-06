@@ -1,170 +1,253 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { fetchJson } from '@/lib/netlifyFunctions';
-import { supabase } from '@/lib/supabaseClient';
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
-type CheckoutError = 'MISSING_PARAMS' | 'NOT_AUTHENTICATED' | 'REQUEST_FAILED';
+type TripDetail = {
+  id: string;
+  title?: string | null;
+  destination?: string | null;
+  trip_date?: string | null;
+  base_price?: number | null;
+  status?: string | null;
+};
 
-type Provider = 'stripe' | 'paypal';
+function euro(n: number) {
+  const v = Number.isFinite(n) ? n : 0;
+  return v.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
+}
+
+async function safeJson(res: Response) {
+  const txt = await res.text();
+  try {
+    return JSON.parse(txt);
+  } catch {
+    return { raw: txt };
+  }
+}
 
 export default function CheckoutClient() {
-  const router = useRouter();
-  const params = useSearchParams();
+  const sp = useSearchParams();
+  const tripId = sp.get('tripId') || '';
+  const busRunId = sp.get('busRunId') || ''; // lo lasciamo, anche se ora non è obbligatorio
 
-  const tripId = useMemo(() => params.get('tripId'), [params]);
-  const busRunId = useMemo(() => params.get('busRunId'), [params]);
+  const [trip, setTrip] = useState<TripDetail | null>(null);
+  const [loadingTrip, setLoadingTrip] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // ✅ provider scelto da URL (default stripe)
-  const provider = useMemo<Provider>(() => {
-    const p = (params.get('provider') || 'stripe').toLowerCase();
-    return p === 'paypal' ? 'paypal' : 'stripe';
-  }, [params]);
+  const [stripeLoading, setStripeLoading] = useState(false);
 
-  const [seats, setSeats] = useState(1);
-  const [attendees, setAttendees] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<CheckoutError | null>(null);
-  const [errorDetail, setErrorDetail] = useState<string | null>(null);
+  // ====== Load trip detail (server calcola comunque l’importo per PayPal) ======
+  useEffect(() => {
+    if (!tripId) return;
 
-  const isValid = useMemo(() => !!tripId && !!busRunId && seats > 0, [tripId, busRunId, seats]);
+    let alive = true;
+    (async () => {
+      setLoadingTrip(true);
+      setError(null);
+      try {
+        const res = await fetch(`/api/public-api/get-trip-detail?id=${encodeURIComponent(tripId)}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        const json = await safeJson(res);
+        if (!res.ok) throw new Error(json?.error || `Errore caricamento gita (HTTP ${res.status})`);
 
-  async function getSupabaseBearer(): Promise<string | null> {
-    try {
-      const { data } = await supabase.auth.getSession();
-      return data.session?.access_token || null;
-    } catch {
-      return null;
-    }
-  }
-
-  async function startCheckout() {
-    setError(null);
-    setErrorDetail(null);
-
-    if (!tripId || !busRunId) {
-      setError('MISSING_PARAMS');
-      setErrorDetail('Mancano tripId o busRunId nella URL.');
-      return;
-    }
-
-    const token = await getSupabaseBearer();
-    if (!token) {
-      setError('NOT_AUTHENTICATED');
-      setErrorDetail('Sessione Supabase assente: fai login cliente prima di pagare.');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
-
-      const endpoint = provider === 'paypal' ? '/api/paypal/create-order' : '/api/stripe-checkout';
-
-      const response = await fetchJson(endpoint, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ tripId, busRunId, seats, attendees }),
-      });
-
-      if (provider === 'paypal') {
-        const link = response?.approveLink;
-        if (!link) throw new Error('PayPal: risposta senza approveLink');
-        window.location.href = link;
-        return;
+        // alcuni endpoint ritornano { data }, altri direttamente l’oggetto
+        const t = (json?.data || json?.trip || json) as TripDetail;
+        if (alive) setTrip(t);
+      } catch (e: any) {
+        if (alive) setError(e?.message || 'Errore caricamento gita');
+      } finally {
+        if (alive) setLoadingTrip(false);
       }
+    })();
 
-      const url = response?.url;
+    return () => {
+      alive = false;
+    };
+  }, [tripId]);
+
+  const displayTitle = useMemo(() => {
+    if (!trip) return 'Gita';
+    return (trip.title || trip.destination || 'Gita') as string;
+  }, [trip]);
+
+  const displayPrice = useMemo(() => {
+    const p = Number(trip?.base_price || 0);
+    return Number.isFinite(p) ? p : 0;
+  }, [trip]);
+
+  async function startStripe() {
+    if (!tripId) {
+      setError('TripId mancante');
+      return;
+    }
+    setStripeLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/stripe-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tripId, busRunId }),
+      });
+      const json = await safeJson(res);
+      if (!res.ok) throw new Error(json?.error || `Stripe error (HTTP ${res.status})`);
+
+      const url = json?.url || json?.checkoutUrl;
       if (!url) throw new Error('Stripe: risposta senza url');
+
       window.location.href = url;
     } catch (e: any) {
-      setError('REQUEST_FAILED');
-      setErrorDetail(e?.message || 'Errore sconosciuto durante checkout');
-      setLoading(false);
+      setError(e?.message || 'Errore Stripe');
+    } finally {
+      setStripeLoading(false);
     }
   }
 
-  return (
-    <div className="mx-auto max-w-3xl px-4 py-10 space-y-8">
-      <h1 className="text-3xl font-black tracking-tight text-white">Checkout</h1>
-
-      <div className="rounded-3xl border border-white/10 bg-slate-950/40 p-6 space-y-4">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <div className="text-xs font-bold text-slate-300/70">Metodo pagamento</div>
-            <div className="text-sm font-black text-white">
-              {provider === 'paypal' ? 'PayPal (blocco fondi)' : 'Carta (Stripe)'}
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => router.replace(`/checkout?tripId=${encodeURIComponent(tripId || '')}&busRunId=${encodeURIComponent(busRunId || '')}&provider=stripe`)}
-              className={`rounded-xl px-3 py-2 text-xs font-black border ${
-                provider === 'stripe'
-                  ? 'bg-white/10 text-white border-white/15'
-                  : 'bg-transparent text-slate-300 border-white/10 hover:bg-white/5'
-              }`}
-            >
-              Stripe
-            </button>
-            <button
-              type="button"
-              onClick={() => router.replace(`/checkout?tripId=${encodeURIComponent(tripId || '')}&busRunId=${encodeURIComponent(busRunId || '')}&provider=paypal`)}
-              className={`rounded-xl px-3 py-2 text-xs font-black border ${
-                provider === 'paypal'
-                  ? 'bg-white/10 text-white border-white/15'
-                  : 'bg-transparent text-slate-300 border-white/10 hover:bg-white/5'
-              }`}
-            >
-              PayPal
-            </button>
+  if (!tripId) {
+    return (
+      <div className="mx-auto max-w-xl p-6 text-white">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-xl font-black">Checkout</div>
+          <div className="mt-2 text-sm text-slate-200/80">TripId mancante.</div>
+          <div className="mt-4">
+            <Link className="text-indigo-300 underline" href="/trips">
+              Torna alle gite
+            </Link>
           </div>
         </div>
-
-        <label className="block text-sm font-bold text-slate-300">Numero posti</label>
-        <input
-          type="number"
-          min={1}
-          value={seats}
-          onChange={(e) => setSeats(Number(e.target.value))}
-          className="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm font-semibold text-white"
-        />
       </div>
+    );
+  }
 
-      {error && (
-        <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
-          <div>
-            {error === 'MISSING_PARAMS' && 'Dati mancanti per la prenotazione.'}
-            {error === 'NOT_AUTHENTICATED' && 'Devi effettuare il login cliente prima di continuare.'}
-            {error === 'REQUEST_FAILED' && 'Errore durante l’avvio del pagamento.'}
+  const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || '';
+
+  return (
+    <div className="mx-auto max-w-2xl p-6 text-white">
+      <div className="space-y-4">
+        <div className="rounded-3xl border border-white/10 bg-slate-950/40 p-6">
+          <div className="text-2xl font-black tracking-tight">Pagamento</div>
+          <div className="mt-2 text-sm text-slate-200/70">
+            Completa la prenotazione per: <span className="font-black text-white">{displayTitle}</span>
           </div>
-          {errorDetail ? <div className="mt-2 text-xs font-mono opacity-80">{errorDetail}</div> : null}
+
+          <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 md:col-span-2">
+              <div className="text-xs font-black text-slate-200/70">Riepilogo</div>
+              <div className="mt-2 text-sm text-slate-200/80">
+                {loadingTrip ? (
+                  <span>Caricamento…</span>
+                ) : (
+                  <>
+                    Prezzo base: <span className="font-black text-white">{euro(displayPrice)}</span>
+                    <div className="mt-1 text-xs text-slate-200/60">
+                      (PayPal usa l’importo calcolato dal server, così non “impazzisce” con i formati)
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <button
+              onClick={startStripe}
+              disabled={stripeLoading || loadingTrip}
+              className="rounded-2xl bg-indigo-600 px-4 py-4 text-sm font-black uppercase tracking-widest hover:bg-indigo-700 disabled:opacity-50"
+            >
+              {stripeLoading ? 'Apro Stripe…' : 'Paga con carta'}
+            </button>
+          </div>
+
+          {error && (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
+              {error}
+            </div>
+          )}
         </div>
-      )}
 
-      <button
-        type="button"
-        disabled={!isValid || loading}
-        onClick={startCheckout}
-        className="w-full rounded-2xl bg-indigo-600 px-6 py-4 text-sm font-black uppercase tracking-widest text-white hover:bg-indigo-700 disabled:opacity-50"
-      >
-        {loading ? 'Reindirizzamento…' : 'Procedi al pagamento'}
-      </button>
+        {/* PayPal */}
+        <div className="rounded-3xl border border-white/10 bg-slate-950/40 p-6">
+          <div className="text-lg font-black">PayPal</div>
+          <div className="mt-1 text-sm text-slate-200/70">
+            Seleziona PayPal: l’ordine viene creato dal server con importo in formato valido (es. “35.00”).
+          </div>
 
-      <button
-        type="button"
-        onClick={() => router.back()}
-        className="block text-sm font-semibold text-slate-400 hover:text-white"
-      >
-        ← Torna indietro
-      </button>
+          {!paypalClientId ? (
+            <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+              Manca NEXT_PUBLIC_PAYPAL_CLIENT_ID in .env.local
+            </div>
+          ) : (
+            <div className="mt-4">
+              <PayPalScriptProvider
+                options={{
+                  clientId: paypalClientId,
+                  currency: 'EUR',
+                  intent: 'CAPTURE',
+                }}
+              >
+                <PayPalButtons
+                  style={{ layout: 'vertical', label: 'paypal' }}
+                  createOrder={async () => {
+                    setError(null);
+                    const res = await fetch('/api/paypal/create-order', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ tripId, busRunId }),
+                    });
+                    const json = await safeJson(res);
+                    if (!res.ok) {
+                      throw new Error(json?.error || `PayPal create-order error (HTTP ${res.status})`);
+                    }
+                    const orderId = json?.orderId;
+                    if (!orderId) throw new Error('PayPal: orderId mancante');
+                    return orderId;
+                  }}
+                  onApprove={async (data) => {
+                    setError(null);
+                    const orderId = data?.orderID;
+                    if (!orderId) {
+                      setError('PayPal: orderID mancante');
+                      return;
+                    }
+
+                    const res = await fetch('/api/paypal/capture-order', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ orderId, tripId, busRunId }),
+                    });
+
+                    const json = await safeJson(res);
+                    if (!res.ok) {
+                      setError(json?.error || `PayPal capture error (HTTP ${res.status})`);
+                      return;
+                    }
+
+                    // success → vai a pagina ok (se ce l’hai) oppure account
+                    window.location.href = '/account';
+                  }}
+                  onError={(err) => {
+                    console.error(err);
+                    setError('PayPal: errore pagamento (controlla console)');
+                  }}
+                />
+              </PayPalScriptProvider>
+            </div>
+          )}
+        </div>
+
+        <div className="text-xs text-slate-200/60">
+          TripId: <span className="font-mono">{tripId}</span>
+          {busRunId ? (
+            <>
+              {' '}
+              · BusRunId: <span className="font-mono">{busRunId}</span>
+            </>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

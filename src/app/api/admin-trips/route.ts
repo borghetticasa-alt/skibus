@@ -34,8 +34,8 @@ export async function POST(req: Request) {
   const supabase = getSupabase();
   const body = await req.json().catch(() => ({}));
 
-  const title = String(body.title || "Nuova gita");
-  const destination = String(body.destination || title);
+  const title = String(body.title || "Nuova gita").trim();
+  const destination = String(body.destination || title).trim();
   const basePrice = typeof body.basePrice === "number" ? body.basePrice : 0;
   const tripDate = body.tripDate || null;
 
@@ -62,13 +62,12 @@ export async function PATCH(req: Request) {
   const supabase = getSupabase();
   const body = await req.json().catch(() => ({}));
 
-  const tripId = String(body.tripId || "");
+  const tripId = String(body.tripId || "").trim();
   const nextStatus = String(body.status || "").trim();
 
   if (!tripId) return NextResponse.json({ error: "Missing tripId" }, { status: 400 });
   if (!nextStatus) return NextResponse.json({ error: "Missing status" }, { status: 400 });
 
-  // 1) aggiorna stato gita
   const { data: updatedTrip, error: tErr } = await supabase
     .from("trips")
     .update({ status: nextStatus })
@@ -78,70 +77,6 @@ export async function PATCH(req: Request) {
 
   if (tErr) return NextResponse.json({ error: tErr.message }, { status: 500 });
 
-  // 2) se diventa CONFIRMED -> cattura PayPal per tutte le prenotazioni autorizzate
-  if (nextStatus === "confirmed") {
-    // prendo bookings autorizzati
-    const { data: bookings, error: bErr } = await supabase
-      .from("bookings")
-      .select("id, paypal_authorization_id, payment_status, payment_provider")
-      .eq("trip_id", tripId)
-      .eq("payment_provider", "paypal")
-      .eq("payment_status", "authorized");
-
-    if (bErr) {
-      return NextResponse.json(
-        { error: "Trip status updated, but failed to load authorized bookings", detail: bErr.message },
-        { status: 500 }
-      );
-    }
-
-    // se non ci sono bookings da catturare -> ok
-    const list = bookings || [];
-    const results: any[] = [];
-
-    for (const bk of list) {
-      const authId = String((bk as any).paypal_authorization_id || "");
-      if (!authId) {
-        results.push({ bookingId: bk.id, ok: false, error: "Missing paypal_authorization_id" });
-        continue;
-      }
-
-      // chiama la Netlify function che fa capture dell’autorizzazione
-      // NB: usa URL assoluto dal server
-      const baseUrl =
-        req.headers.get("x-forwarded-proto") && req.headers.get("x-forwarded-host")
-          ? `${req.headers.get("x-forwarded-proto")}://${req.headers.get("x-forwarded-host")}`
-          : process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
-      try {
-        const res = await fetch(`${baseUrl}/.netlify/functions/paypal-capture-authorization`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // passiamo auth admin anche alla function (che verifica admin)
-            Authorization: getAuthHeader(req),
-          },
-          body: JSON.stringify({ bookingId: bk.id, authorizationId: authId }),
-        });
-
-        const json = await res.json().catch(() => ({} as any));
-        if (!res.ok || !json?.success) {
-          results.push({ bookingId: bk.id, ok: false, error: json?.error || `HTTP ${res.status}` });
-        } else {
-          results.push({ bookingId: bk.id, ok: true, captureId: json.captureId });
-        }
-      } catch (e: any) {
-        results.push({ bookingId: bk.id, ok: false, error: e?.message || "Capture error" });
-      }
-    }
-
-    // Se vuoi: se anche una capture fallisce, puoi decidere se bloccare o meno.
-    // Qui: ritorno 200 ma con report (così admin vede cosa non è andato).
-    return NextResponse.json(
-      { data: updatedTrip, captureReport: results },
-      { status: 200 }
-    );
-  }
-
+  // NOTE: capture PayPal autorizzazioni -> lo rimettiamo come route Next separata (niente Netlify).
   return NextResponse.json({ data: updatedTrip }, { status: 200 });
 }

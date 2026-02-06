@@ -1,8 +1,9 @@
-'use client';
+// src/app/admin/trips/page.tsx
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { fetchJson } from '@/lib/netlifyFunctions';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { fetchJson } from "@/lib/netlifyFunctions";
 
 type Trip = {
   id: string;
@@ -16,19 +17,18 @@ export default function AdminTripsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [newTitle, setNewTitle] = useState('');
-  const [newDestination, setNewDestination] = useState('');
+  const [newTitle, setNewTitle] = useState("");
+  const [newDestination, setNewDestination] = useState("");
 
   async function loadTrips() {
     setLoading(true);
     setError(null);
 
     try {
-      // ✅ usa Next API + token Supabase via fetchJson(withAuth)
-      const data = await fetchJson('/api/admin-trips', { withAuth: true });
+      const data = await fetchJson("/api/admin-trips", { withAuth: true });
       setTrips(data.data || []);
     } catch (e: any) {
-      setError(e?.message || 'Errore caricamento gite');
+      setError(e?.message || "Errore caricamento gite");
     } finally {
       setLoading(false);
     }
@@ -41,26 +41,22 @@ export default function AdminTripsPage() {
     setError(null);
 
     try {
-      const data = await fetchJson('/api/admin-trips', {
-        method: 'POST',
+      const data = await fetchJson("/api/admin-trips", {
+        method: "POST",
         withAuth: true,
         body: JSON.stringify({
           title: newTitle.trim(),
           destination: newDestination.trim() || undefined,
-          // opzionali:
-          // basePrice: 79,
-          // tripDate: "2026-02-10",
         }),
       });
 
-      // il tuo route.ts ritorna { data } oppure { data: ... } a seconda della versione
       const created = data.data || data.trip || data;
-      if (created?.id) setTrips(prev => [created, ...prev]);
+      if (created?.id) setTrips((prev) => [created, ...prev]);
 
-      setNewTitle('');
-      setNewDestination('');
+      setNewTitle("");
+      setNewDestination("");
     } catch (e: any) {
-      setError(e?.message || 'Errore creazione gita');
+      setError(e?.message || "Errore creazione gita");
     } finally {
       setLoading(false);
     }
@@ -86,14 +82,14 @@ export default function AdminTripsPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <input
             value={newTitle}
-            onChange={e => setNewTitle(e.target.value)}
+            onChange={(e) => setNewTitle(e.target.value)}
             placeholder="Titolo gita"
             className="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm font-semibold text-white placeholder:text-slate-400"
           />
 
           <input
             value={newDestination}
-            onChange={e => setNewDestination(e.target.value)}
+            onChange={(e) => setNewDestination(e.target.value)}
             placeholder="Destinazione (opzionale)"
             className="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm font-semibold text-white placeholder:text-slate-400"
           />
@@ -116,10 +112,10 @@ export default function AdminTripsPage() {
           <div className="text-sm font-semibold text-slate-400">Nessuna gita presente.</div>
         )}
 
-        {trips.map(trip => (
+        {trips.map((trip) => (
           <Link
             key={trip.id}
-            href={`/admin/trips/${trip.id}`}
+            href={`/admin/trips/${trip.id}/overview`}
             className="block rounded-3xl border border-white/10 bg-slate-950/40 p-6 hover:bg-slate-900"
           >
             <div className="flex items-start justify-between gap-4">

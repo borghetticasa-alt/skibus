@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { fetchJson } from '@/lib/netlifyFunctions';
 import { TripLayout } from '@/components/admin/TripLayout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -11,12 +10,13 @@ import { Pill } from '@/components/ui/pill';
 import { Section } from '@/components/ui/section';
 
 type PricingModel = 'per_person' | 'per_booking' | 'quantity' | 'options';
+type InternalCostModel = 'fixed' | 'per_person';
 
 type ServiceOption = {
   id: string;
   label: string;
-  sale: number; // € vendita
-  cost: number; // € costo
+  sale: number;
+  cost: number;
 };
 
 type ServiceItem = {
@@ -27,20 +27,26 @@ type ServiceItem = {
   name: string;
   description?: string;
   model: PricingModel;
-  sale: number; // default sale (used by non-options)
-  cost: number; // default cost (used by non-options)
-  qty: number; // used by quantity
+  sale: number;
+  cost: number;
+  qty: number;
   options?: ServiceOption[];
   selectedOptionId?: string;
 };
 
-type InternalCostModel = 'fixed' | 'per_person';
 type InternalCostItem = {
   id: string;
   active: boolean;
   name: string;
   model: InternalCostModel;
-  value: number; // € (if per_person -> €/persona)
+  value: number;
+};
+
+type NumbersApiResponse = {
+  tripId: string;
+  numbers: any | null;
+  services: any[];
+  internalCosts: any[];
 };
 
 function euro(n: number) {
@@ -58,6 +64,43 @@ function uid(prefix = 'id') {
   return `${prefix}_${Math.random().toString(16).slice(2)}_${Date.now()}`;
 }
 
+/**
+ * Fetch JSON con auth Supabase:
+ * - prende access_token da localStorage (key: sb-access-token) oppure prova varie key comuni
+ * - manda Authorization: Bearer <token>
+ */
+async function fetchJson<T>(url: string, init?: RequestInit & { withAuth?: boolean }) {
+  const headers = new Headers(init?.headers || {});
+  headers.set('Content-Type', 'application/json');
+
+  if (init?.withAuth) {
+    // chiavi “possibili” (dipende da come hai salvato il token)
+    const token =
+      (typeof window !== 'undefined' && window.localStorage.getItem('sb-access-token')) ||
+      (typeof window !== 'undefined' && window.localStorage.getItem('supabase.access_token')) ||
+      (typeof window !== 'undefined' && window.localStorage.getItem('access_token')) ||
+      '';
+
+    if (token) headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  const res = await fetch(url, { ...init, headers });
+  const text = await res.text();
+  let json: any = {};
+  try {
+    json = text ? JSON.parse(text) : {};
+  } catch {
+    // se non è JSON, lo trasformo in errore leggibile
+    if (!res.ok) throw new Error(text || `HTTP ${res.status}`);
+    return {} as T;
+  }
+
+  if (!res.ok) {
+    throw new Error(json?.error || json?.message || `HTTP ${res.status}`);
+  }
+  return json as T;
+}
+
 export default function NumbersPage() {
   const BUS_OPTIONS = [
     { id: 'small', label: 'Bus Piccolo', capacity: 34 },
@@ -66,68 +109,27 @@ export default function NumbersPage() {
   ] as const;
 
   const params = useParams();
-  const id = String((params as any)?.id || '');
+  const tripId = String((params as any)?.id || '');
 
-  // =========================
-  // Bus selection + capacity
-  // =========================
-  const [busId, setBusId] = useState<string>(() => {
-    if (typeof window === 'undefined') return 'small';
-    return window.localStorage.getItem('skibus_numbers_busId') || 'small';
-  });
-
-  const selectedBus = BUS_OPTIONS.find((b) => b.id === busId) || BUS_OPTIONS[0];
-
-  const [capacity, setCapacity] = useState<number>(() => {
-    if (typeof window === 'undefined') return selectedBus.capacity;
-    const v = window.localStorage.getItem('skibus_numbers_capacity');
-    return v ? Number(v) : selectedBus.capacity;
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('skibus_numbers_busId', busId);
-    } catch {}
-    // quando cambio bus, la capienza segue la capienza del bus scelto
-    setCapacity(selectedBus.capacity);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [busId]);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('skibus_numbers_capacity', String(capacity));
-    } catch {}
-  }, [capacity]);
-
-  const [busCostTotal, setBusCostTotal] = useState<number>(() => {
-    if (typeof window === 'undefined') return 0;
-    const v = window.localStorage.getItem('skibus_numbers_busCostTotal');
-    return v ? Number(v) : 0;
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('skibus_numbers_busCostTotal', String(busCostTotal));
-    } catch {}
-  }, [busCostTotal]);
-
-  // =========================
-  // Modalità / Posti / Partecipanti
-  // =========================
+  // ===== UI: modalità prova =====
   const [testMode, setTestMode] = useState(true);
 
+  // ===== Bus / capacity =====
+  const [busId, setBusId] = useState<string>('small');
+  const selectedBus = BUS_OPTIONS.find((b) => b.id === busId) || BUS_OPTIONS[0];
+
+  const [capacity, setCapacity] = useState<number>(selectedBus.capacity);
+  const [busCostTotal, setBusCostTotal] = useState<number>(0);
+
+  // ===== Partecipanti =====
   const [holds, setHolds] = useState<number>(0);
   const [participants, setParticipants] = useState<number>(21);
 
-  // =========================
-  // Base gita (vendita + costo)
-  // =========================
+  // ===== Base gita =====
   const [baseSalePP, setBaseSalePP] = useState<number>(35);
   const [baseCostPP, setBaseCostPP] = useState<number>(25);
 
-  // =========================
-  // Servizi (visibili al cliente)
-  // =========================
+  // ===== Servizi =====
   const [services, setServices] = useState<ServiceItem[]>([
     {
       id: 'svc_pranzo',
@@ -173,17 +175,13 @@ export default function NumbersPage() {
     },
   ]);
 
-  // =========================
-  // Costi interni (non visibili al cliente)
-  // =========================
+  // ===== Costi interni =====
   const [internalCosts, setInternalCosts] = useState<InternalCostItem[]>([
     { id: 'c_pedaggi', active: true, name: 'Pedaggi / ZTL', model: 'fixed', value: 120 },
     { id: 'c_parking', active: true, name: 'Parcheggi', model: 'fixed', value: 60 },
   ]);
 
-  // =========================
-  // Pagamenti (fee)
-  // =========================
+  // ===== Fee pagamenti (stima) =====
   const [includePaypal, setIncludePaypal] = useState(true);
   const [includeStripe, setIncludeStripe] = useState(true);
 
@@ -193,24 +191,35 @@ export default function NumbersPage() {
   const [stripePct, setStripePct] = useState<number>(1.5);
   const [stripeFixed, setStripeFixed] = useState<number>(0.25);
 
-  // split stimato (solo admin)
-  const [paypalShare, setPaypalShare] = useState<number>(60); // %
-  const [stripeShare, setStripeShare] = useState<number>(40); // %
+  const [paypalShare, setPaypalShare] = useState<number>(60);
+  const [stripeShare, setStripeShare] = useState<number>(40);
 
   const [targetMargin, setTargetMargin] = useState<number>(350);
 
-  // =========================
-  // DB (load/save)
-  // =========================
+  // ===== DB state =====
   const [dbLoading, setDbLoading] = useState(false);
   const [dbError, setDbError] = useState<string | null>(null);
   const [dbSavedAt, setDbSavedAt] = useState<string | null>(null);
 
-  async function loadFromDb(tripId: string) {
+  // ===== Helpers UI classes: sempre scuro =====
+  const cardDark =
+    'rounded-2xl border border-white/10 bg-slate-950/40 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.03)]';
+  const inputDark =
+    'w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white placeholder:text-slate-400';
+  const labelMuted = 'text-xs font-black text-slate-200/70 mb-1';
+
+  // ===== Bus change -> capacity =====
+  useEffect(() => {
+    setCapacity(selectedBus.capacity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [busId]);
+
+  // ===== Load/Save =====
+  async function loadFromDb(id: string) {
     setDbLoading(true);
     setDbError(null);
     try {
-      const data = await fetchJson<any>(`admin/trips/${tripId}/numbers`, { withAuth: true });
+      const data = await fetchJson<NumbersApiResponse>(`/api/admin/trips/${id}/numbers`, { withAuth: true });
       const n = data?.numbers;
 
       if (n) {
@@ -267,7 +276,7 @@ export default function NumbersPage() {
     }
   }
 
-  async function saveToDb(tripId: string) {
+  async function saveToDb(id: string) {
     setDbLoading(true);
     setDbError(null);
     try {
@@ -308,7 +317,7 @@ export default function NumbersPage() {
           })),
       };
 
-      await fetchJson<any>(`admin/trips/${tripId}/numbers`, {
+      await fetchJson(`/api/admin/trips/${id}/numbers`, {
         method: 'POST',
         withAuth: true,
         body: JSON.stringify(payload),
@@ -323,15 +332,13 @@ export default function NumbersPage() {
   }
 
   useEffect(() => {
-    if (!id) return;
+    if (!tripId) return;
     if (testMode) return;
-    loadFromDb(String(id));
+    loadFromDb(tripId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, testMode]);
+  }, [tripId, testMode]);
 
-  // =========================
-  // Calcoli
-  // =========================
+  // ===== Calcoli =====
   const calc = useMemo(() => {
     const p = clamp0(participants);
     const cap = clamp0(capacity);
@@ -360,8 +367,7 @@ export default function NumbersPage() {
         sales = clamp0(s.sale) * clamp0(s.qty);
         cost = clamp0(s.cost) * clamp0(s.qty);
       } else if (s.model === 'options') {
-        const opt =
-          (s.options || []).find((o) => o.id === s.selectedOptionId) || (s.options || [])[0];
+        const opt = (s.options || []).find((o) => o.id === s.selectedOptionId) || (s.options || [])[0];
         sales = clamp0(opt?.sale || 0) * p;
         cost = clamp0(opt?.cost || 0) * p;
       }
@@ -371,7 +377,6 @@ export default function NumbersPage() {
       return { id: s.id, name: s.name, sales, cost, margin: sales - cost };
     });
 
-    // Costi interni
     let internalTotal = 0;
     const internalBreakdown = internalCosts.map((c) => {
       if (!c.active) return { id: c.id, name: c.name, total: 0 };
@@ -381,26 +386,17 @@ export default function NumbersPage() {
     });
 
     const salesTotal = baseSales + svcSales;
-
-    // ✅ QUI entra il costo bus
     const costBeforePay = baseCost + svcCost + internalTotal + clamp0(busCostTotal);
 
-    // Commissioni pagamenti (stima split PayPal/Stripe sui ricavi)
     const ppShare = Math.max(0, Math.min(100, paypalShare)) / 100;
     const stShare = Math.max(0, Math.min(100, stripeShare)) / 100;
 
     const paypalBase = includePaypal ? salesTotal * ppShare : 0;
     const stripeBase = includeStripe ? salesTotal * stShare : 0;
 
-    // Stima transazioni: 1 (semplificato)
     const tx = 1;
-    const paypalFees = includePaypal
-      ? paypalBase * (clamp0(paypalPct) / 100) + clamp0(paypalFixed) * tx
-      : 0;
-
-    const stripeFees = includeStripe
-      ? stripeBase * (clamp0(stripePct) / 100) + clamp0(stripeFixed) * tx
-      : 0;
+    const paypalFees = includePaypal ? paypalBase * (clamp0(paypalPct) / 100) + clamp0(paypalFixed) * tx : 0;
+    const stripeFees = includeStripe ? stripeBase * (clamp0(stripePct) / 100) + clamp0(stripeFixed) * tx : 0;
 
     const payFees = paypalFees + stripeFees;
 
@@ -408,18 +404,13 @@ export default function NumbersPage() {
     const margin = salesTotal - totalCost;
     const marginPP = p > 0 ? margin / p : 0;
 
-    // ✅ Break-even con costo bus incluso
     const fixedCostsApprox =
-      internalCosts
-        .filter((c) => c.active && c.model === 'fixed')
-        .reduce((a, c) => a + clamp0(c.value), 0) +
+      internalCosts.filter((c) => c.active && c.model === 'fixed').reduce((a, c) => a + clamp0(c.value), 0) +
       clamp0(busCostTotal) +
       (includePaypal ? clamp0(paypalFixed) * tx : 0) +
       (includeStripe ? clamp0(stripeFixed) * tx : 0);
 
-    const contributionPP =
-      (clamp0(baseSalePP) - clamp0(baseCostPP)) + (p > 0 ? (svcSales - svcCost) / p : 0);
-
+    const contributionPP = clamp0(baseSalePP) - clamp0(baseCostPP) + (p > 0 ? (svcSales - svcCost) / p : 0);
     const breakEven = contributionPP > 0 ? Math.ceil(fixedCostsApprox / contributionPP) : 0;
 
     const status = margin >= targetMargin ? 'OK' : margin >= 0 ? 'QUASI' : 'KO';
@@ -467,18 +458,15 @@ export default function NumbersPage() {
 
     return {
       destinationName: 'Gita',
-      departureLabel: `Trip ${id}`,
+      departureLabel: tripId ? `Trip ${tripId}` : 'Trip (ID mancante)',
       status,
       sla: {
         level: slaLevel,
         label: calc.status === 'OK' ? 'Ok per conferma' : calc.status === 'QUASI' ? 'Quasi' : 'In perdita',
       },
     };
-  }, [calc.status, id]);
+  }, [calc.status, tripId]);
 
-  // =========================
-  // Azioni UI
-  // =========================
   const addService = () => {
     setServices((prev) => [
       ...prev,
@@ -501,42 +489,54 @@ export default function NumbersPage() {
     setInternalCosts((prev) => [...prev, { id: uid('cost'), active: true, name: 'Nuovo costo', model: 'fixed', value: 0 }]);
   };
 
+  // Se non c’è id: TripLayout mostrerà menu “bloccati” — qui almeno spieghiamo chiaramente.
+  if (!tripId) {
+    return (
+      <div className="mx-auto max-w-3xl p-6">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-6 text-white">
+          <div className="text-xl font-black">Trip ID mancante</div>
+          <div className="mt-2 text-sm text-slate-200/70">
+            Sei finito su una route senza <span className="font-black">/admin/trips/[id]/numbers</span> valido.
+            Torna alla lista gite e apri una gita esistente.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <TripLayout id={String(id)} activeTab="numbers" tripSummary={tripSummary}>
+    <TripLayout id={tripId} activeTab="numbers" tripSummary={tripSummary}>
       <div className="space-y-6">
         {/* Header actions */}
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="text-2xl font-black text-white tracking-tight">Numbers</div>
-            <div className="text-sm text-slate-200/70">
-              Conti costi/ricavi, posti e break-even — valido per sci, mare, eventi (non solo sci).
-            </div>
+            <div className="text-2xl font-black text-white tracking-tight">Numeri</div>
+            <div className="text-sm text-slate-200/70">Conti costi/ricavi, posti e break-even.</div>
           </div>
 
           <div className="flex items-center gap-2">
             <button
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-black text-slate-100 hover:bg-white/10"
+              className="rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-xs font-black text-slate-100 hover:bg-black/40"
               onClick={() => setTestMode((v) => !v)}
               title="In prova non salvi nulla: modifichi e vedi i risultati."
+              type="button"
             >
               Modalità prova:{' '}
-              <span className={testMode ? 'text-emerald-300' : 'text-slate-200'}>
-                {testMode ? 'ON' : 'OFF'}
-              </span>
+              <span className={testMode ? 'text-emerald-300' : 'text-slate-200'}>{testMode ? 'ON' : 'OFF'}</span>
             </button>
 
             <Button
               variant="secondary"
-              disabled={dbLoading || !id || testMode}
-              onClick={() => saveToDb(String(id))}
+              disabled={dbLoading || !tripId || testMode}
+              onClick={() => saveToDb(tripId)}
               title={testMode ? 'Spegni Modalità prova per salvare su DB.' : 'Salva su DB'}
+              type="button"
             >
               {dbLoading ? 'Salvataggio…' : 'Salva'}
             </Button>
           </div>
         </div>
 
-        {/* feedback DB */}
         {(dbError || dbSavedAt) && (
           <div className="text-sm">
             {dbError && <div className="text-red-300">{dbError}</div>}
@@ -546,7 +546,7 @@ export default function NumbersPage() {
 
         {/* KPI Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-          <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+          <Card className={`${cardDark} p-4`}>
             <div className="text-xs font-black text-slate-200/70">Posti</div>
             <div className="mt-1 text-2xl font-black text-white">{calc.available}</div>
             <div className="mt-1 text-xs text-slate-200/70">
@@ -554,7 +554,7 @@ export default function NumbersPage() {
             </div>
           </Card>
 
-          <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+          <Card className={`${cardDark} p-4`}>
             <div className="text-xs font-black text-slate-200/70">Ricavi totali</div>
             <div className="mt-1 text-2xl font-black text-white">{euro(calc.salesTotal)}</div>
             <div className="mt-1 text-xs text-slate-200/70">
@@ -562,7 +562,7 @@ export default function NumbersPage() {
             </div>
           </Card>
 
-          <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+          <Card className={`${cardDark} p-4`}>
             <div className="text-xs font-black text-slate-200/70">Costi totali</div>
             <div className="mt-1 text-2xl font-black text-white">{euro(calc.totalCost)}</div>
             <div className="mt-1 text-xs text-slate-200/70">
@@ -570,7 +570,7 @@ export default function NumbersPage() {
             </div>
           </Card>
 
-          <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+          <Card className={`${cardDark} p-4`}>
             <div className="flex items-center justify-between">
               <div className="text-xs font-black text-slate-200/70">Margine</div>
               <Badge>{calc.status === 'OK' ? 'OK' : calc.status === 'QUASI' ? 'QUASI' : 'KO'}</Badge>
@@ -582,16 +582,12 @@ export default function NumbersPage() {
           </Card>
         </div>
 
-        {/* Section A */}
+        {/* A */}
         <Section title="Posti & partecipanti" subtitle="Imposta bus, capienza, hold e partecipanti (in prova puoi simulare).">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Tipo bus</div>
-              <select
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                value={busId}
-                onChange={(e) => setBusId(e.target.value)}
-              >
+            <Card className={`${cardDark} p-4`}>
+              <div className={`${labelMuted} mb-2`}>Tipo bus</div>
+              <select className={inputDark} value={busId} onChange={(e) => setBusId(e.target.value)}>
                 {BUS_OPTIONS.map((b) => (
                   <option key={b.id} value={b.id}>
                     {b.label} ({b.capacity} posti)
@@ -601,49 +597,35 @@ export default function NumbersPage() {
               <div className="mt-2 text-xs text-slate-200/70">Cambiare bus aggiorna la capienza.</div>
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Capienza bus</div>
-              <input
-                type="number"
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                value={capacity}
-                onChange={(e) => setCapacity(Number(e.target.value))}
-                min={0}
-              />
+            <Card className={`${cardDark} p-4`}>
+              <div className={`${labelMuted} mb-2`}>Capienza bus</div>
+              <input type="number" className={inputDark} value={capacity} onChange={(e) => setCapacity(Number(e.target.value))} min={0} />
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Hold / posti bloccati</div>
-              <input
-                type="number"
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                value={holds}
-                onChange={(e) => setHolds(Number(e.target.value))}
-                min={0}
-              />
+            <Card className={`${cardDark} p-4`}>
+              <div className={`${labelMuted} mb-2`}>Hold / posti bloccati</div>
+              <input type="number" className={inputDark} value={holds} onChange={(e) => setHolds(Number(e.target.value))} min={0} />
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Partecipanti</div>
+            <Card className={`${cardDark} p-4`}>
+              <div className={`${labelMuted} mb-2`}>Partecipanti</div>
               <input
                 type="number"
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                className={inputDark}
                 value={participants}
                 onChange={(e) => setParticipants(Number(e.target.value))}
                 min={0}
                 disabled={!testMode}
                 title={!testMode ? 'In modalità reale: verrà dai dati prenotazioni (step successivo).' : ''}
               />
-              {!testMode && (
-                <div className="mt-2 text-xs text-slate-200/60">In modalità reale verrà dai prenotati (step DB).</div>
-              )}
+              {!testMode && <div className="mt-2 text-xs text-slate-200/60">In modalità reale verrà dai prenotati (step DB).</div>}
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4 lg:col-span-2">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Costo bus totale (€)</div>
+            <Card className={`${cardDark} p-4 lg:col-span-2`}>
+              <div className={`${labelMuted} mb-2`}>Costo bus totale (€)</div>
               <input
                 type="number"
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                className={inputDark}
                 value={busCostTotal}
                 onChange={(e) => setBusCostTotal(Number(e.target.value))}
                 min={0}
@@ -653,64 +635,46 @@ export default function NumbersPage() {
           </div>
         </Section>
 
-        {/* Section B */}
+        {/* B */}
         <Section title="Prezzo base gita" subtitle="Vendita e costo per partecipante. Il cliente vede solo la vendita.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Prezzo vendita base (€/persona)</div>
-              <input
-                type="number"
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                value={baseSalePP}
-                onChange={(e) => setBaseSalePP(Number(e.target.value))}
-                min={0}
-              />
+            <Card className={`${cardDark} p-4`}>
+              <div className={`${labelMuted} mb-2`}>Prezzo vendita base (€/persona)</div>
+              <input type="number" className={inputDark} value={baseSalePP} onChange={(e) => setBaseSalePP(Number(e.target.value))} min={0} />
               <div className="mt-2 text-xs text-slate-200/70">Ricavo base: {euro(calc.baseSales)}</div>
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
-              <div className="text-xs font-black text-slate-200/70 mb-2">Costo reale base (€/persona)</div>
-              <input
-                type="number"
-                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                value={baseCostPP}
-                onChange={(e) => setBaseCostPP(Number(e.target.value))}
-                min={0}
-              />
+            <Card className={`${cardDark} p-4`}>
+              <div className={`${labelMuted} mb-2`}>Costo reale base (€/persona)</div>
+              <input type="number" className={inputDark} value={baseCostPP} onChange={(e) => setBaseCostPP(Number(e.target.value))} min={0} />
               <div className="mt-2 text-xs text-slate-200/70">Costo base: {euro(calc.baseCost)}</div>
             </Card>
           </div>
         </Section>
 
-        {/* Section C */}
+        {/* C */}
         <Section
           title="Servizi extra (visibili al cliente)"
-          subtitle="Ogni servizio ha vendita+costo. Il cliente vede solo la vendita e può selezionare le opzioni."
-          right={<Button onClick={addService}>+ Aggiungi servizio</Button>}
+          subtitle="Ogni servizio ha vendita+costo. Il cliente vede solo la vendita."
+          right={<Button onClick={addService} type="button">+ Aggiungi servizio</Button>}
         >
           <div className="space-y-3">
             {services.map((s) => {
               const breakdown = calc.svcBreakdown.find((x) => x.id === s.id);
               return (
-                <Card key={s.id} className="rounded-2xl border-white/10 bg-white/5 p-4">
+                <Card key={s.id} className={`${cardDark} p-4`}>
                   <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <input
                           type="checkbox"
                           checked={s.active}
-                          onChange={(e) =>
-                            setServices((prev) =>
-                              prev.map((x) => (x.id === s.id ? { ...x, active: e.target.checked } : x))
-                            )
-                          }
+                          onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, active: e.target.checked } : x)))}
                         />
                         <input
-                          className="flex-1 rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white font-black"
+                          className={`${inputDark} font-black`}
                           value={s.name}
-                          onChange={(e) =>
-                            setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, name: e.target.value } : x)))
-                          }
+                          onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, name: e.target.value } : x)))}
                         />
                         <Pill>{s.model}</Pill>
                         <Badge>{euro(breakdown?.margin || 0)} margine</Badge>
@@ -718,15 +682,11 @@ export default function NumbersPage() {
 
                       <div className="mt-2 grid grid-cols-1 lg:grid-cols-4 gap-2">
                         <div>
-                          <div className="text-xs font-black text-slate-200/70 mb-1">Tipo</div>
+                          <div className={labelMuted}>Tipo</div>
                           <select
-                            className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                            className={inputDark}
                             value={s.model}
-                            onChange={(e) =>
-                              setServices((prev) =>
-                                prev.map((x) => (x.id === s.id ? { ...x, model: e.target.value as PricingModel } : x))
-                              )
-                            }
+                            onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, model: e.target.value as PricingModel } : x)))}
                           >
                             <option value="per_person">Per persona</option>
                             <option value="per_booking">Per prenotazione</option>
@@ -738,30 +698,22 @@ export default function NumbersPage() {
                         {s.model !== 'options' && (
                           <>
                             <div>
-                              <div className="text-xs font-black text-slate-200/70 mb-1">Vendita (€)</div>
+                              <div className={labelMuted}>Vendita (€)</div>
                               <input
                                 type="number"
-                                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                                className={inputDark}
                                 value={s.sale}
-                                onChange={(e) =>
-                                  setServices((prev) =>
-                                    prev.map((x) => (x.id === s.id ? { ...x, sale: Number(e.target.value) } : x))
-                                  )
-                                }
+                                onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, sale: Number(e.target.value) } : x)))}
                                 min={0}
                               />
                             </div>
                             <div>
-                              <div className="text-xs font-black text-slate-200/70 mb-1">Costo (€)</div>
+                              <div className={labelMuted}>Costo (€)</div>
                               <input
                                 type="number"
-                                className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                                className={inputDark}
                                 value={s.cost}
-                                onChange={(e) =>
-                                  setServices((prev) =>
-                                    prev.map((x) => (x.id === s.id ? { ...x, cost: Number(e.target.value) } : x))
-                                  )
-                                }
+                                onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, cost: Number(e.target.value) } : x)))}
                                 min={0}
                               />
                             </div>
@@ -770,16 +722,12 @@ export default function NumbersPage() {
 
                         {s.model === 'quantity' && (
                           <div>
-                            <div className="text-xs font-black text-slate-200/70 mb-1">Quantità</div>
+                            <div className={labelMuted}>Quantità</div>
                             <input
                               type="number"
-                              className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                              className={inputDark}
                               value={s.qty}
-                              onChange={(e) =>
-                                setServices((prev) =>
-                                  prev.map((x) => (x.id === s.id ? { ...x, qty: Number(e.target.value) } : x))
-                                )
-                              }
+                              onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, qty: Number(e.target.value) } : x)))}
                               min={0}
                             />
                           </div>
@@ -787,15 +735,11 @@ export default function NumbersPage() {
 
                         {s.model === 'options' && (
                           <div className="lg:col-span-3">
-                            <div className="text-xs font-black text-slate-200/70 mb-1">Opzioni</div>
+                            <div className={labelMuted}>Opzioni</div>
                             <select
-                              className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                              className={inputDark}
                               value={s.selectedOptionId}
-                              onChange={(e) =>
-                                setServices((prev) =>
-                                  prev.map((x) => (x.id === s.id ? { ...x, selectedOptionId: e.target.value } : x))
-                                )
-                              }
+                              onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, selectedOptionId: e.target.value } : x)))}
                             >
                               {(s.options || []).map((o) => (
                                 <option key={o.id} value={o.id}>
@@ -804,7 +748,7 @@ export default function NumbersPage() {
                               ))}
                             </select>
                             <div className="mt-2 text-xs text-slate-200/70">
-                              In questa versione l’opzione è calcolata “per persona” (realistica per noleggi/skipass).
+                              In questa versione l’opzione è calcolata “per persona”.
                             </div>
                           </div>
                         )}
@@ -815,11 +759,7 @@ export default function NumbersPage() {
                           <input
                             type="checkbox"
                             checked={s.visibleToUser}
-                            onChange={(e) =>
-                              setServices((prev) =>
-                                prev.map((x) => (x.id === s.id ? { ...x, visibleToUser: e.target.checked } : x))
-                              )
-                            }
+                            onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, visibleToUser: e.target.checked } : x)))}
                           />
                           Visibile al cliente
                         </label>
@@ -827,11 +767,7 @@ export default function NumbersPage() {
                           <input
                             type="checkbox"
                             checked={s.required}
-                            onChange={(e) =>
-                              setServices((prev) =>
-                                prev.map((x) => (x.id === s.id ? { ...x, required: e.target.checked } : x))
-                              )
-                            }
+                            onChange={(e) => setServices((prev) => prev.map((x) => (x.id === s.id ? { ...x, required: e.target.checked } : x)))}
                           />
                           Obbligatorio
                         </label>
@@ -839,7 +775,7 @@ export default function NumbersPage() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <Button variant="secondary" onClick={() => setServices((prev) => prev.filter((x) => x.id !== s.id))}>
+                      <Button variant="secondary" onClick={() => setServices((prev) => prev.filter((x) => x.id !== s.id))} type="button">
                         Elimina
                       </Button>
                       <div className="text-xs text-slate-200/70">
@@ -855,39 +791,38 @@ export default function NumbersPage() {
           </div>
         </Section>
 
-        {/* Section D */}
+        {/* D */}
         <Section
           title="Costi interni (non visibili al cliente)"
-          subtitle="Pedaggi, parcheggi, staff, ecc. Queste voci aumentano i costi ma non i ricavi."
-          right={<Button onClick={addInternalCost}>+ Aggiungi costo</Button>}
+          subtitle="Pedaggi, parcheggi, staff, ecc."
+          right={<Button onClick={addInternalCost} type="button">+ Aggiungi costo</Button>}
         >
           <div className="space-y-3">
             {internalCosts.map((c) => {
               const b = calc.internalBreakdown.find((x) => x.id === c.id);
               return (
-                <Card key={c.id} className="rounded-2xl border-white/10 bg-white/5 p-4">
+                <Card key={c.id} className={`${cardDark} p-4`}>
                   <div className="grid grid-cols-1 lg:grid-cols-6 gap-2 items-end">
                     <div className="lg:col-span-2">
-                      <div className="text-xs font-black text-slate-200/70 mb-1">Nome costo</div>
+                      <div className={labelMuted}>Nome costo</div>
                       <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
                           checked={c.active}
-                          onChange={(e) =>
-                            setInternalCosts((prev) => prev.map((x) => (x.id === c.id ? { ...x, active: e.target.checked } : x)))
-                          }
+                          onChange={(e) => setInternalCosts((prev) => prev.map((x) => (x.id === c.id ? { ...x, active: e.target.checked } : x)))}
                         />
                         <input
-                          className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white font-black"
+                          className={`${inputDark} font-black`}
                           value={c.name}
                           onChange={(e) => setInternalCosts((prev) => prev.map((x) => (x.id === c.id ? { ...x, name: e.target.value } : x)))}
                         />
                       </div>
                     </div>
+
                     <div>
-                      <div className="text-xs font-black text-slate-200/70 mb-1">Tipo</div>
+                      <div className={labelMuted}>Tipo</div>
                       <select
-                        className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                        className={inputDark}
                         value={c.model}
                         onChange={(e) => setInternalCosts((prev) => prev.map((x) => (x.id === c.id ? { ...x, model: e.target.value as InternalCostModel } : x)))}
                       >
@@ -895,21 +830,24 @@ export default function NumbersPage() {
                         <option value="per_person">Per persona</option>
                       </select>
                     </div>
+
                     <div>
-                      <div className="text-xs font-black text-slate-200/70 mb-1">Valore (€)</div>
+                      <div className={labelMuted}>Valore (€)</div>
                       <input
                         type="number"
-                        className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
+                        className={inputDark}
                         value={c.value}
                         onChange={(e) => setInternalCosts((prev) => prev.map((x) => (x.id === c.id ? { ...x, value: Number(e.target.value) } : x)))}
                         min={0}
                       />
                     </div>
+
                     <div className="text-xs text-slate-200/70">
                       Totale: <span className="font-black text-white">{euro(b?.total || 0)}</span>
                     </div>
+
                     <div className="flex justify-end">
-                      <Button variant="secondary" onClick={() => setInternalCosts((prev) => prev.filter((x) => x.id !== c.id))}>
+                      <Button variant="secondary" onClick={() => setInternalCosts((prev) => prev.filter((x) => x.id !== c.id))} type="button">
                         Elimina
                       </Button>
                     </div>
@@ -920,10 +858,10 @@ export default function NumbersPage() {
           </div>
         </Section>
 
-        {/* Section E */}
+        {/* E */}
         <Section title="Pagamenti (commissioni)" subtitle="Stima costi PayPal/Stripe sui ricavi totali. Solo admin.">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+            <Card className={`${cardDark} p-4`}>
               <div className="flex items-center justify-between">
                 <div className="font-black text-white">PayPal</div>
                 <label className="text-xs text-slate-200/80 inline-flex items-center gap-2">
@@ -934,40 +872,21 @@ export default function NumbersPage() {
 
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <div>
-                  <div className="text-xs font-black text-slate-200/70 mb-1">% fee</div>
-                  <input
-                    type="number"
-                    className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                    value={paypalPct}
-                    onChange={(e) => setPaypalPct(Number(e.target.value))}
-                    min={0}
-                  />
+                  <div className={labelMuted}>% fee</div>
+                  <input type="number" className={inputDark} value={paypalPct} onChange={(e) => setPaypalPct(Number(e.target.value))} min={0} />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-slate-200/70 mb-1">Fisso (€)</div>
-                  <input
-                    type="number"
-                    className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                    value={paypalFixed}
-                    onChange={(e) => setPaypalFixed(Number(e.target.value))}
-                    min={0}
-                  />
+                  <div className={labelMuted}>Fisso (€)</div>
+                  <input type="number" className={inputDark} value={paypalFixed} onChange={(e) => setPaypalFixed(Number(e.target.value))} min={0} />
                 </div>
                 <div className="col-span-2">
-                  <div className="text-xs font-black text-slate-200/70 mb-1">Quota ricavi su PayPal (%)</div>
-                  <input
-                    type="number"
-                    className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                    value={paypalShare}
-                    onChange={(e) => setPaypalShare(Number(e.target.value))}
-                    min={0}
-                    max={100}
-                  />
+                  <div className={labelMuted}>Quota ricavi su PayPal (%)</div>
+                  <input type="number" className={inputDark} value={paypalShare} onChange={(e) => setPaypalShare(Number(e.target.value))} min={0} max={100} />
                 </div>
               </div>
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+            <Card className={`${cardDark} p-4`}>
               <div className="flex items-center justify-between">
                 <div className="font-black text-white">Stripe</div>
                 <label className="text-xs text-slate-200/80 inline-flex items-center gap-2">
@@ -978,35 +897,16 @@ export default function NumbersPage() {
 
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <div>
-                  <div className="text-xs font-black text-slate-200/70 mb-1">% fee</div>
-                  <input
-                    type="number"
-                    className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                    value={stripePct}
-                    onChange={(e) => setStripePct(Number(e.target.value))}
-                    min={0}
-                  />
+                  <div className={labelMuted}>% fee</div>
+                  <input type="number" className={inputDark} value={stripePct} onChange={(e) => setStripePct(Number(e.target.value))} min={0} />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-slate-200/70 mb-1">Fisso (€)</div>
-                  <input
-                    type="number"
-                    className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                    value={stripeFixed}
-                    onChange={(e) => setStripeFixed(Number(e.target.value))}
-                    min={0}
-                  />
+                  <div className={labelMuted}>Fisso (€)</div>
+                  <input type="number" className={inputDark} value={stripeFixed} onChange={(e) => setStripeFixed(Number(e.target.value))} min={0} />
                 </div>
                 <div className="col-span-2">
-                  <div className="text-xs font-black text-slate-200/70 mb-1">Quota ricavi su Stripe (%)</div>
-                  <input
-                    type="number"
-                    className="w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                    value={stripeShare}
-                    onChange={(e) => setStripeShare(Number(e.target.value))}
-                    min={0}
-                    max={100}
-                  />
+                  <div className={labelMuted}>Quota ricavi su Stripe (%)</div>
+                  <input type="number" className={inputDark} value={stripeShare} onChange={(e) => setStripeShare(Number(e.target.value))} min={0} max={100} />
                 </div>
               </div>
             </Card>
@@ -1017,32 +917,28 @@ export default function NumbersPage() {
           </div>
         </Section>
 
-        {/* Section F */}
+        {/* F */}
         <Section title="Break-even & conferma bus" subtitle="Solo admin: soglie per decidere se confermare la gita.">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+            <Card className={`${cardDark} p-4`}>
               <div className="text-xs font-black text-slate-200/70">Margine target (€)</div>
-              <input
-                type="number"
-                className="mt-2 w-full rounded-xl bg-black/30 border border-white/10 px-3 py-2 text-white"
-                value={targetMargin}
-                onChange={(e) => setTargetMargin(Number(e.target.value))}
-                min={0}
-              />
+              <input type="number" className={`${inputDark} mt-2`} value={targetMargin} onChange={(e) => setTargetMargin(Number(e.target.value))} min={0} />
               <div className="mt-2 text-xs text-slate-200/70">Stato: {calc.status}</div>
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+            <Card className={`${cardDark} p-4`}>
               <div className="text-xs font-black text-slate-200/70">Break-even stimato</div>
               <div className="mt-2 text-3xl font-black text-white">{calc.breakEven || 0}</div>
               <div className="mt-1 text-xs text-slate-200/70">partecipanti minimi per non andare in perdita</div>
             </Card>
 
-            <Card className="rounded-2xl border-white/10 bg-white/5 p-4">
+            <Card className={`${cardDark} p-4`}>
               <div className="text-xs font-black text-slate-200/70">Azioni</div>
               <div className="mt-2 flex flex-col gap-2">
-                <Button onClick={() => alert('Step successivo: conferma bus (DB + notifiche).')}>Segna “Bus confermato”</Button>
-                <Button variant="secondary" onClick={() => alert('Step successivo: modalità prova → applica alla gita (DB).')}>
+                <Button onClick={() => alert('Step successivo: conferma bus (DB + notifiche).')} type="button">
+                  Segna “Bus confermato”
+                </Button>
+                <Button variant="secondary" onClick={() => alert('Step successivo: modalità prova → applica alla gita (DB).')} type="button">
                   Applica valori alla gita
                 </Button>
               </div>

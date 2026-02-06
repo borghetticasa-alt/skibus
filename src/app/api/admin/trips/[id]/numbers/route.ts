@@ -1,3 +1,4 @@
+// src/app/api/admin/trips/[id]/numbers/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { authenticate, checkAdmin, getSupabase } from "@lib/auth";
 
@@ -13,27 +14,28 @@ async function requireAdmin(req: Request) {
   return { ok: true as const, user };
 }
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, ctx: { params: Promise<{ id: string }> }) {
   const gate = await requireAdmin(request);
   if (!gate.ok) return NextResponse.json({ error: gate.error }, { status: gate.status });
 
-  const { id: tripId } = await params;
+  const { id: tripId } = await ctx.params;
   const supabase = getSupabase();
 
-  const [{ data: numbers }, { data: services }, { data: internalCosts }] = await Promise.all([
+  const [numbersRes, servicesRes, internalCostsRes] = await Promise.all([
     supabase.from("trip_numbers").select("*").eq("trip_id", tripId).maybeSingle(),
     supabase.from("trip_services").select("*").eq("trip_id", tripId).order("sort", { ascending: true }),
     supabase.from("trip_internal_costs").select("*").eq("trip_id", tripId).order("sort", { ascending: true }),
   ]);
 
+  if (numbersRes.error) return NextResponse.json({ error: numbersRes.error.message }, { status: 500 });
+  if (servicesRes.error) return NextResponse.json({ error: servicesRes.error.message }, { status: 500 });
+  if (internalCostsRes.error) return NextResponse.json({ error: internalCostsRes.error.message }, { status: 500 });
+
   return NextResponse.json({
     tripId,
-    numbers: numbers || null,
-    services: services || [],
-    internalCosts: internalCosts || [],
+    numbers: numbersRes.data || null,
+    services: servicesRes.data || [],
+    internalCosts: internalCostsRes.data || [],
   });
 }
 
@@ -51,18 +53,21 @@ type SaveBody = {
   stripeFeeFixed?: number;
 
   services?: Array<{
-    id?: string;
     name: string;
+    description?: string;
     pricing_mode?: string;
     sale_price?: number;
     cost_price?: number;
+    qty?: number;
     options?: any;
+    selected_option_id?: string | null;
+    visible_to_user?: boolean;
+    is_required?: boolean;
     is_active?: boolean;
     sort?: number;
   }>;
 
   internalCosts?: Array<{
-    id?: string;
     name: string;
     cost_mode?: string;
     amount?: number;
@@ -71,14 +76,11 @@ type SaveBody = {
   }>;
 };
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(request: NextRequest, ctx: { params: Promise<{ id: string }> }) {
   const gate = await requireAdmin(request);
   if (!gate.ok) return NextResponse.json({ error: gate.error }, { status: gate.status });
 
-  const { id: tripId } = await params;
+  const { id: tripId } = await ctx.params;
   const supabase = getSupabase();
 
   let body: SaveBody;
@@ -88,7 +90,6 @@ export async function POST(
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  // Upsert trip_numbers
   const numbersRow = {
     trip_id: tripId,
     bus_id: body.busId ?? null,
@@ -106,13 +107,9 @@ export async function POST(
     updated_at: new Date().toISOString(),
   };
 
-  const { error: upsertErr } = await supabase
-    .from("trip_numbers")
-    .upsert(numbersRow, { onConflict: "trip_id" });
-
+  const { error: upsertErr } = await supabase.from("trip_numbers").upsert(numbersRow, { onConflict: "trip_id" });
   if (upsertErr) return NextResponse.json({ error: upsertErr.message }, { status: 500 });
 
-  // Services: replace strategy (delete + insert)
   if (Array.isArray(body.services)) {
     const { error: delErr } = await supabase.from("trip_services").delete().eq("trip_id", tripId);
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 });
@@ -120,10 +117,15 @@ export async function POST(
     const toInsert = body.services.map((s, i) => ({
       trip_id: tripId,
       name: s.name,
+      description: s.description || "",
       pricing_mode: s.pricing_mode || "per_person",
       sale_price: Number(s.sale_price ?? 0),
       cost_price: Number(s.cost_price ?? 0),
+      qty: Number(s.qty ?? 0),
       options: s.options ?? null,
+      selected_option_id: s.selected_option_id ?? null,
+      visible_to_user: s.visible_to_user ?? true,
+      is_required: s.is_required ?? false,
       is_active: s.is_active ?? true,
       sort: Number(s.sort ?? (i + 1) * 10),
     }));
@@ -134,13 +136,8 @@ export async function POST(
     }
   }
 
-  // Internal costs: replace strategy (delete + insert)
   if (Array.isArray(body.internalCosts)) {
-    const { error: delErr } = await supabase
-      .from("trip_internal_costs")
-      .delete()
-      .eq("trip_id", tripId);
-
+    const { error: delErr } = await supabase.from("trip_internal_costs").delete().eq("trip_id", tripId);
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 });
 
     const toInsert = body.internalCosts.map((c, i) => ({

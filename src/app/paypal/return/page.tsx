@@ -1,3 +1,4 @@
+// src/app/paypal/return/page.tsx
 "use client";
 
 import { useEffect, useMemo, useState, Suspense } from "react";
@@ -10,29 +11,19 @@ function PayPalReturnInner() {
   const router = useRouter();
   const search = useSearchParams();
 
-  const orderId = useMemo(() => {
-    return search.get("token") || search.get("orderId") || "";
-  }, [search]);
-
-  const bookingId = useMemo(() => {
-    return search.get("bookingId") || "";
-  }, [search]);
+  const orderId = useMemo(() => search.get("token") || search.get("orderId") || "", [search]);
+  const bookingId = useMemo(() => search.get("bookingId") || "", [search]);
 
   const [status, setStatus] = useState<UiStatus>("loading");
-  const [message, setMessage] = useState<string>("Sto verificando l’autorizzazione PayPal…");
+  const [message, setMessage] = useState<string>("Sto verificando PayPal…");
 
   useEffect(() => {
     let cancelled = false;
 
     async function run() {
-      if (!orderId) {
+      if (!orderId || !bookingId) {
         setStatus("error");
-        setMessage("Parametro PayPal mancante (orderId/token).");
-        return;
-      }
-      if (!bookingId) {
-        setStatus("error");
-        setMessage("Parametro mancante: bookingId.");
+        setMessage("PayPal return incompleto: manca orderId/token o bookingId. Torna alla pagina Account e riprova.");
         return;
       }
 
@@ -43,21 +34,20 @@ function PayPalReturnInner() {
         if (!token) {
           setStatus("error");
           setMessage("Devi essere loggato per completare PayPal. Ti porto al login…");
+
           setTimeout(() => {
-            if (!cancelled) {
-              const next = `/paypal/return?bookingId=${encodeURIComponent(bookingId)}&token=${encodeURIComponent(orderId)}`;
-              router.push(`/login?next=${encodeURIComponent(next)}`);
-            }
-          }, 900);
+            if (cancelled) return;
+            const next = `/paypal/return?bookingId=${encodeURIComponent(bookingId)}&token=${encodeURIComponent(orderId)}`;
+            router.push(`/login?next=${encodeURIComponent(next)}`);
+          }, 700);
+
           return;
         }
 
+        // Qui chiamiamo la tua route NEXT (non netlify)
         const res = await fetch("/api/paypal/capture-order", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
           body: JSON.stringify({ orderId, bookingId }),
         });
 
@@ -66,16 +56,17 @@ function PayPalReturnInner() {
 
         if (!res.ok || !json?.success) {
           setStatus("error");
-          setMessage(json?.error || "Autorizzazione PayPal non completata. Riprova o contatta l’assistenza.");
+          setMessage(json?.error || "Autorizzazione PayPal non completata.");
           return;
         }
 
         setStatus("success");
-        setMessage("Autorizzazione registrata ✅ (l’incasso avverrà quando la gita viene confermata)");
+        setMessage("Autorizzazione registrata ✅ (incasso alla conferma gita)");
 
         setTimeout(() => {
-          if (!cancelled) router.push(`/account?highlight=${encodeURIComponent(bookingId)}`);
-        }, 1200);
+          if (cancelled) return;
+          router.push(`/account?highlight=${encodeURIComponent(bookingId)}`);
+        }, 900);
       } catch (e: any) {
         if (cancelled) return;
         setStatus("error");
