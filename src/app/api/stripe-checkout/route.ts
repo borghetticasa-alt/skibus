@@ -24,17 +24,17 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => ({}));
     const tripId = String(body.tripId || "").trim();
     const busRunId = String(body.busRunId || "").trim();
-    const seats = Number(body.seats || 0);
+    const seats = Number(body.seats || 1);
 
-    if (!tripId || !busRunId || !Number.isFinite(seats) || seats <= 0) {
-      return NextResponse.json({ error: "Missing tripId/busRunId/seats" }, { status: 400 });
+    if (!tripId || !Number.isFinite(seats) || seats <= 0) {
+      return NextResponse.json({ error: "Missing tripId/seats" }, { status: 400 });
     }
 
     // 3) Stripe init
     const secret = process.env.STRIPE_SECRET_KEY;
     if (!secret) return NextResponse.json({ error: "Missing STRIPE_SECRET_KEY" }, { status: 500 });
 
-    const stripe = new Stripe(secret, { apiVersion: "2024-06-20" });
+    const stripe = new Stripe(secret);
 
     // 4) Qui per ora prezzo “semplice” (MVP):
     //    - prendi base_price dal DB trips
@@ -65,7 +65,6 @@ export async function POST(req: Request) {
       mode: "payment",
       success_url: `${baseUrl}/account?paid=1&tripId=${encodeURIComponent(tripId)}`,
       cancel_url: `${baseUrl}/checkout?tripId=${encodeURIComponent(tripId)}&busRunId=${encodeURIComponent(busRunId)}&cancel=1`,
-      customer_email: user.email || undefined,
       metadata: {
         tripId,
         busRunId,

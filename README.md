@@ -1,20 +1,43 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# SKI BUS
 
-# Run and deploy your AI Studio app
+Applicazione web per la gestione delle gite sciistiche: configurazione viaggi, calcolo margini/costi (Numbers), prenotazioni e integrazione pagamenti.
 
-This contains everything you need to run your app locally.
+## Stack tecnico
 
-View your app in AI Studio: https://ai.studio/apps/drive/1olqJyqLYKTlrgzkOTwR86HBOKw9dzfko
+- Next.js + React
+- Supabase (DB/Auth/Storage)
+- Stripe e PayPal (flussi pagamento)
 
-## Run Locally
+## Avvio in locale
 
-**Prerequisites:**  Node.js
+**Prerequisiti:** Node.js 20+
 
+1. Installa le dipendenze:
+   ```bash
+   npm install
+   ```
+2. Crea un file `.env.local` partendo da `.env.example` e configura le variabili necessarie.
+3. Avvia il server di sviluppo:
+   ```bash
+   npm run dev
+   ```
+4. Apri `http://localhost:3000`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Variabili ambiente principali
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (solo server)
+- `PAYPAL_*` / `STRIPE_*` (solo server)
+
+Per il setup completo di deploy e pagamenti, vedi:
+
+- `README_DEPLOY.md`
+- `PROJECT_CHECKLIST.md`
+- `stripe_production_checklist.md`
+- `NEXT_STEPS.md` (ordine pratico dei lavori consigliato)
+
+## Stato progetto
+
+La checklist operativa per portare il progetto in produzione è in `PROJECT_CHECKLIST.md`.
+In particolare, è già presente una modalità test locale per Numbers (localStorage), utile per validare i calcoli senza toccare il DB.

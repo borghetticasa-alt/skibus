@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 type TripDetail = {
   id: string;
@@ -92,7 +91,7 @@ export default function CheckoutClient() {
       const res = await fetch('/api/stripe-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tripId, busRunId }),
+        body: JSON.stringify({ tripId, busRunId, seats: 1 }),
       });
       const json = await safeJson(res);
       if (!res.ok) throw new Error(json?.error || `Stripe error (HTTP ${res.status})`);
@@ -180,60 +179,9 @@ export default function CheckoutClient() {
               Manca NEXT_PUBLIC_PAYPAL_CLIENT_ID in .env.local
             </div>
           ) : (
-            <div className="mt-4">
-              <PayPalScriptProvider
-                options={{
-                  clientId: paypalClientId,
-                  currency: 'EUR',
-                  intent: 'CAPTURE',
-                }}
-              >
-                <PayPalButtons
-                  style={{ layout: 'vertical', label: 'paypal' }}
-                  createOrder={async () => {
-                    setError(null);
-                    const res = await fetch('/api/paypal/create-order', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ tripId, busRunId }),
-                    });
-                    const json = await safeJson(res);
-                    if (!res.ok) {
-                      throw new Error(json?.error || `PayPal create-order error (HTTP ${res.status})`);
-                    }
-                    const orderId = json?.orderId;
-                    if (!orderId) throw new Error('PayPal: orderId mancante');
-                    return orderId;
-                  }}
-                  onApprove={async (data) => {
-                    setError(null);
-                    const orderId = data?.orderID;
-                    if (!orderId) {
-                      setError('PayPal: orderID mancante');
-                      return;
-                    }
-
-                    const res = await fetch('/api/paypal/capture-order', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ orderId, tripId, busRunId }),
-                    });
-
-                    const json = await safeJson(res);
-                    if (!res.ok) {
-                      setError(json?.error || `PayPal capture error (HTTP ${res.status})`);
-                      return;
-                    }
-
-                    // success → vai a pagina ok (se ce l’hai) oppure account
-                    window.location.href = '/account';
-                  }}
-                  onError={(err) => {
-                    console.error(err);
-                    setError('PayPal: errore pagamento (controlla console)');
-                  }}
-                />
-              </PayPalScriptProvider>
+            <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+              PayPal temporaneamente disabilitato in questa build: manca il pacchetto client `@paypal/react-paypal-js`.
+              Usa il pulsante <span className="font-black">Paga con carta</span> (Stripe) finché non viene installata la dipendenza.
             </div>
           )}
         </div>
