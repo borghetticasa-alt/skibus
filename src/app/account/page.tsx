@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
@@ -25,7 +25,7 @@ function isComplete(p: Profile | null) {
   return ok;
 }
 
-export default function AccountPage() {
+function AccountPageInner() {
   const router = useRouter();
   const sp = useSearchParams();
   const nextUrl = useMemo(() => sp.get("next") || "/trips", [sp]);
@@ -229,5 +229,14 @@ export default function AccountPage() {
         </>
       )}
     </div>
+  );
+}
+
+
+export default function AccountPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-sm text-white/70">Caricamento…</div>}>
+      <AccountPageInner />
+    </Suspense>
   );
 }

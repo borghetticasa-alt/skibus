@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function SignupPage() {
+function SignupPageInner() {
   const router = useRouter();
   const sp = useSearchParams();
   const nextUrl = useMemo(() => sp.get("next") || "/account", [sp]);
@@ -92,5 +92,14 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-sm text-white/70">Caricamento…</div>}>
+      <SignupPageInner />
+    </Suspense>
   );
 }

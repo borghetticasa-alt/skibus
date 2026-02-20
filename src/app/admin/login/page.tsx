@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -8,7 +8,7 @@ function isSafeNext(nextUrl: string) {
   return nextUrl.startsWith("/") && !nextUrl.startsWith("//");
 }
 
-export default function AdminLoginPage() {
+function AdminLoginPageInner() {
   const router = useRouter();
   const sp = useSearchParams();
 
@@ -98,5 +98,13 @@ export default function AdminLoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-sm text-white/70">Caricamento…</div>}>
+      <AdminLoginPageInner />
+    </Suspense>
   );
 }

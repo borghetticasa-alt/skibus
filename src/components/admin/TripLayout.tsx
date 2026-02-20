@@ -95,7 +95,7 @@ export const TripLayout: React.FC<Props> = ({ id, activeTab, children, tripSumma
         </div>
 
         <div className="mt-4">
-          <TripNavigation tripId={id} activeTab={String(activeTab)} badges={navBadges} />
+          <TripNavigation tripId={id} activeTab={activeTab as TabId} badges={navBadges} />
         </div>
       </div>
 
